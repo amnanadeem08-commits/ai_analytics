@@ -1,0 +1,285 @@
+2026-05-23 04:06:23,870 [INFO] services.cleaning_service: Cleaning complete. Original: 1,000 rows × 12 cols
+Cleaned:  1,000 rows × 12 cols
+Rows removed: 0 (duplicates: 0)
+Columns dropped: 0
+Date columns detected: subscription_date
+2026-05-23 04:06:24,733 [ERROR] utils.llm_client: LLM call failed: Client.__init__() got an unexpected keyword argument 'proxies'
+2026-05-23 04:06:25,916 [ERROR] services.ai_summary_service: LLM summary failed: Client.__init__() got an unexpected keyword argument 'proxies'
+2026-05-23 04:06:25,918 [ERROR] utils.llm_client: LLM call failed: Client.__init__() got an unexpected keyword argument 'proxies'
+2026-05-23 04:06:25,926 [INFO] __main__: Processing complete for 'customers-1000.csv'
+2026-05-23 04:08:39,270 [INFO] services.cleaning_service: Cleaning complete. Original: 1,000 rows × 12 cols
+Cleaned:  1,000 rows × 12 cols
+Rows removed: 0 (duplicates: 0)
+Columns dropped: 0
+Date columns detected: subscription_date
+2026-05-23 04:08:39,300 [ERROR] utils.llm_client: LLM call failed: Client.__init__() got an unexpected keyword argument 'proxies'
+2026-05-23 04:08:39,612 [ERROR] services.ai_summary_service: LLM summary failed: Client.__init__() got an unexpected keyword argument 'proxies'
+2026-05-23 04:08:39,614 [ERROR] utils.llm_client: LLM call failed: Client.__init__() got an unexpected keyword argument 'proxies'
+2026-05-23 04:08:39,618 [INFO] __main__: Processing complete for 'customers-1000.csv'
+2026-05-23 04:08:51,301 [ERROR] utils.llm_client: LLM call failed: Client.__init__() got an unexpected keyword argument 'proxies'
+2026-05-23 04:09:05,346 [ERROR] utils.llm_client: LLM call failed: Client.__init__() got an unexpected keyword argument 'proxies'
+2026-05-23 04:16:00,442 [INFO] services.cleaning_service: Dropping index noise columns: ['index']
+2026-05-23 04:16:01,346 [INFO] services.cleaning_service: Cleaning complete. Original: 1,000 rows × 12 cols
+Cleaned:  1,000 rows × 11 cols
+Rows removed: 0 (duplicates: 0)
+Columns dropped: 0
+Date columns detected: subscription_date
+2026-05-23 04:16:01,361 [ERROR] utils.llm_client: LLM call failed: Client.__init__() got an unexpected keyword argument 'proxies'
+2026-05-23 04:16:01,397 [ERROR] services.ai_summary_service: LLM summary failed: Client.__init__() got an unexpected keyword argument 'proxies'
+2026-05-23 04:16:01,399 [ERROR] utils.llm_client: LLM call failed: Client.__init__() got an unexpected keyword argument 'proxies'
+2026-05-23 04:16:01,403 [INFO] __main__: Processing complete for 'customers-1000.csv'
+2026-05-23 04:17:30,983 [INFO] services.cleaning_service: Dropping index noise columns: ['index']
+2026-05-23 04:17:31,547 [INFO] services.cleaning_service: Cleaning complete. Original: 1,000 rows × 12 cols
+Cleaned:  1,000 rows × 11 cols
+Rows removed: 0 (duplicates: 0)
+Columns dropped: 0
+Date columns detected: subscription_date
+2026-05-23 04:17:31,572 [ERROR] utils.llm_client: LLM call failed: Client.__init__() got an unexpected keyword argument 'proxies'
+2026-05-23 04:17:31,604 [ERROR] services.ai_summary_service: LLM summary failed: Client.__init__() got an unexpected keyword argument 'proxies'
+2026-05-23 04:17:31,605 [ERROR] utils.llm_client: LLM call failed: Client.__init__() got an unexpected keyword argument 'proxies'
+2026-05-23 04:17:31,608 [INFO] __main__: Processing complete for 'customers-1000.csv'
+2026-05-23 04:17:38,559 [ERROR] utils.llm_client: LLM call failed: Client.__init__() got an unexpected keyword argument 'proxies'
+2026-05-23 04:33:41,771 [INFO] services.cleaning_service: Dropping index noise columns: ['index']
+2026-05-23 04:33:42,442 [INFO] services.cleaning_service: Cleaning complete. Original: 1,000 rows × 12 cols
+Cleaned:  1,000 rows × 11 cols
+Rows removed: 0 (duplicates: 0)
+Columns dropped: 0
+Date columns detected: subscription_date
+2026-05-23 04:33:42,697 [ERROR] utils.llm_client: LLM call failed: Client.__init__() got an unexpected keyword argument 'proxies'
+2026-05-23 04:33:43,095 [ERROR] services.ai_summary_service: LLM summary failed: Client.__init__() got an unexpected keyword argument 'proxies'
+2026-05-23 04:33:43,097 [ERROR] utils.llm_client: LLM call failed: Client.__init__() got an unexpected keyword argument 'proxies'
+2026-05-23 04:33:43,101 [INFO] __main__: Processing complete for 'customers-1000.csv'
+2026-05-23 04:36:56,073 [INFO] services.cleaning_service: Dropping index noise columns: ['index']
+2026-05-23 04:36:57,272 [INFO] services.cleaning_service: Cleaning complete. Original: 1,000 rows × 12 cols
+Cleaned:  1,000 rows × 11 cols
+Rows removed: 0 (duplicates: 0)
+Columns dropped: 0
+Date columns detected: subscription_date
+2026-05-23 04:36:57,738 [ERROR] utils.llm_client: LLM call failed: Client.__init__() got an unexpected keyword argument 'proxies'
+2026-05-23 04:36:58,696 [ERROR] services.ai_summary_service: LLM summary failed: Client.__init__() got an unexpected keyword argument 'proxies'
+2026-05-23 04:36:58,698 [ERROR] utils.llm_client: LLM call failed: Client.__init__() got an unexpected keyword argument 'proxies'
+2026-05-23 04:36:58,702 [INFO] __main__: Processing complete for 'customers-1000.csv'
+2026-05-23 04:37:26,981 [ERROR] utils.llm_client: LLM call failed: Client.__init__() got an unexpected keyword argument 'proxies'
+2026-05-23 04:37:44,111 [INFO] services.export_service: PDF exported: D:\ai_analytics\ai_analytics\exports\report_generic_20260523_043744.pdf
+2026-05-23 04:43:24,827 [INFO] services.cleaning_service: Dropping index noise columns: ['index']
+2026-05-23 04:43:25,749 [INFO] services.cleaning_service: Cleaning complete. Original: 1,000 rows × 12 cols
+Cleaned:  1,000 rows × 11 cols
+Rows removed: 0 (duplicates: 0)
+Columns dropped: 0
+Date columns detected: subscription_date
+2026-05-23 04:43:27,700 [ERROR] services.ai_summary_service: LLM summary failed: Client.__init__() got an unexpected keyword argument 'proxies'
+2026-05-23 04:43:27,702 [ERROR] utils.llm_client: LLM call failed: Client.__init__() got an unexpected keyword argument 'proxies'
+2026-05-23 04:43:27,712 [INFO] __main__: Processing complete for 'customers-1000.csv'
+2026-05-23 04:48:32,860 [INFO] services.cleaning_service: Dropping index noise columns: ['index']
+2026-05-23 04:48:33,587 [INFO] services.cleaning_service: Cleaning complete. Original: 1,000 rows × 12 cols
+Cleaned:  1,000 rows × 11 cols
+Rows removed: 0 (duplicates: 0)
+Columns dropped: 0
+Date columns detected: subscription_date
+2026-05-23 04:48:34,368 [ERROR] services.ai_summary_service: LLM summary failed: Client.__init__() got an unexpected keyword argument 'proxies'
+2026-05-23 04:48:34,371 [ERROR] utils.llm_client: LLM call failed: Client.__init__() got an unexpected keyword argument 'proxies'
+2026-05-23 04:48:34,374 [INFO] __main__: Processing complete for 'customers-1000.csv'
+2026-05-23 04:49:25,338 [ERROR] services.chatbot_service: Chatbot LLM error: Client.__init__() got an unexpected keyword argument 'proxies'
+2026-05-23 04:50:26,411 [INFO] services.cleaning_service: Dropping index noise columns: ['index']
+2026-05-23 04:50:27,100 [INFO] services.cleaning_service: Cleaning complete. Original: 1,000 rows × 12 cols
+Cleaned:  1,000 rows × 11 cols
+Rows removed: 0 (duplicates: 0)
+Columns dropped: 0
+Date columns detected: subscription_date
+2026-05-23 04:50:27,737 [ERROR] services.ai_summary_service: LLM summary failed: Client.__init__() got an unexpected keyword argument 'proxies'
+2026-05-23 04:50:27,740 [ERROR] utils.llm_client: LLM call failed: Client.__init__() got an unexpected keyword argument 'proxies'
+2026-05-23 04:50:27,743 [INFO] __main__: Processing complete for 'customers-1000.csv'
+2026-05-23 04:50:35,868 [ERROR] services.chatbot_service: Chatbot LLM error: Client.__init__() got an unexpected keyword argument 'proxies'
+2026-05-23 04:53:06,313 [INFO] services.cleaning_service: Dropping index noise columns: ['index']
+2026-05-23 04:53:06,870 [INFO] services.cleaning_service: Cleaning complete. Original: 1,000 rows × 12 cols
+Cleaned:  1,000 rows × 11 cols
+Rows removed: 0 (duplicates: 0)
+Columns dropped: 0
+Date columns detected: subscription_date
+2026-05-23 04:53:08,139 [ERROR] services.ai_summary_service: LLM summary failed: Client.__init__() got an unexpected keyword argument 'proxies'
+2026-05-23 04:53:08,141 [ERROR] utils.llm_client: LLM call failed: Client.__init__() got an unexpected keyword argument 'proxies'
+2026-05-23 04:53:08,145 [INFO] __main__: Processing complete for 'customers-1000.csv'
+2026-05-23 05:28:34,981 [INFO] services.cleaning_service: Dropping index noise columns: ['index']
+2026-05-23 05:28:35,644 [INFO] services.cleaning_service: Cleaning complete. Original: 1,000 rows × 12 cols
+Cleaned:  1,000 rows × 11 cols
+Rows removed: 0 (duplicates: 0)
+Columns dropped: 0
+Date columns detected: subscription_date
+2026-05-23 05:28:37,414 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-23 05:28:37,414 [ERROR] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbKVzVG2BJxEXnmQrD1bw'}
+2026-05-23 05:28:37,416 [ERROR] services.ai_summary_service: LLM summary failed: LLM request failed or AI provider not configured.
+2026-05-23 05:28:38,061 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-23 05:28:38,063 [ERROR] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbKVzXvWRGpDWfH1shjMv'}
+2026-05-23 05:28:38,071 [INFO] __main__: Processing complete for 'customers-1000.csv'
+2026-05-23 05:29:05,138 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-23 05:29:05,140 [ERROR] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbKW2Xp7nbU1BMUD7p8oA'}
+2026-05-23 05:29:41,921 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-23 05:29:41,924 [ERROR] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbKW5F77euLAtpMTtV9MG'}
+2026-05-23 05:42:06,046 [INFO] services.cleaning_service: Cleaning complete. Original: 1,200 rows × 13 cols
+Cleaned:  1,200 rows × 13 cols
+Rows removed: 0 (duplicates: 0)
+Columns dropped: 0
+2026-05-23 05:42:06,744 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-23 05:42:06,761 [ERROR] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbKX29YHNapwF7gf48DD2'}
+2026-05-23 05:42:08,534 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-23 05:42:08,537 [ERROR] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbKX2HCQb23uVHhZQPS5p'}
+2026-05-23 05:42:08,537 [ERROR] services.ai_summary_service: LLM summary failed: LLM request failed or AI provider not configured.
+2026-05-23 05:42:09,099 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-23 05:42:09,099 [ERROR] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbKX2KZnkspKzs84bPuMa'}
+2026-05-23 05:42:09,640 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-23 05:42:09,642 [ERROR] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbKX2MtC2puxxkLMxUENc'}
+2026-05-23 05:42:09,646 [INFO] __main__: Processing complete for 'Teen_Mental_Health_Dataset.csv'
+2026-05-23 05:49:58,928 [INFO] services.cleaning_service: Cleaning complete. Original: 1,200 rows × 13 cols
+Cleaned:  1,200 rows × 13 cols
+Rows removed: 0 (duplicates: 0)
+Columns dropped: 0
+2026-05-23 05:50:00,277 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-23 05:50:00,293 [ERROR] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbKXd47LBVN6Kvmj2jqFM'}
+2026-05-23 05:50:02,933 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-23 05:50:02,942 [ERROR] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbKXdFJXz2hTcUNwqShbD'}
+2026-05-23 05:50:02,943 [ERROR] services.ai_summary_service: LLM summary failed: LLM request failed or AI provider not configured.
+2026-05-23 05:50:03,545 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-23 05:50:03,547 [ERROR] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbKXdHunuUfxirMMnicPA'}
+2026-05-23 05:50:04,159 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-23 05:50:04,160 [ERROR] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbKXdLVaBB1zJJD9zCLf3'}
+2026-05-23 05:50:04,172 [INFO] __main__: Processing complete for 'Teen_Mental_Health_Dataset.csv'
+2026-05-23 05:51:03,229 [INFO] services.cleaning_service: Cleaning complete. Original: 5,000 rows × 13 cols
+Cleaned:  5,000 rows × 13 cols
+Rows removed: 0 (duplicates: 0)
+Columns dropped: 0
+Date columns detected: customer_since
+2026-05-23 05:51:03,990 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-23 05:51:03,992 [ERROR] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbKXhkQrM5yVXujBH48x9'}
+2026-05-23 05:51:06,172 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-23 05:51:06,172 [ERROR] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbKXhuiCnYE9Bn3JxDCjG'}
+2026-05-23 05:51:06,172 [ERROR] services.ai_summary_service: LLM summary failed: LLM request failed or AI provider not configured.
+2026-05-23 05:51:06,772 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-23 05:51:06,772 [ERROR] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbKXhxJy86v971GMs2pmw'}
+2026-05-23 05:51:07,326 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-23 05:51:07,326 [ERROR] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbKXhzi5u7CwXkZwwf7qG'}
+2026-05-23 05:51:07,886 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-23 05:51:07,886 [ERROR] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbKXi39vkgYzTLneooCRf'}
+2026-05-23 05:51:08,606 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-23 05:51:08,608 [ERROR] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbKXi65HxCBJxvNYJtP6F'}
+2026-05-23 05:51:09,240 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-23 05:51:09,240 [ERROR] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbKXi8cqJYJ26ftr8DLFy'}
+2026-05-23 05:51:09,240 [INFO] __main__: Processing complete for 'synthetic_ecommerce_churn_dataset.csv'
+2026-05-23 05:52:10,393 [INFO] services.cleaning_service: Cleaning complete. Original: 5,000 rows × 13 cols
+Cleaned:  5,000 rows × 13 cols
+Rows removed: 0 (duplicates: 0)
+Columns dropped: 0
+Date columns detected: customer_since
+2026-05-23 05:52:11,061 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-23 05:52:11,065 [ERROR] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbKXnhBXKJhcJmat6CDeq'}
+2026-05-23 05:52:13,199 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-23 05:52:13,199 [ERROR] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbKXnrMgKb72yABxVxcLE'}
+2026-05-23 05:52:13,202 [ERROR] services.ai_summary_service: LLM summary failed: LLM request failed or AI provider not configured.
+2026-05-23 05:52:13,779 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-23 05:52:13,779 [ERROR] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbKXntrFTjRp3pfKntpyX'}
+2026-05-23 05:52:14,344 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-23 05:52:14,346 [ERROR] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbKXnwEsGjEnXWEre2iBG'}
+2026-05-23 05:52:14,885 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-23 05:52:14,898 [ERROR] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbKXnyZm5mWAF3Gz5Ncnh'}
+2026-05-23 05:52:15,441 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-23 05:52:15,447 [ERROR] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbKXo1wtV8wVmqxz2RX8b'}
+2026-05-23 05:52:15,984 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-23 05:52:15,990 [ERROR] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbKXo4GHn17HpH1w5r64G'}
+2026-05-23 05:52:15,999 [INFO] __main__: Processing complete for 'synthetic_ecommerce_churn_dataset.csv'
+2026-05-23 21:57:33,734 [INFO] services.cleaning_service: Cleaning complete. Original: 5,000 rows × 13 cols
+Cleaned:  5,000 rows × 13 cols
+Rows removed: 0 (duplicates: 0)
+Columns dropped: 0
+Date columns detected: customer_since
+2026-05-23 21:57:35,543 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-23 21:57:35,543 [ERROR] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbLoQVov1ppeNKD4vAUgd'}
+2026-05-23 21:57:39,719 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-23 21:57:39,720 [ERROR] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbLoQohw8oTfQeNoGjSQg'}
+2026-05-23 21:57:39,721 [ERROR] services.ai_summary_service: LLM summary failed: LLM request failed or AI provider not configured.
+2026-05-23 21:57:40,250 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-23 21:57:40,252 [ERROR] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbLoQqz7G8kU91464w8aA'}
+2026-05-23 21:57:40,777 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-23 21:57:40,778 [ERROR] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbLoQtEJALfCHDHuwy6v9'}
+2026-05-23 21:57:41,362 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-23 21:57:41,362 [ERROR] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbLoQvZwM9rDDTnuqRoKz'}
+2026-05-23 21:57:41,870 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-23 21:57:41,872 [ERROR] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbLoQxvaFghGyN9bWdRV7'}
+2026-05-23 21:57:42,433 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-23 21:57:42,433 [ERROR] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbLoR1Fih1q8tnoQjoLNX'}
+2026-05-23 21:57:42,450 [INFO] __main__: Processing complete for 'synthetic_ecommerce_churn_dataset.csv'
+2026-05-23 22:03:38,742 [INFO] services.cleaning_service: Cleaning complete. Original: 5,000 rows × 13 cols
+Cleaned:  5,000 rows × 13 cols
+Rows removed: 0 (duplicates: 0)
+Columns dropped: 0
+Date columns detected: customer_since
+2026-05-23 22:03:40,764 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-23 22:03:40,769 [ERROR] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbLosPRCMZhdjTqsDuueK'}
+2026-05-23 22:03:49,159 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-23 22:03:49,161 [ERROR] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbLot1LveRKXzLMN9K6Xg'}
+2026-05-23 22:03:49,161 [ERROR] services.ai_summary_service: LLM summary failed: LLM request failed or AI provider not configured.
+2026-05-23 22:03:49,699 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-23 22:03:49,702 [ERROR] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbLot3eqDYdMJs9Wc7EqX'}
+2026-05-23 22:03:50,259 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-23 22:03:50,261 [ERROR] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbLot5yjJa37uXdXiZWc6'}
+2026-05-23 22:03:50,811 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-23 22:03:50,811 [ERROR] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbLot8Ls8ab9dapecj5jy'}
+2026-05-23 22:03:51,318 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-23 22:03:51,319 [ERROR] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbLotAb3qLEeawHJWhxkn'}
+2026-05-23 22:03:51,839 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-23 22:03:51,840 [ERROR] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbLotCn1Wqv3ESzBHB6FZ'}
+2026-05-23 22:03:51,848 [INFO] __main__: Processing complete for 'synthetic_ecommerce_churn_dataset.csv'
+2026-05-23 22:29:53,986 [INFO] services.cleaning_service: Cleaning complete. Original: 5,000 rows × 13 cols
+Cleaned:  5,000 rows × 13 cols
+Rows removed: 0 (duplicates: 0)
+Columns dropped: 0
+Date columns detected: customer_since
+2026-05-23 22:29:56,102 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-23 22:29:56,106 [ERROR] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbLqsW7WXXLASnpwgEaRy'}
+2026-05-23 22:30:00,999 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-23 22:30:00,999 [ERROR] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbLqss8JUVwRJkHofGgyn'}
+2026-05-23 22:30:00,999 [ERROR] services.ai_summary_service: LLM summary failed: LLM request failed or AI provider not configured.
+2026-05-23 22:30:01,589 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-23 22:30:01,590 [ERROR] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbLqsuZQKjWhz1LhpdP7f'}
+2026-05-23 22:30:02,124 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-23 22:30:02,128 [ERROR] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbLqswsoZmnYYxrfhjX2Y'}
+2026-05-23 22:30:02,687 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-23 22:30:02,687 [ERROR] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbLqszJf2fgCLypL1Zxic'}
+2026-05-23 22:30:03,260 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-23 22:30:03,262 [ERROR] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbLqt2hGiGYcKgsxyZTYs'}
+2026-05-23 22:30:03,805 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-23 22:30:03,805 [ERROR] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbLqt54edJFKcw2iMcJUQ'}
+2026-05-23 22:30:03,824 [INFO] __main__: Processing complete for 'synthetic_ecommerce_churn_dataset.csv'
+2026-05-23 23:31:10,121 [INFO] services.cleaning_service: Cleaning complete. Original: 5,000 rows × 13 cols
+Cleaned:  5,000 rows × 13 cols
+Rows removed: 0 (duplicates: 0)
+Columns dropped: 0
+Date columns detected: customer_since
+2026-05-23 23:31:11,660 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-23 23:31:11,664 [ERROR] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbLvYSfh392J2tJMHPF8x'}
+2026-05-23 23:31:15,655 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-23 23:31:15,658 [ERROR] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbLvYjgt7cYFBrVzWZ2jr'}
+2026-05-23 23:31:15,659 [ERROR] services.ai_summary_service: LLM summary failed: LLM request failed or AI provider not configured.
+2026-05-23 23:31:16,193 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-23 23:31:16,193 [ERROR] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbLvYn22ZXNYHsRQPs3fA'}
+2026-05-23 23:31:16,759 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-23 23:31:16,759 [ERROR] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbLvYpPeckbRawNHAhqiD'}
+2026-05-23 23:31:17,315 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-23 23:31:17,315 [ERROR] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbLvYrp18k7jtZFawLWiB'}
+2026-05-23 23:31:17,909 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-23 23:31:17,920 [ERROR] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbLvYuErao9eQPXLSAT47'}
+2026-05-23 23:31:18,495 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-23 23:31:18,497 [ERROR] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbLvYwmQjAfv9cXL29K3d'}
+2026-05-23 23:31:18,510 [INFO] __main__: Processing complete for 'synthetic_ecommerce_churn_dataset.csv'
+2026-05-23 23:31:44,783 [INFO] services.cleaning_service: Cleaning complete. Original: 1,200 rows × 13 cols
+Cleaned:  1,200 rows × 13 cols
+Rows removed: 0 (duplicates: 0)
+Columns dropped: 0
+2026-05-23 23:31:45,441 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-23 23:31:45,442 [ERROR] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbLvaw1pbMEJEEbNxtiYN'}
+2026-05-23 23:31:47,406 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-23 23:31:47,406 [ERROR] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbLvb5SpuUusPKsZfhScG'}
+2026-05-23 23:31:47,406 [ERROR] services.ai_summary_service: LLM summary failed: LLM request failed or AI provider not configured.
+2026-05-23 23:31:47,937 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-23 23:31:47,937 [ERROR] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbLvb7jzV7ANpT4EJKx3c'}
+2026-05-23 23:31:48,472 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-23 23:31:48,474 [ERROR] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbLvbA2uNmzPA73MPhVen'}
+2026-05-23 23:31:48,476 [INFO] __main__: Processing complete for 'Teen_Mental_Health_Dataset.csv'
