@@ -9,6 +9,14 @@ upload gate, pipeline call, sidebar, and tab dispatch.
 All business logic lives in pipeline.py and tabs/.
 """
 
+import sys
+from pathlib import Path
+
+# Ensure project root is on sys.path (Streamlit Cloud / nested repo layouts).
+_ROOT = Path(__file__).resolve().parent
+if str(_ROOT) not in sys.path:
+    sys.path.insert(0, str(_ROOT))
+
 import logging
 
 import streamlit as st
