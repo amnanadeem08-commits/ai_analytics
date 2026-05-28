@@ -133,7 +133,18 @@ Each domain changes KPIs, chart types, chatbot persona, and AI analysis focus:
 ## Deployment
 
 ### Streamlit Cloud
-Push to GitHub, connect to [share.streamlit.io](https://share.streamlit.io), set `ANTHROPIC_API_KEY` in Secrets.
+1. Push the repository to GitHub.
+2. Open https://share.streamlit.io and connect your GitHub account.
+3. Create a new app and select:
+   - Repository: `amnanadeem08-commits/ai_analytics`
+   - Branch: `master`
+   - Main file: `app.py`
+4. Add the required secrets in Streamlit Cloud:
+   - `AI_PROVIDER=anthropic` or `openai`
+   - `ANTHROPIC_API_KEY=<your-key>` or `OPENAI_API_KEY=<your-key>`
+5. Deploy and visit the generated Streamlit URL.
+
+> The app will run without an AI API key, but LLM-based summaries and chatbot features will gracefully fall back to statistical summaries.
 
 ### Docker
 ```dockerfile
