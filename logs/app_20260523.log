@@ -283,3 +283,32 @@ Columns dropped: 0
 2026-05-23 23:31:48,472 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
 2026-05-23 23:31:48,474 [ERROR] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbLvbA2uNmzPA73MPhVen'}
 2026-05-23 23:31:48,476 [INFO] __main__: Processing complete for 'Teen_Mental_Health_Dataset.csv'
+2026-05-24 00:42:17,980 [INFO] services.cleaning_service: Dropping index noise columns: ['index']
+2026-05-24 00:42:46,839 [INFO] services.cleaning_service: Cleaning complete. Original: 100,000 rows × 27 cols
+Cleaned:  100,000 rows × 26 cols
+Rows removed: 0 (duplicates: 0)
+Columns dropped: 0
+2026-05-24 00:42:49,115 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-24 00:42:49,122 [ERROR] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbM21DvKFERCHLEtHKza6'}
+2026-05-24 00:43:02,176 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-24 00:43:02,198 [ERROR] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbM22BoqhXsFFKQAwhzsF'}
+2026-05-24 00:43:02,199 [ERROR] services.ai_summary_service: LLM summary failed: LLM request failed or AI provider not configured.
+2026-05-24 00:43:03,034 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-24 00:43:03,035 [ERROR] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbM22FRsuBossDzHBXtN4'}
+2026-05-24 00:43:03,845 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-24 00:43:03,851 [ERROR] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbM22JuyXwCAtFa5EFazU'}
+2026-05-24 00:43:04,616 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-24 00:43:04,685 [ERROR] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbM22NBgHdneddKtra8aX'}
+2026-05-24 00:43:06,826 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-24 00:43:07,063 [ERROR] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbM22XdTJLp4MKQA3rSBv'}
+2026-05-24 00:43:08,842 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-24 00:43:08,844 [ERROR] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbM22gM5RQzaYU6S1YMBN'}
+2026-05-24 00:43:09,415 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-24 00:43:09,416 [ERROR] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbM22inRHdWPSJKL122wX'}
+2026-05-24 00:43:09,962 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-24 00:43:09,966 [ERROR] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbM22m6aNWH1LztAcUmXs'}
+2026-05-24 00:43:10,554 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-24 00:43:10,555 [ERROR] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbM22ocdV39oQY6D28yL8'}
+2026-05-24 00:43:11,077 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-24 00:43:11,077 [ERROR] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbM22quYdoUUdkxgnNJds'}
+2026-05-24 00:43:11,129 [INFO] __main__: Processing complete for 'Healthcare Providers.csv'

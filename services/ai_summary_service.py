@@ -1,89 +1,169 @@
 """
-ai_summary_service.py — Generates domain-aware executive summaries via LLM.
-Composes a rich prompt from KPIs, analytics, and domain config.
+services/ai_summary_service.py — AI Executive Summary Service.
+
+Generates a domain-specific business narrative using the configured LLM.
+Falls back to a rich statistical summary if no API key is configured,
+so PPTX/PDF exports always contain meaningful content.
+
+Fix applied:
+  - Fallback now produces a full structured narrative (not an empty string)
+    so export_service.py always has real text to embed in slides/PDF.
+  - Added explicit API key validation with a clear error message.
+  - Model pulled from config so it can be overridden via .env.
 """
 
+from __future__ import annotations
+
 import logging
-from services.domain_service import DomainConfig
-from services.kpi_service import KPIResult
-from services.analytics_service import AnalyticsReport
-from utils.llm_client import call_llm
-from config import AI_MAX_TOKENS
+import os
+from typing import TYPE_CHECKING
+
+from config import AI_PROVIDER, ANTHROPIC_API_KEY, OPENAI_API_KEY, AI_MODEL, AI_MAX_TOKENS
+
+if TYPE_CHECKING:
+    pass
 
 logger = logging.getLogger(__name__)
 
 
 class AISummaryService:
-    """Calls the configured LLM to produce a business executive summary."""
+    """Generates an executive summary narrative for the uploaded dataset."""
 
-    def generate_summary(
-        self,
-        domain: DomainConfig,
-        kpis: list[KPIResult],
-        analytics: AnalyticsReport,
-        dataset_name: str = "the dataset",
-    ) -> str:
-        prompt = self._build_prompt(domain, kpis, analytics, dataset_name)
+    def generate_summary(self, domain_cfg, kpis: list, analytics_report, filename: str) -> str:
+        """
+        Returns a rich narrative string.
+        Tries LLM first; falls back to statistical summary on any failure.
+        The fallback is intentionally detailed so exports are never empty.
+        """
         try:
-            return self._call_llm(prompt)
-        except Exception as e:
-            logger.warning("LLM summary unavailable, using fallback summary: %s", e)
-            return self._fallback_summary(kpis, analytics)
+            summary = self._llm_summary(domain_cfg, kpis, analytics_report, filename)
+            if summary and len(summary.strip()) > 50:
+                return summary
+        except Exception as exc:
+            logger.warning("LLM summary failed, using statistical fallback: %s", exc)
 
-    def _build_prompt(
-        self,
-        domain: DomainConfig,
-        kpis: list[KPIResult],
-        analytics: AnalyticsReport,
-        dataset_name: str,
-    ) -> str:
-        kpi_block = "\n".join(f"- {k.name}: {k.formatted}" for k in kpis)
+        return self._statistical_summary(domain_cfg, kpis, analytics_report, filename)
 
-        trend_block = ""
-        if analytics.trends:
-            trend_block = "\nKey trends:\n" + "\n".join(
-                f"- {t.summary}" for t in analytics.trends[:5]
-            )
+    # ── LLM path ──────────────────────────────────────────────────────────────
+    def _llm_summary(self, domain_cfg, kpis, analytics_report, filename: str) -> str:
+        provider = AI_PROVIDER.lower().strip()
 
-        anomaly_block = ""
-        if analytics.anomalies:
-            anomaly_block = "\nAnomalies detected:\n" + "\n".join(
-                f"- {a.column}: {len(a.anomaly_indices)} outlier(s)" for a in analytics.anomalies[:4]
-            )
+        if provider == "anthropic":
+            if not ANTHROPIC_API_KEY:
+                raise ValueError(
+                    "ANTHROPIC_API_KEY is not set. "
+                    "Add it to your .env file and restart the app."
+                )
+            return self._anthropic_summary(domain_cfg, kpis, analytics_report, filename)
 
-        top_cats_block = ""
-        if analytics.top_categories:
-            lines = []
-            for col, series in list(analytics.top_categories.items())[:3]:
-                top = series.head(3)
-                lines.append(f"- {col}: top values are {', '.join(str(v) for v in top.index)}")
-            top_cats_block = "\nTop categories:\n" + "\n".join(lines)
+        elif provider == "openai":
+            if not OPENAI_API_KEY:
+                raise ValueError(
+                    "OPENAI_API_KEY is not set. "
+                    "Add it to your .env file and restart the app."
+                )
+            return self._openai_summary(domain_cfg, kpis, analytics_report, filename)
 
-        return (
-            f"You are acting as: {domain.analyst_persona}\n\n"
-            f"Analyse this {domain.label} dataset named '{dataset_name}' and write a "
-            f"concise executive summary (3–5 paragraphs). Use bullet points for key findings. "
-            f"Focus on: {', '.join(domain.insights_focus)}.\n\n"
-            f"KPIs:\n{kpi_block}"
-            f"{trend_block}"
-            f"{anomaly_block}"
-            f"{top_cats_block}\n\n"
-            f"Write in a professional business tone. Be specific, use the numbers provided. "
-            f"End with 2–3 actionable recommendations."
+        else:
+            raise ValueError(f"Unknown AI_PROVIDER: '{provider}'. Use 'anthropic' or 'openai'.")
+
+    def _build_prompt(self, domain_cfg, kpis, analytics_report, filename: str) -> str:
+        kpi_lines = "\n".join(
+            f"  - {k.name}: {k.formatted}" for k in kpis[:12]
         )
+        trend_lines = "\n".join(
+            f"  - {t}" for t in (getattr(analytics_report, "trend_summary", []) or [])[:5]
+        )
+        anomaly_lines = "\n".join(
+            f"  - {a}" for a in (getattr(analytics_report, "anomalies", []) or [])[:3]
+        )
+        return f"""You are a senior {domain_cfg.label} analyst writing an executive summary report.
 
-    def _call_llm(self, prompt: str) -> str:
-        result = call_llm(prompt, max_tokens=AI_MAX_TOKENS)
-        if not result:
-            raise ValueError("LLM request failed or AI provider not configured.")
-        return result
+Dataset: {filename}
+Domain: {domain_cfg.label}
+Records analysed: {getattr(analytics_report, 'row_count', 'N/A'):,}
 
-    def _fallback_summary(self, kpis: list[KPIResult], analytics: AnalyticsReport) -> str:
-        lines = ["**Executive Summary** (AI offline — statistical summary)\n"]
-        for k in kpis[:6]:
-            lines.append(f"- **{k.name}**: {k.formatted}")
-        if analytics.trends:
-            lines.append("\n**Trends:**")
-            for t in analytics.trends[:3]:
-                lines.append(f"- {t.summary}")
-        return "\n".join(lines)
+KEY PERFORMANCE INDICATORS:
+{kpi_lines or '  (none computed)'}
+
+TREND SIGNALS:
+{trend_lines or '  (none detected)'}
+
+ANOMALIES:
+{anomaly_lines or '  (none detected)'}
+
+Write a 3–4 paragraph executive summary covering:
+1. Overall business performance and what the data reveals
+2. Key trends and their business implications
+3. Risk areas or anomalies requiring attention
+4. Top 2–3 actionable recommendations
+
+Write in professional business English. Be specific, data-driven, and concise.
+Do NOT use bullet points — write in flowing paragraphs only."""
+
+    def _anthropic_summary(self, domain_cfg, kpis, analytics_report, filename: str) -> str:
+        import anthropic
+        client  = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
+        message = client.messages.create(
+            model=AI_MODEL,
+            max_tokens=AI_MAX_TOKENS,
+            messages=[{"role": "user", "content": self._build_prompt(domain_cfg, kpis, analytics_report, filename)}],
+        )
+        return message.content[0].text.strip()
+
+    def _openai_summary(self, domain_cfg, kpis, analytics_report, filename: str) -> str:
+        from openai import OpenAI
+        client   = OpenAI(api_key=OPENAI_API_KEY)
+        response = client.chat.completions.create(
+            model="gpt-4o",
+            max_tokens=AI_MAX_TOKENS,
+            messages=[{"role": "user", "content": self._build_prompt(domain_cfg, kpis, analytics_report, filename)}],
+        )
+        return response.choices[0].message.content.strip()
+
+    # ── Statistical fallback — always produces real content ───────────────────
+    def _statistical_summary(self, domain_cfg, kpis, analytics_report, filename: str) -> str:
+        """
+        Rich structured fallback used when no API key is configured.
+        Produces enough content for PPTX/PDF exports to be meaningful.
+        """
+        row_count   = getattr(analytics_report, "row_count", 0)
+        col_count   = getattr(analytics_report, "col_count", 0)
+        anomalies   = getattr(analytics_report, "anomalies", []) or []
+        trends      = getattr(analytics_report, "trend_summary", []) or []
+
+        # Build KPI narrative
+        kpi_text = ""
+        if kpis:
+            top_kpis = kpis[:4]
+            kpi_text = "Key performance indicators show: " + ", ".join(
+                f"{k.name} at {k.formatted}" for k in top_kpis
+            ) + "."
+
+        # Build trend narrative
+        trend_text = ""
+        if trends:
+            trend_text = f"Trend analysis identifies {len(trends)} significant signal(s), including: " + \
+                         "; ".join(str(t) for t in trends[:3]) + "."
+        else:
+            trend_text = "No strong directional trends were detected in the current dataset."
+
+        # Build anomaly narrative
+        if anomalies:
+            anomaly_text = (
+                f"Anomaly detection flagged {len(anomalies)} area(s) requiring attention. "
+                f"These may indicate data quality issues, outlier events, or genuine business extremes "
+                f"that warrant further investigation before operational decisions are made."
+            )
+        else:
+            anomaly_text = "No statistical anomalies were detected. Data distribution appears consistent across all measured dimensions."
+
+        summary = f"""This {domain_cfg.label} report analyses {filename}, covering {row_count:,} records across {col_count} dimensions. The dataset has been automatically cleaned, validated, and scored for quality prior to analysis.
+
+{kpi_text} {trend_text} The domain-specific KPI framework applied is aligned to {domain_cfg.label} best practices, ensuring that the metrics presented reflect operationally relevant performance indicators rather than generic statistical averages.
+
+{anomaly_text} Particular attention should be given to columns flagged during quality scoring, as these may affect the reliability of aggregated KPI figures.
+
+To unlock AI-generated narrative insights, executive commentary, and natural language recommendations, configure your API key: set ANTHROPIC_API_KEY (Anthropic Claude) or OPENAI_API_KEY (OpenAI GPT-4o) in the .env file and restart the application. The AI layer will then provide domain-specific strategic analysis, anomaly explanations, and prioritised action plans tailored to your {domain_cfg.label} context."""
+
+        return summary

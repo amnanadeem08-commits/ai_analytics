@@ -12,6 +12,7 @@ from .chart_helpers import (
     is_categorical_series,
     is_datetime_series,
     is_numeric_series,
+    is_ordered_numeric,
     normalize_chart_type,
 )
 from .chart_title_generator import generate_chart_title
@@ -64,37 +65,38 @@ def validate_chart_selection(
 
     if chart_type == "histogram":
         target = y_col or x_col
-        if target is None or not is_numeric_series(cleaned_df[target]):
+        if target is None or target not in cleaned_df.columns or not is_numeric_series(cleaned_df[target]):
             warnings.append("Histogram requires a single numeric column.")
             is_valid = False
 
     elif chart_type == "heatmap":
         numeric_cols = cleaned_df.select_dtypes(include=["number"]).columns.tolist()
-        if len(numeric_cols) < 3:
-            warnings.append("Heatmap requires at least three numeric columns for correlation analysis.")
+        if len(numeric_cols) < 2:
+            warnings.append("Heatmap requires at least two numeric columns for correlation analysis.")
             is_valid = False
 
     elif chart_type == "count_plot":
-        if x_col is None or not is_categorical_series(cleaned_df[x_col]):
+        if x_col is None or x_col not in cleaned_df.columns or not is_categorical_series(cleaned_df[x_col]):
             warnings.append("Count Plot requires a categorical or boolean column.")
             is_valid = False
         elif cleaned_df[x_col].nunique(dropna=True) > 50:
-            warnings.append("Count Plot works best with fewer than 50 categories.")
+            warnings.append("Count Plot requires 50 or fewer categories. Use a grouped Top-N bar chart instead.")
+            is_valid = False
 
     elif chart_type == "line":
-        if x_col is None or y_col is None:
+        if x_col is None or y_col is None or x_col not in cleaned_df.columns or y_col not in cleaned_df.columns:
             warnings.append("Line charts require both X and Y columns.")
             is_valid = False
         else:
             if not is_numeric_series(cleaned_df[y_col]):
                 warnings.append("Line chart Y-axis must be numeric.")
                 is_valid = False
-            if not (is_datetime_series(cleaned_df[x_col]) or (is_numeric_series(cleaned_df[x_col]) and cleaned_df[x_col].nunique() <= 20)):
+            if not (is_datetime_series(cleaned_df[x_col]) or is_ordered_numeric(cleaned_df[x_col])):
                 warnings.append("Line chart X-axis must be datetime or ordered numeric.")
                 is_valid = False
 
     elif chart_type == "bar":
-        if x_col is None or y_col is None:
+        if x_col is None or y_col is None or x_col not in cleaned_df.columns or y_col not in cleaned_df.columns:
             warnings.append("Bar charts require both X and Y columns.")
             is_valid = False
         else:
@@ -108,7 +110,7 @@ def validate_chart_selection(
                 warnings.append("More than 20 categories detected; horizontal bar chart is recommended.")
 
     elif chart_type == "scatter":
-        if x_col is None or y_col is None:
+        if x_col is None or y_col is None or x_col not in cleaned_df.columns or y_col not in cleaned_df.columns:
             warnings.append("Scatter plots require both X and Y numeric columns.")
             is_valid = False
         else:
@@ -117,7 +119,7 @@ def validate_chart_selection(
                 is_valid = False
 
     elif chart_type == "pie":
-        if x_col is None or y_col is None:
+        if x_col is None or y_col is None or x_col not in cleaned_df.columns or y_col not in cleaned_df.columns:
             warnings.append("Pie charts require one categorical column and one numeric column.")
             is_valid = False
         else:
@@ -125,7 +127,8 @@ def validate_chart_selection(
                 warnings.append("Pie chart requires a categorical X and numeric Y.")
                 is_valid = False
             elif cleaned_df[x_col].nunique(dropna=True) > 10:
-                warnings.append("Pie charts are best with 10 or fewer categories.")
+                warnings.append("Pie charts require 10 or fewer categories. Use a Top-N bar chart instead.")
+                is_valid = False
 
     if is_valid:
         aggregated_df, aggregation = aggregate_data(cleaned_df, x_col, y_col, chart_type)

@@ -1,0 +1,68 @@
+2026-05-28 06:48:02,206 [INFO] services.cleaning_service: Cleaning complete. Original: 5,000 rows × 13 cols
+Cleaned:  5,000 rows × 13 cols
+Rows removed: 0 (duplicates: 0)
+Columns dropped: 0
+Date columns detected: customer_since
+2026-05-28 06:48:05,307 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 400 Bad Request"
+2026-05-28 06:48:05,310 [WARNING] utils.llm_client: LLM call failed: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CbV56CEdWmmREecfwe8Eo'}
+2026-05-28 06:48:12,089 [WARNING] services.ai_summary_service: LLM summary failed, using statistical fallback: Client.__init__() got an unexpected keyword argument 'proxies'
+2026-05-28 06:48:12,648 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 400 Bad Request"
+2026-05-28 06:48:12,650 [WARNING] utils.llm_client: LLM call failed: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CbV56k1q9uK36jgJqikFb'}
+2026-05-28 06:48:13,226 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 400 Bad Request"
+2026-05-28 06:48:13,226 [WARNING] utils.llm_client: LLM call failed: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CbV56nVu35hZxcdzemvmS'}
+2026-05-28 06:48:13,788 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 400 Bad Request"
+2026-05-28 06:48:13,805 [WARNING] utils.llm_client: LLM call failed: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CbV56puGA63TU8AHzEHqP'}
+2026-05-28 06:48:14,425 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 400 Bad Request"
+2026-05-28 06:48:14,427 [WARNING] utils.llm_client: LLM call failed: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CbV56saFQnNanf1Gbz6Yt'}
+2026-05-28 06:48:15,082 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 400 Bad Request"
+2026-05-28 06:48:15,082 [WARNING] utils.llm_client: LLM call failed: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CbV56v73snEeT6d1FqcVS'}
+2026-05-28 06:48:15,101 [INFO] pipeline: Pipeline complete for 'synthetic_ecommerce_churn_dataset.csv' (5000 rows)
+2026-05-28 06:48:46,127 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 400 Bad Request"
+2026-05-28 06:48:46,136 [WARNING] utils.llm_client: LLM call failed: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CbV59D7YYmeDx4i9YbDUX'}
+2026-05-28 06:48:57,734 [WARNING] services.chatbot_service: LLM chatbot failed, using statistical fallback: Client.__init__() got an unexpected keyword argument 'proxies'
+2026-05-28 06:49:25,136 [WARNING] services.export_service: PDF chart embed failed for 'Avg Order Value Over Time': expected str, bytes or os.PathLike object, not ImageReader
+2026-05-28 06:49:35,704 [WARNING] services.export_service: PDF chart embed failed for 'Last Purchase Over Time': expected str, bytes or os.PathLike object, not ImageReader
+2026-05-28 06:49:36,317 [WARNING] services.export_service: PDF chart embed failed for 'Avg Order Value by Gender': expected str, bytes or os.PathLike object, not ImageReader
+2026-05-28 06:49:36,897 [INFO] services.export_service: PPTX exported: D:\ai_analytics\ai_analytics\exports\deck_ecommerce_20260528_064911.pptx
+2026-05-28 06:49:37,101 [WARNING] services.export_service: PDF chart embed failed for 'Avg Order Value by Country': expected str, bytes or os.PathLike object, not ImageReader
+2026-05-28 06:49:37,391 [WARNING] services.export_service: PDF chart embed failed for 'Distribution: Avg Order Value': expected str, bytes or os.PathLike object, not ImageReader
+2026-05-28 06:49:41,465 [WARNING] services.export_service: PDF chart embed failed for 'Avg Order Value vs Last Purchase': expected str, bytes or os.PathLike object, not ImageReader
+2026-05-28 06:49:41,512 [INFO] services.export_service: PDF exported: D:\ai_analytics\ai_analytics\exports\report_ecommerce_20260528_064916.pdf
+2026-05-28 06:50:42,559 [INFO] services.export_service: PPTX exported: D:\ai_analytics\ai_analytics\exports\deck_ecommerce_20260528_065030.pptx
+2026-05-28 06:55:42,229 [INFO] services.cleaning_service: Cleaning complete. Original: 1,200 rows × 13 cols
+Cleaned:  1,200 rows × 13 cols
+Rows removed: 0 (duplicates: 0)
+Columns dropped: 0
+2026-05-28 06:55:43,073 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 400 Bad Request"
+2026-05-28 06:55:43,075 [WARNING] utils.llm_client: LLM call failed: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CbV5fwMdE9ryEUyrBgyAm'}
+2026-05-28 06:55:44,324 [WARNING] services.ai_summary_service: LLM summary failed, using statistical fallback: Client.__init__() got an unexpected keyword argument 'proxies'
+2026-05-28 06:55:45,019 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 400 Bad Request"
+2026-05-28 06:55:45,019 [WARNING] utils.llm_client: LLM call failed: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CbV5g5dTN51adqxamaRW3'}
+2026-05-28 06:55:45,602 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 400 Bad Request"
+2026-05-28 06:55:45,613 [WARNING] utils.llm_client: LLM call failed: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CbV5g8a4ZNybvEQJqPRf1'}
+2026-05-28 06:55:45,621 [INFO] pipeline: Pipeline complete for 'Teen_Mental_Health_Dataset.csv' (1200 rows)
+2026-05-28 07:05:50,325 [INFO] services.cleaning_service: Cleaning complete. Original: 5,000 rows × 13 cols
+Cleaned:  5,000 rows × 13 cols
+Rows removed: 0 (duplicates: 0)
+Columns dropped: 0
+Date columns detected: customer_since
+2026-05-28 07:05:51,894 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 400 Bad Request"
+2026-05-28 07:05:51,894 [WARNING] utils.llm_client: LLM call failed: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CbV6Spj2HATAYeLwuZEYi'}
+2026-05-28 07:05:54,459 [WARNING] services.ai_summary_service: LLM summary failed, using statistical fallback: Client.__init__() got an unexpected keyword argument 'proxies'
+2026-05-28 07:05:54,990 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 400 Bad Request"
+2026-05-28 07:05:54,991 [WARNING] utils.llm_client: LLM call failed: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CbV6T3xWDvDF9jQBjWJHb'}
+2026-05-28 07:05:55,545 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 400 Bad Request"
+2026-05-28 07:05:55,547 [WARNING] utils.llm_client: LLM call failed: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CbV6T6HeQwLqRy2B9obze'}
+2026-05-28 07:05:56,108 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 400 Bad Request"
+2026-05-28 07:05:56,108 [WARNING] utils.llm_client: LLM call failed: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CbV6T8i1G31kB8yir9U9G'}
+2026-05-28 07:05:56,657 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 400 Bad Request"
+2026-05-28 07:05:56,657 [WARNING] utils.llm_client: LLM call failed: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CbV6TB9M4QX63omCN928j'}
+2026-05-28 07:05:57,240 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 400 Bad Request"
+2026-05-28 07:05:57,240 [WARNING] utils.llm_client: LLM call failed: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CbV6TDXUKo1BHcLVeiPcH'}
+2026-05-28 07:05:57,250 [INFO] pipeline: Pipeline complete for 'synthetic_ecommerce_churn_dataset.csv' (5000 rows)
+2026-05-28 07:18:41,734 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 400 Bad Request"
+2026-05-28 07:18:41,735 [WARNING] utils.llm_client: LLM call failed: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CbV7RZseCkvT4FfntyAQ5'}
+2026-05-28 07:18:56,390 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 400 Bad Request"
+2026-05-28 07:18:56,390 [WARNING] utils.llm_client: LLM call failed: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CbV7SekcWC45WxmX3PrM2'}
+2026-05-28 07:19:16,453 [INFO] services.export_service: PDF exported: D:\ai_analytics\ai_analytics\exports\report_ecommerce_20260528_071907.pdf
+2026-05-28 07:19:55,714 [INFO] services.export_service: PPTX exported: D:\ai_analytics\ai_analytics\exports\deck_ecommerce_20260528_071945.pptx

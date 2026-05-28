@@ -41,3 +41,96 @@ Columns dropped: 0
 2026-05-24 00:12:02,906 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
 2026-05-24 00:12:02,906 [WARNING] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbLyf8iEmqmuqp3DtzU1A'}
 2026-05-24 00:12:02,917 [INFO] __main__: Processing complete for 'Teen_Mental_Health_Dataset.csv'
+2026-05-24 05:28:34,102 [INFO] services.cleaning_service: Cleaning complete. Original: 5,000 rows × 13 cols
+Cleaned:  5,000 rows × 13 cols
+Rows removed: 0 (duplicates: 0)
+Columns dropped: 0
+Date columns detected: customer_since
+2026-05-24 05:28:37,280 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-24 05:28:37,283 [WARNING] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMPoKRBnPpbShwfhGLeU'}
+2026-05-24 05:28:45,507 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-24 05:28:45,512 [WARNING] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMPovgjJ1THafBZqvMaP'}
+2026-05-24 05:28:45,512 [WARNING] services.ai_summary_service: LLM summary unavailable, using fallback summary: LLM request failed or AI provider not configured.
+2026-05-24 05:28:46,115 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-24 05:28:46,124 [WARNING] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMPoy9pC2fH4qLycW8cX'}
+2026-05-24 05:28:46,682 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-24 05:28:46,685 [WARNING] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMPp1gN3aQtiM5bUiqES'}
+2026-05-24 05:28:47,507 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-24 05:28:47,507 [WARNING] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMPp57VXNvfJGmJhu8oU'}
+2026-05-24 05:28:48,072 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-24 05:28:48,072 [WARNING] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMPp7eHhmrcf6RqmqKqw'}
+2026-05-24 05:28:48,628 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-24 05:28:48,629 [WARNING] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMPp9zveXKLXBkdmoYLk'}
+2026-05-24 05:28:48,651 [INFO] __main__: Processing complete for 'synthetic_ecommerce_churn_dataset.csv'
+2026-05-24 06:08:47,972 [INFO] services.cleaning_service: Cleaning complete. Original: 5,000 rows × 13 cols
+Cleaned:  5,000 rows × 13 cols
+Rows removed: 0 (duplicates: 0)
+Columns dropped: 0
+Date columns detected: customer_since
+2026-05-24 06:08:50,238 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-24 06:08:50,244 [WARNING] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMSsBnWZokfUMs6jfejA'}
+2026-05-24 06:08:57,349 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-24 06:08:57,351 [WARNING] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMSsiBs7YZFvnHtAMEni'}
+2026-05-24 06:08:57,351 [WARNING] services.ai_summary_service: LLM summary unavailable, using fallback summary: LLM request failed or AI provider not configured.
+2026-05-24 06:08:57,959 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-24 06:08:57,962 [WARNING] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMSskpNEanWqpTnpvHim'}
+2026-05-24 06:08:58,576 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-24 06:08:58,576 [WARNING] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMSsoQPsmLn8Qg55Tav7'}
+2026-05-24 06:08:59,126 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-24 06:08:59,126 [WARNING] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMSsqtDUTeeuuwVYiYCJ'}
+2026-05-24 06:08:59,725 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-24 06:08:59,727 [WARNING] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMSstKKRqjXrwmjFZ69c'}
+2026-05-24 06:09:00,288 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-24 06:09:00,291 [WARNING] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMSsvmuKCupXteu4GvGf'}
+2026-05-24 06:09:00,312 [INFO] __main__: Processing complete for 'synthetic_ecommerce_churn_dataset.csv'
+2026-05-24 06:10:07,840 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-24 06:10:07,840 [WARNING] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMSxuV9jEV8srLyEJnEz'}
+2026-05-24 06:10:31,768 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-24 06:10:31,770 [WARNING] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMSzfutEe4yoJnCee66t'}
+2026-05-24 06:23:52,535 [INFO] services.cleaning_service: Cleaning complete. Original: 5,000 rows × 13 cols
+Cleaned:  5,000 rows × 13 cols
+Rows removed: 0 (duplicates: 0)
+Columns dropped: 0
+Date columns detected: customer_since
+2026-05-24 06:23:57,324 [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2026-05-24 06:23:57,335 [WARNING] utils.llm_client: LLM call failed: Error code: 401 - {'error': {'message': 'Incorrect API key provided: your_ope********here. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2026-05-24 06:24:07,662 [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2026-05-24 06:24:07,675 [WARNING] utils.llm_client: LLM call failed: Error code: 401 - {'error': {'message': 'Incorrect API key provided: your_ope********here. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2026-05-24 06:24:07,677 [WARNING] services.ai_summary_service: LLM summary unavailable, using fallback summary: LLM request failed or AI provider not configured.
+2026-05-24 06:24:08,292 [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2026-05-24 06:24:08,304 [WARNING] utils.llm_client: LLM call failed: Error code: 401 - {'error': {'message': 'Incorrect API key provided: your_ope********here. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2026-05-24 06:24:08,886 [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2026-05-24 06:24:08,889 [WARNING] utils.llm_client: LLM call failed: Error code: 401 - {'error': {'message': 'Incorrect API key provided: your_ope********here. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2026-05-24 06:24:09,357 [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2026-05-24 06:24:09,369 [WARNING] utils.llm_client: LLM call failed: Error code: 401 - {'error': {'message': 'Incorrect API key provided: your_ope********here. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2026-05-24 06:24:10,050 [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2026-05-24 06:24:10,054 [WARNING] utils.llm_client: LLM call failed: Error code: 401 - {'error': {'message': 'Incorrect API key provided: your_ope********here. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2026-05-24 06:24:10,516 [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2026-05-24 06:24:10,519 [WARNING] utils.llm_client: LLM call failed: Error code: 401 - {'error': {'message': 'Incorrect API key provided: your_ope********here. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2026-05-24 06:24:10,566 [INFO] __main__: Processing complete for 'synthetic_ecommerce_churn_dataset.csv'
+2026-05-24 06:24:39,549 [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2026-05-24 06:24:39,549 [WARNING] utils.llm_client: LLM call failed: Error code: 401 - {'error': {'message': 'Incorrect API key provided: your_ope********here. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2026-05-24 06:25:13,852 [INFO] services.cleaning_service: Cleaning complete. Original: 1,200 rows × 13 cols
+Cleaned:  1,200 rows × 13 cols
+Rows removed: 0 (duplicates: 0)
+Columns dropped: 0
+2026-05-24 06:25:15,865 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-24 06:25:15,866 [WARNING] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMU7qKF9isCBCfMrS51W'}
+2026-05-24 06:25:22,444 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-24 06:25:22,444 [WARNING] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMU8KrELN3rh2S3G4Gjc'}
+2026-05-24 06:25:22,444 [WARNING] services.ai_summary_service: LLM summary unavailable, using fallback summary: LLM request failed or AI provider not configured.
+2026-05-24 06:25:23,055 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-24 06:25:23,056 [WARNING] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMU8NXTnQQXF9txeKjw3'}
+2026-05-24 06:25:23,620 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-24 06:25:23,635 [WARNING] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMU8QxJzf5WoeSrYczmB'}
+2026-05-24 06:25:23,657 [INFO] __main__: Processing complete for 'Teen_Mental_Health_Dataset.csv'
+2026-05-24 06:25:46,967 [INFO] httpx: HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 401 Unauthorized"
+2026-05-24 06:25:46,970 [WARNING] utils.llm_client: LLM call failed: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CbMUA8jJCizUmnmXgKiGQ'}
+2026-05-24 06:26:56,306 [INFO] services.export_service: PPTX exported: D:\ai_analytics\ai_analytics\exports\deck_generic_20260524_062647.pptx
+2026-05-24 06:27:49,943 [WARNING] services.export_service: PDF chart embed failed for 'Stress Level Over Time': expected str, bytes or os.PathLike object, not ImageReader
+2026-05-24 06:27:50,230 [WARNING] services.export_service: PDF chart embed failed for 'Anxiety Level Over Time': expected str, bytes or os.PathLike object, not ImageReader
+2026-05-24 06:27:50,517 [WARNING] services.export_service: PDF chart embed failed for 'Stress Level by Gender': expected str, bytes or os.PathLike object, not ImageReader
+2026-05-24 06:27:50,738 [WARNING] services.export_service: PDF chart embed failed for 'Stress Level by Platform Usage': expected str, bytes or os.PathLike object, not ImageReader
+2026-05-24 06:27:51,171 [WARNING] services.export_service: PDF chart embed failed for 'Distribution: Stress Level': expected str, bytes or os.PathLike object, not ImageReader
+2026-05-24 06:27:55,014 [WARNING] services.export_service: PDF chart embed failed for 'Stress Level vs Anxiety Level': expected str, bytes or os.PathLike object, not ImageReader
+2026-05-24 06:27:55,072 [INFO] services.export_service: PDF exported: D:\ai_analytics\ai_analytics\exports\report_generic_20260524_062749.pdf

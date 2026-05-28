@@ -317,6 +317,10 @@ def render_data_quality(report: DataQualityReport) -> None:
                         <span class="quality-meta-label">Coverage</span>
                         <span class="quality-meta-value" style="color: {'#065F46' if report.coverage >= 80 else '#92400E' if report.coverage >= 60 else '#991B1B'}">{report.coverage:.0f}%</span>
                     </div>
+                    <div class="quality-meta-item">
+                        <span class="quality-meta-label">Validity</span>
+                        <span class="quality-meta-value" style="color: {'#065F46' if getattr(report, 'validity', 100) >= 80 else '#92400E' if getattr(report, 'validity', 100) >= 60 else '#991B1B'}">{getattr(report, 'validity', 100):.0f}%</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -328,6 +332,8 @@ def render_data_quality(report: DataQualityReport) -> None:
     dimensions = [
         ("Completeness", report.completeness),
         ("Consistency", report.consistency),
+        ("Validity", getattr(report, "validity", 100)),
+        ("Anomaly", getattr(report, "anomaly_score", 100)),
         ("Coverage", report.coverage),
     ]
     

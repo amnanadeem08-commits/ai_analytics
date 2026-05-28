@@ -28,7 +28,10 @@ def _choose_aggregation(chart_type: str, x_col: str | None, y_col: str | None, d
         return "sum"
     if chart_type == "bar":
         if x_col and y_col:
-            return "mean"
+            metric = y_col.lower()
+            if any(token in metric for token in ("avg", "average", "mean", "rate", "ratio", "pct", "percent", "score")):
+                return "mean"
+            return "sum"
         return "sum"
     if chart_type == "histogram":
         return "none"
@@ -124,13 +127,9 @@ def aggregate_data(
         cleaned = work[[x_col, y_col]].dropna()
         if cleaned[x_col].nunique() > top_n:
             cleaned = _apply_top_n(cleaned, x_col, y_col, top_n)
-        grouped = (
-            cleaned.groupby(x_col, observed=True)[y_col]
-            .agg("mean")
-            .reset_index()
-            .sort_values(y_col, ascending=False)
-        )
-        return grouped, "mean"
+        grouped = cleaned.groupby(x_col, observed=True)[y_col].agg(agg_method).reset_index()
+        grouped = grouped.sort_values(y_col, ascending=False)
+        return grouped, agg_method
 
     if is_numeric_series(x_series) and is_numeric_series(y_series):
         cleaned = work[[x_col, y_col]].dropna()

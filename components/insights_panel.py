@@ -6,7 +6,9 @@ with professional styling including colored cards, KPI panels, and severity badg
 """
 
 import streamlit as st
+import streamlit.components.v1 as components
 import pandas as pd
+import textwrap
 from services.insight_engine import InsightEngineReport, ExecutiveInsight
 from services.recommendation_engine import RecommendationReport, Recommendation
 from services.domain_service import DomainConfig
@@ -350,7 +352,7 @@ def render_insight_card(insight: ExecutiveInsight, key: str = "") -> None:
     
     confidence_pct = int(insight.confidence * 100)
     
-    html = f"""
+    html = textwrap.dedent(f"""
     <div class="insight-card insight-{insight.severity}">
         <div>
             <span class="severity-badge {sev_class}">{sev_emoji} {insight.severity}</span>
@@ -368,6 +370,7 @@ def render_insight_card(insight: ExecutiveInsight, key: str = "") -> None:
         </div>
     </div>
     """
+    ).strip()
     st.markdown(html, unsafe_allow_html=True)
 
 
@@ -420,24 +423,28 @@ def render_alert_banners(report: InsightEngineReport) -> None:
     high_alerts = [i for i in report.executive_insights if i.severity == "high"]
     
     for alert in critical_alerts[:3]:
-        st.markdown(f"""
+        alert_html = textwrap.dedent(f"""
         <div class="alert-banner alert-critical">
             <div style="flex: 1;">
                 <div class="alert-title">🔴 CRITICAL: {alert.headline}</div>
                 <div class="alert-desc">{alert.description}</div>
             </div>
         </div>
-        """, unsafe_allow_html=True)
+        """
+        ).strip()
+        st.markdown(alert_html, unsafe_allow_html=True)
     
     for alert in high_alerts[:2]:
-        st.markdown(f"""
+        alert_html = textwrap.dedent(f"""
         <div class="alert-banner alert-high">
             <div style="flex: 1;">
                 <div class="alert-title">🟠 HIGH PRIORITY: {alert.headline}</div>
                 <div class="alert-desc">{alert.description}</div>
             </div>
         </div>
-        """, unsafe_allow_html=True)
+        """
+        ).strip()
+        st.markdown(alert_html, unsafe_allow_html=True)
 
 
 def render_data_quality_score(score: float) -> None:
@@ -452,7 +459,7 @@ def render_data_quality_score(score: float) -> None:
         quality_class = "quality-poor"
         label = "Needs Work"
     
-    st.markdown(f"""
+    quality_html = textwrap.dedent(f"""
     <div style="display: flex; align-items: center; gap: 16px;">
         <div class="quality-score {quality_class}">{int(score)}</div>
         <div>
@@ -460,7 +467,9 @@ def render_data_quality_score(score: float) -> None:
             <div style="font-size: 0.82rem; color: #6B7280;">{label} · Based on completeness, anomalies, and consistency</div>
         </div>
     </div>
-    """, unsafe_allow_html=True)
+    """
+    ).strip()
+    st.markdown(quality_html, unsafe_allow_html=True)
 
 
 def render_key_findings(findings: list[str]) -> None:
@@ -470,24 +479,28 @@ def render_key_findings(findings: list[str]) -> None:
     
     findings_html = "\n".join(f"<li>{f}</li>" for f in findings[:8])
     
-    st.markdown(f"""
+    findings_html_block = textwrap.dedent(f"""
     <div class="summary-box">
         <div class="summary-title">🔍 Key Findings</div>
         <ul class="findings-list">
             {findings_html}
         </ul>
     </div>
-    """, unsafe_allow_html=True)
+    """
+    ).strip()
+    st.markdown(findings_html_block, unsafe_allow_html=True)
 
 
 def render_executive_summary(report: InsightEngineReport) -> None:
     """Render the executive summary section."""
-    st.markdown(f"""
+    executive_html = textwrap.dedent(f"""
     <div class="summary-box">
         <div class="summary-title">📊 Executive Summary</div>
         <div class="summary-content">{report.summary_paragraph}</div>
     </div>
-    """, unsafe_allow_html=True)
+    """
+    ).strip()
+    st.markdown(executive_html, unsafe_allow_html=True)
 
 
 # ─── Recommendation Components ───────────────────────────────────────────────
@@ -517,14 +530,15 @@ def render_recommendation_card(rec: Recommendation, key: str = "") -> None:
     success_metrics_html = ""
     if rec.success_metrics:
         metrics_list = "\n".join(f'<div class="success-metric">✓ {m}</div>' for m in rec.success_metrics)
-        success_metrics_html = f"""
+        success_metrics_html = textwrap.dedent(f"""
         <div class="success-metrics">
             <div class="success-metrics-title">Success Metrics</div>
             {metrics_list}
         </div>
         """
+        ).strip()
     
-    html = f"""
+    html = textwrap.dedent(f"""
     <div class="recommendation-card {rec_class}">
         <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 8px;">
             <div style="flex: 1;">
@@ -551,7 +565,63 @@ def render_recommendation_card(rec: Recommendation, key: str = "") -> None:
         {success_metrics_html}
     </div>
     """
-    st.markdown(html, unsafe_allow_html=True)
+    ).strip()
+
+    card_styles = textwrap.dedent("""
+    <style>
+        .recommendation-card {
+            background: white;
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin-bottom: 12px;
+            border: 1px solid #E5E7EB;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+        }
+        .rec-immediate { border-left: 4px solid #DC2626; }
+        .rec-short-term { border-left: 4px solid #EA580C; }
+        .rec-strategic { border-left: 4px solid #059669; }
+        .rec-investigation { border-left: 4px solid #7C3AED; }
+        .rec-title {
+            font-size: 0.92rem;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 6px;
+        }
+        .rec-meta {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin: 8px 0;
+        }
+        .rec-meta-item {
+            font-size: 0.75rem;
+            color: #6B7280;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .success-metrics {
+            margin-top: 8px;
+            padding: 8px 12px;
+            background: #F0FDF4;
+            border-radius: 8px;
+        }
+        .success-metrics-title {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #166534;
+            margin-bottom: 4px;
+        }
+        .success-metric {
+            font-size: 0.78rem;
+            color: #15803D;
+            padding-left: 12px;
+            line-height: 1.6;
+        }
+    </style>
+    """)
+
+    components.html(card_styles + html, height=300 + 28 * len(rec.success_metrics or []), scrolling=False)
 
 
 def render_recommendations_summary(report: RecommendationReport) -> None:

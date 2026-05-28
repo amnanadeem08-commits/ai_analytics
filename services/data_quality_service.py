@@ -29,6 +29,8 @@ class DataQualityReport:
     completeness: float
     consistency: float
     coverage: float
+    validity: float
+    anomaly_score: float
     grade: str
     row_count: int
     column_count: int
@@ -49,6 +51,8 @@ class DataQualityService:
                 completeness=0.0,
                 consistency=0.0,
                 coverage=0.0,
+                validity=0.0,
+                anomaly_score=0.0,
                 grade="F",
                 row_count=0,
                 column_count=0,
@@ -58,9 +62,11 @@ class DataQualityService:
         column_details: list[ColumnQuality] = []
         completeness_scores: list[float] = []
         consistency_scores: list[float] = []
+        validity_scores: list[float] = []
+        anomaly_scores: list[float] = []
 
         for col in df.columns:
-            col_comp, col_cons, issues = self._score_column(df[col], col)
+            col_comp, col_cons, col_valid, col_anom, issues = self._score_column(df[col], col)
             column_details.append(ColumnQuality(
                 name=col,
                 completeness=col_comp,
@@ -69,20 +75,34 @@ class DataQualityService:
             ))
             completeness_scores.append(col_comp)
             consistency_scores.append(col_cons)
+            validity_scores.append(col_valid)
+            anomaly_scores.append(col_anom)
 
         completeness = float(np.mean(completeness_scores)) if completeness_scores else 0.0
         consistency = float(np.mean(consistency_scores)) if consistency_scores else 0.0
+        validity = float(np.mean(validity_scores)) if validity_scores else 0.0
+        anomaly_score = float(np.mean(anomaly_scores)) if anomaly_scores else 0.0
         coverage = self._coverage_score(df)
 
-        overall = 0.45 * completeness + 0.35 * consistency + 0.20 * coverage
+        overall = (
+            0.30 * completeness
+            + 0.25 * consistency
+            + 0.20 * validity
+            + 0.15 * anomaly_score
+            + 0.10 * coverage
+        )
         grade = self._grade(overall)
-        summary = self._build_summary(overall, completeness, consistency, coverage, grade)
+        summary = self._build_summary(
+            overall, completeness, consistency, validity, anomaly_score, coverage, grade
+        )
 
         return DataQualityReport(
             overall_score=round(overall, 1),
             completeness=round(completeness, 1),
             consistency=round(consistency, 1),
             coverage=round(coverage, 1),
+            validity=round(validity, 1),
+            anomaly_score=round(anomaly_score, 1),
             grade=grade,
             row_count=len(df),
             column_count=len(df.columns),
@@ -92,8 +112,8 @@ class DataQualityService:
 
     def _score_column(
         self, series: pd.Series, name: str
-    ) -> tuple[float, float, list[str]]:
-        """Return completeness %, consistency %, and issue strings for one column."""
+    ) -> tuple[float, float, float, float, list[str]]:
+        """Return completeness, consistency, validity, anomaly score, and issues."""
         issues: list[str] = []
         non_null = series.notna().sum()
         completeness = (non_null / len(series)) * 100 if len(series) else 0.0
@@ -102,9 +122,14 @@ class DataQualityService:
             issues.append(f"High missing rate ({100 - completeness:.0f}% null)")
 
         consistency = 100.0
+        validity = 100.0
+        anomaly_score = 100.0
         if pd.api.types.is_numeric_dtype(series):
             valid = series.dropna()
             if len(valid) > 0:
+                if np.isinf(valid).any():
+                    issues.append("Infinite numeric values")
+                    validity -= 35
                 q1, q3 = valid.quantile(0.25), valid.quantile(0.75)
                 iqr = q3 - q1
                 if iqr > 0:
@@ -114,20 +139,28 @@ class DataQualityService:
                     if outlier_pct > 5:
                         issues.append(f"{outlier_pct:.0f}% extreme outliers")
                         consistency -= min(30, outlier_pct * 2)
+                    anomaly_score -= min(45, outlier_pct * 3)
         elif pd.api.types.is_object_dtype(series) or isinstance(series.dtype, pd.CategoricalDtype):
             valid = series.dropna().astype(str)
             if len(valid):
+                blank_pct = valid.str.strip().eq("").mean() * 100
+                if blank_pct > 0:
+                    issues.append(f"{blank_pct:.0f}% blank strings")
+                    validity -= min(35, blank_pct * 2)
                 mixed_numeric = valid.str.match(r"^-?\d+\.?\d*$", na=False).mean()
                 if 0.05 < mixed_numeric < 0.95:
                     issues.append("Mixed numeric/text values")
                     consistency -= 25
+                    validity -= 15
                 dup_rate = (1 - valid.nunique() / len(valid)) * 100
                 if dup_rate > 90 and valid.nunique() < 3:
                     issues.append("Very low cardinality (mostly one value)")
                     consistency -= 15
 
         consistency = max(0.0, min(100.0, consistency))
-        return completeness, consistency, issues
+        validity = max(0.0, min(100.0, validity))
+        anomaly_score = max(0.0, min(100.0, anomaly_score))
+        return completeness, consistency, validity, anomaly_score, issues
 
     def _coverage_score(self, df: pd.DataFrame) -> float:
         """Score temporal and categorical breadth of the dataset."""
@@ -167,6 +200,8 @@ class DataQualityService:
         overall: float,
         completeness: float,
         consistency: float,
+        validity: float,
+        anomaly_score: float,
         coverage: float,
         grade: str,
     ) -> str:
@@ -175,6 +210,10 @@ class DataQualityService:
             parts.append("Completeness needs attention — several columns have missing values.")
         if consistency < 80:
             parts.append("Consistency issues detected — review outliers and mixed types.")
+        if validity < 85:
+            parts.append("Validity issues detected - review blank strings, infinities, and type coercion.")
+        if anomaly_score < 85:
+            parts.append("Anomalies are materially affecting data reliability.")
         if coverage < 70:
             parts.append("Limited temporal or categorical coverage for deep trend analysis.")
         if overall >= 85:

@@ -649,7 +649,8 @@ class ChartService:
         if chart_type == "line" and x_col and y_col:
             return self.line_chart(work, x_col, y_col, color_col)
         if chart_type == "bar" and x_col and y_col:
-            orientation = "h" if work[x_col].nunique() > 20 else "v"
+            long_labels = work[x_col].astype(str).str.len().max() > 18 if len(work) else False
+            orientation = "h" if len(work) > 8 or long_labels else "v"
             return self.bar_chart(work, x_col, y_col, orientation=orientation)
         if chart_type == "scatter" and x_col and y_col:
             return self.scatter(work, x_col, y_col)
@@ -661,7 +662,7 @@ class ChartService:
             return self.pie_chart(work, x_col, y_col)
         if chart_type == "heatmap":
             cols = work.select_dtypes(include=["number"]).columns.tolist()[:10]
-            if len(cols) >= 3:
+            if len(cols) >= 2:
                 return self.correlation_heatmap(work, cols)
         if chart_type == "count_plot" and x_col:
             return self.count_plot(work, x_col)
