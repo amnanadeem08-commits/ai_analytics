@@ -1,0 +1,40 @@
+# Environment / secrets — NEVER commit
+.env
+.env.local
+api.env
+*.env
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.Python
+*.egg-info/
+dist/
+build/
+
+# Streamlit
+.streamlit/secrets.toml
+
+# Data & exports (too large / user-specific)
+uploads/
+exports/
+data/raw/
+data/cleaned/
+data/processed/
+sessions/
+logs/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.suo
+*.user
+
+# Misc
+import os.txt
+{data

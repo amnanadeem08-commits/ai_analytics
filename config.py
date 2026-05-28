@@ -9,6 +9,17 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+# ── Streamlit Cloud secrets fallback ──────────────────────────────────────────
+# On Streamlit Cloud, st.secrets is the source of truth for API keys.
+# We inject those into os.environ early so the rest of config reads normally.
+try:
+    import streamlit as st
+    for _key in ("AI_PROVIDER", "ANTHROPIC_API_KEY", "OPENAI_API_KEY", "AI_MODEL", "AI_MAX_TOKENS"):
+        if _key in st.secrets and not os.environ.get(_key):
+            os.environ[_key] = str(st.secrets[_key])
+except Exception:
+    pass
+
 # ── Paths ──────────────────────────────────────────────────────────────────────
 BASE_DIR = Path(__file__).parent
 DATA_DIR = BASE_DIR / "data"
