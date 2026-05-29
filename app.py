@@ -125,7 +125,15 @@ elif active_tab == "deep_analysis":
     )
 
 elif active_tab == "data_story":
-    tab_story.render(story_narrative, charts)
+    tab_story.render(
+        story_narrative, charts,
+        story_engine=svcs["story_engine"],
+        df=filtered_df,
+        domain_cfg=domain_cfg,
+        analytics_report=analytics_report,
+        data_understanding_report=data_understanding_report,
+        kpis=kpis,
+    )
 
 elif active_tab == "business_insights":
     tab_insights.render(
@@ -137,7 +145,10 @@ elif active_tab == "compare":
     tab_compare.render(filtered_df, domain_cfg, svcs["comparison"])
 
 elif active_tab == "copilot":
-    tab_copilot.render(filtered_df, domain_cfg, kpis)
+    tab_copilot.render(
+        filtered_df, domain_cfg, kpis,
+        svcs["sql"], svcs["rag"], st.session_state.filename,
+    )
 
 elif active_tab == "export":
     tab_export.render(

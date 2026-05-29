@@ -32,7 +32,7 @@ def _file_hash(df) -> str:
     return hashlib.md5(payload).hexdigest()
 
 
-_SERVICES_CACHE_VERSION = 2  # bump when service APIs change (e.g. export branding)
+_SERVICES_CACHE_VERSION = 5  # bump when service APIs change (e.g. storytelling engine)
 
 
 @st.cache_resource
@@ -61,6 +61,9 @@ def get_services(_cache_version: int = _SERVICES_CACHE_VERSION) -> dict:
     from services.insight_engine import InsightEngine
     from services.recommendation_engine import RecommendationEngine
     from services.data_understanding_service import DataUnderstandingService
+    from services.sql_engine import SQLEngine
+    from services.rag_engine import RAGInsightEngine
+    from services.storytelling_engine import StorytellingEngine
 
     return {
         "cleaning":              CleaningService(),
@@ -82,6 +85,9 @@ def get_services(_cache_version: int = _SERVICES_CACHE_VERSION) -> dict:
         "category":              CategoryAnalyticsService(),
         "insight_engine":        InsightEngine(use_llm=True),
         "recommendation_engine": RecommendationEngine(),
+        "sql":                   SQLEngine(),
+        "rag":                   RAGInsightEngine(),
+        "story_engine":          StorytellingEngine(),
     }
 
 
@@ -196,6 +202,16 @@ def run_pipeline(raw_df, filename: str) -> None:
         "recommendation_report":     None,
     })
     st.session_state.chatbot_svc.reset()
+    try:
+        svcs["sql"].load_dataframe(cleaned_df, source_name=filename)
+        st.session_state.pop("sql_query_result", None)
+    except Exception as exc:
+        logger.warning("SQL engine init failed: %s", exc)
+    try:
+        svcs["rag"].build_knowledge_base(cleaned_df, source_name=filename)
+        st.session_state.pop("insight_result", None)
+    except Exception as exc:
+        logger.warning("RAG knowledge base init failed: %s", exc)
     logger.info("Pipeline complete for '%s' (%d rows)", filename, len(cleaned_df))
 
 

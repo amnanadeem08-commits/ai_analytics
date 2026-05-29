@@ -7,14 +7,23 @@ import os
 from pathlib import Path
 from dotenv import load_dotenv
 
-load_dotenv()
+# Load the .env that sits next to this file (robust regardless of CWD).
+_ENV_PATH = Path(__file__).resolve().parent / ".env"
+load_dotenv(dotenv_path=_ENV_PATH, override=True)
+# Also load a secondary api.env if present (legacy OpenRouter credentials).
+_API_ENV_PATH = Path(__file__).resolve().parent / "api.env"
+if _API_ENV_PATH.exists():
+    load_dotenv(dotenv_path=_API_ENV_PATH, override=False)
 
 # ── Streamlit Cloud secrets fallback ──────────────────────────────────────────
 # On Streamlit Cloud, st.secrets is the source of truth for API keys.
 # We inject those into os.environ early so the rest of config reads normally.
 try:
     import streamlit as st
-    for _key in ("AI_PROVIDER", "ANTHROPIC_API_KEY", "OPENAI_API_KEY", "AI_MODEL", "AI_MAX_TOKENS"):
+    for _key in (
+        "AI_PROVIDER", "ANTHROPIC_API_KEY", "OPENAI_API_KEY",
+        "OPENROUTER_API_KEY", "OPENROUTER_MODEL", "AI_MODEL", "AI_MAX_TOKENS",
+    ):
         if _key in st.secrets and not os.environ.get(_key):
             os.environ[_key] = str(st.secrets[_key])
 except Exception:
@@ -36,10 +45,12 @@ for d in [RAW_DIR, CLEANED_DIR, PROCESSED_DIR, UPLOADS_DIR, EXPORTS_DIR, LOGS_DI
     d.mkdir(parents=True, exist_ok=True)
 
 # ── AI Provider ────────────────────────────────────────────────────────────────
-AI_PROVIDER = os.getenv("AI_PROVIDER", "anthropic")  # "anthropic" | "openai"
+AI_PROVIDER = os.getenv("AI_PROVIDER", "anthropic")  # "anthropic" | "openai" | "openrouter"
 ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY", "")
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")
+OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY", "").strip()
 AI_MODEL = os.getenv("AI_MODEL", "claude-opus-4-5")
+OPENROUTER_MODEL = os.getenv("OPENROUTER_MODEL", "qwen/qwen3-coder:free")
 AI_MAX_TOKENS = int(os.getenv("AI_MAX_TOKENS", "2048"))
 
 # ── App settings ───────────────────────────────────────────────────────────────

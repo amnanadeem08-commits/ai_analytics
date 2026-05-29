@@ -66,3 +66,628 @@ Date columns detected: customer_since
 2026-05-28 07:18:56,390 [WARNING] utils.llm_client: LLM call failed: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CbV7SekcWC45WxmX3PrM2'}
 2026-05-28 07:19:16,453 [INFO] services.export_service: PDF exported: D:\ai_analytics\ai_analytics\exports\report_ecommerce_20260528_071907.pdf
 2026-05-28 07:19:55,714 [INFO] services.export_service: PPTX exported: D:\ai_analytics\ai_analytics\exports\deck_ecommerce_20260528_071945.pptx
+2026-05-28 08:31:06,142 [INFO] services.cleaning_service: Cleaning complete. Original: 5,000 rows × 13 cols
+Cleaned:  5,000 rows × 13 cols
+Rows removed: 0 (duplicates: 0)
+Columns dropped: 0
+Date columns detected: customer_since
+2026-05-28 08:31:06,311 [WARNING] utils.llm_client: Anthropic provider configured but ANTHROPIC_API_KEY is missing.
+2026-05-28 08:31:09,411 [WARNING] services.ai_summary_service: LLM summary failed, using statistical fallback: ANTHROPIC_API_KEY is not set. Add it to your .env file and restart the app.
+2026-05-28 08:31:09,411 [WARNING] utils.llm_client: Anthropic provider configured but ANTHROPIC_API_KEY is missing.
+2026-05-28 08:31:09,411 [WARNING] utils.llm_client: Anthropic provider configured but ANTHROPIC_API_KEY is missing.
+2026-05-28 08:31:09,411 [WARNING] utils.llm_client: Anthropic provider configured but ANTHROPIC_API_KEY is missing.
+2026-05-28 08:31:09,411 [WARNING] utils.llm_client: Anthropic provider configured but ANTHROPIC_API_KEY is missing.
+2026-05-28 08:31:09,411 [WARNING] utils.llm_client: Anthropic provider configured but ANTHROPIC_API_KEY is missing.
+2026-05-28 08:31:09,411 [INFO] pipeline: Pipeline complete for 'synthetic_ecommerce_churn_dataset.csv' (5000 rows)
+2026-05-28 08:33:43,493 [WARNING] services.chatbot_service: LLM chatbot failed, using statistical fallback: ANTHROPIC_API_KEY not set
+2026-05-28 09:46:05,936 [INFO] services.cleaning_service: Cleaning complete. Original: 1,200 rows × 13 cols
+Cleaned:  1,200 rows × 13 cols
+Rows removed: 0 (duplicates: 0)
+Columns dropped: 0
+2026-05-28 09:46:06,294 [WARNING] utils.llm_client: Anthropic provider configured but ANTHROPIC_API_KEY is missing.
+2026-05-28 09:46:13,441 [WARNING] services.ai_summary_service: LLM summary failed, using statistical fallback: ANTHROPIC_API_KEY is not set. Add it to your .env file and restart the app.
+2026-05-28 09:46:13,443 [WARNING] utils.llm_client: Anthropic provider configured but ANTHROPIC_API_KEY is missing.
+2026-05-28 09:46:13,448 [WARNING] utils.llm_client: Anthropic provider configured but ANTHROPIC_API_KEY is missing.
+2026-05-28 09:46:13,549 [INFO] services.sql_engine: SQL engine loaded table 'teen_mental_health_dataset' (1200 rows, 13 cols)
+2026-05-28 09:46:13,549 [INFO] pipeline: Pipeline complete for 'Teen_Mental_Health_Dataset.csv' (1200 rows)
+2026-05-28 11:02:06,042 [INFO] services.cleaning_service: Cleaning complete. Original: 1,200 rows × 13 cols
+Cleaned:  1,200 rows × 13 cols
+Rows removed: 0 (duplicates: 0)
+Columns dropped: 0
+2026-05-28 11:02:06,432 [WARNING] utils.llm_client: Anthropic provider configured but ANTHROPIC_API_KEY is missing.
+2026-05-28 11:02:13,636 [WARNING] services.ai_summary_service: LLM summary failed, using statistical fallback: ANTHROPIC_API_KEY is not set. Add it to your .env file and restart the app.
+2026-05-28 11:02:13,642 [WARNING] utils.llm_client: Anthropic provider configured but ANTHROPIC_API_KEY is missing.
+2026-05-28 11:02:13,650 [WARNING] utils.llm_client: Anthropic provider configured but ANTHROPIC_API_KEY is missing.
+2026-05-28 11:02:13,808 [INFO] services.sql_engine: SQL engine loaded table 'teen_mental_health_dataset' (1200 rows, 13 cols)
+2026-05-28 11:02:13,808 [INFO] pipeline: Pipeline complete for 'Teen_Mental_Health_Dataset.csv' (1200 rows)
+2026-05-28 11:03:25,210 [WARNING] utils.llm_client: Anthropic provider configured but ANTHROPIC_API_KEY is missing.
+2026-05-28 11:03:25,210 [WARNING] services.sql_engine: SQL ask failed: AI is not configured. Set ANTHROPIC_API_KEY or OPENAI_API_KEY in .env / Streamlit secrets.
+2026-05-28 11:28:46,841 [INFO] services.cleaning_service: Cleaning complete. Original: 5,000 rows × 13 cols
+Cleaned:  5,000 rows × 13 cols
+Rows removed: 0 (duplicates: 0)
+Columns dropped: 0
+Date columns detected: customer_since
+2026-05-28 11:28:49,899 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:28:49,899 [INFO] utils.llm_client: OpenRouter model qwen/qwen3-coder:free failed (429); trying next.
+2026-05-28 11:28:50,579 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:28:50,579 [INFO] utils.llm_client: OpenRouter model deepseek/deepseek-v4-flash:free failed (429); trying next.
+2026-05-28 11:28:50,971 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:28:50,971 [INFO] utils.llm_client: OpenRouter model meta-llama/llama-3.3-70b-instruct:free failed (429); trying next.
+2026-05-28 11:28:52,531 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-28 11:29:00,112 [WARNING] services.ai_summary_service: LLM summary failed, using statistical fallback: Unknown AI_PROVIDER: 'openrouter'. Use 'anthropic' or 'openai'.
+2026-05-28 11:29:00,822 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:29:00,822 [INFO] utils.llm_client: OpenRouter model qwen/qwen3-coder:free failed (429); trying next.
+2026-05-28 11:29:01,486 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:29:01,486 [INFO] utils.llm_client: OpenRouter model deepseek/deepseek-v4-flash:free failed (429); trying next.
+2026-05-28 11:29:01,869 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:29:01,869 [INFO] utils.llm_client: OpenRouter model meta-llama/llama-3.3-70b-instruct:free failed (429); trying next.
+2026-05-28 11:29:02,814 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-28 11:29:16,984 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:29:16,996 [INFO] utils.llm_client: OpenRouter model qwen/qwen3-coder:free failed (429); trying next.
+2026-05-28 11:29:17,658 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:29:17,658 [INFO] utils.llm_client: OpenRouter model deepseek/deepseek-v4-flash:free failed (429); trying next.
+2026-05-28 11:29:18,067 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:29:18,067 [INFO] utils.llm_client: OpenRouter model meta-llama/llama-3.3-70b-instruct:free failed (429); trying next.
+2026-05-28 11:29:18,950 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-28 11:29:27,851 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:29:27,853 [INFO] utils.llm_client: OpenRouter model qwen/qwen3-coder:free failed (429); trying next.
+2026-05-28 11:29:28,501 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:29:28,501 [INFO] utils.llm_client: OpenRouter model deepseek/deepseek-v4-flash:free failed (429); trying next.
+2026-05-28 11:29:28,887 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:29:28,889 [INFO] utils.llm_client: OpenRouter model meta-llama/llama-3.3-70b-instruct:free failed (429); trying next.
+2026-05-28 11:29:29,755 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-28 11:29:39,556 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:29:39,556 [INFO] utils.llm_client: OpenRouter model qwen/qwen3-coder:free failed (429); trying next.
+2026-05-28 11:29:40,183 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:29:40,183 [INFO] utils.llm_client: OpenRouter model deepseek/deepseek-v4-flash:free failed (429); trying next.
+2026-05-28 11:29:50,313 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-28 11:30:09,894 [INFO] utils.llm_client: OpenRouter model meta-llama/llama-3.3-70b-instruct:free failed ('NoneType' object is not subscriptable); trying next.
+2026-05-28 11:30:10,761 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-28 11:30:17,892 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:30:17,892 [INFO] utils.llm_client: OpenRouter model qwen/qwen3-coder:free failed (429); trying next.
+2026-05-28 11:30:18,541 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:30:18,541 [INFO] utils.llm_client: OpenRouter model deepseek/deepseek-v4-flash:free failed (429); trying next.
+2026-05-28 11:30:18,984 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:30:18,984 [INFO] utils.llm_client: OpenRouter model meta-llama/llama-3.3-70b-instruct:free failed (429); trying next.
+2026-05-28 11:30:19,976 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-28 11:30:24,797 [INFO] services.sql_engine: SQL engine loaded table 'synthetic_ecommerce_churn_dataset' (5000 rows, 13 cols)
+2026-05-28 11:30:24,797 [INFO] pipeline: Pipeline complete for 'synthetic_ecommerce_churn_dataset.csv' (5000 rows)
+2026-05-28 11:31:20,294 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:31:20,296 [INFO] utils.llm_client: OpenRouter model qwen/qwen3-coder:free failed (429); trying next.
+2026-05-28 11:31:20,915 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:31:20,916 [INFO] utils.llm_client: OpenRouter model deepseek/deepseek-v4-flash:free failed (429); trying next.
+2026-05-28 11:31:21,316 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:31:21,317 [INFO] utils.llm_client: OpenRouter model meta-llama/llama-3.3-70b-instruct:free failed (429); trying next.
+2026-05-28 11:31:22,200 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-28 11:31:28,499 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:31:28,501 [INFO] utils.llm_client: OpenRouter model qwen/qwen3-coder:free failed (429); trying next.
+2026-05-28 11:31:29,166 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:31:29,166 [INFO] utils.llm_client: OpenRouter model deepseek/deepseek-v4-flash:free failed (429); trying next.
+2026-05-28 11:31:29,576 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:31:29,576 [INFO] utils.llm_client: OpenRouter model meta-llama/llama-3.3-70b-instruct:free failed (429); trying next.
+2026-05-28 11:31:30,448 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-28 11:39:33,550 [INFO] faiss.loader: Loading faiss with AVX512 support.
+2026-05-28 11:39:33,550 [INFO] faiss.loader: Could not load library with AVX512 support due to:
+ModuleNotFoundError("No module named 'faiss.swigfaiss_avx512'")
+2026-05-28 11:39:33,550 [INFO] faiss.loader: Loading faiss with AVX2 support.
+2026-05-28 11:39:33,577 [INFO] faiss.loader: Successfully loaded faiss with AVX2 support.
+2026-05-28 11:39:33,610 [INFO] services.cleaning_service: Dropping index noise columns: ['index']
+2026-05-28 11:39:54,585 [INFO] services.cleaning_service: Cleaning complete. Original: 100,000 rows × 27 cols
+Cleaned:  100,000 rows × 26 cols
+Rows removed: 0 (duplicates: 0)
+Columns dropped: 0
+2026-05-28 11:39:59,260 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:39:59,260 [INFO] utils.llm_client: OpenRouter model qwen/qwen3-coder:free failed (429); trying next.
+2026-05-28 11:39:59,955 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:39:59,957 [INFO] utils.llm_client: OpenRouter model deepseek/deepseek-v4-flash:free failed (429); trying next.
+2026-05-28 11:40:00,349 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:40:00,349 [INFO] utils.llm_client: OpenRouter model meta-llama/llama-3.3-70b-instruct:free failed (429); trying next.
+2026-05-28 11:40:01,510 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-28 11:40:17,049 [WARNING] services.ai_summary_service: LLM summary failed, using statistical fallback: Unknown AI_PROVIDER: 'openrouter'. Use 'anthropic' or 'openai'.
+2026-05-28 11:40:17,791 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:40:17,791 [INFO] utils.llm_client: OpenRouter model qwen/qwen3-coder:free failed (429); trying next.
+2026-05-28 11:40:18,624 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:40:18,624 [INFO] utils.llm_client: OpenRouter model deepseek/deepseek-v4-flash:free failed (429); trying next.
+2026-05-28 11:40:19,041 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:40:19,041 [INFO] utils.llm_client: OpenRouter model meta-llama/llama-3.3-70b-instruct:free failed (429); trying next.
+2026-05-28 11:40:20,024 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-28 11:40:31,731 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:40:31,731 [INFO] utils.llm_client: OpenRouter model qwen/qwen3-coder:free failed (429); trying next.
+2026-05-28 11:40:32,423 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:40:32,423 [INFO] utils.llm_client: OpenRouter model deepseek/deepseek-v4-flash:free failed (429); trying next.
+2026-05-28 11:40:33,110 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:40:33,110 [INFO] utils.llm_client: OpenRouter model meta-llama/llama-3.3-70b-instruct:free failed (429); trying next.
+2026-05-28 11:40:34,032 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-28 11:40:44,467 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:40:44,473 [INFO] utils.llm_client: OpenRouter model qwen/qwen3-coder:free failed (429); trying next.
+2026-05-28 11:40:45,150 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:40:45,153 [INFO] utils.llm_client: OpenRouter model deepseek/deepseek-v4-flash:free failed (429); trying next.
+2026-05-28 11:40:45,894 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:40:45,894 [INFO] utils.llm_client: OpenRouter model meta-llama/llama-3.3-70b-instruct:free failed (429); trying next.
+2026-05-28 11:40:46,670 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-28 11:40:55,736 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:40:55,736 [INFO] utils.llm_client: OpenRouter model qwen/qwen3-coder:free failed (429); trying next.
+2026-05-28 11:40:57,136 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:40:57,136 [INFO] utils.llm_client: OpenRouter model deepseek/deepseek-v4-flash:free failed (429); trying next.
+2026-05-28 11:40:57,536 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:40:57,536 [INFO] utils.llm_client: OpenRouter model meta-llama/llama-3.3-70b-instruct:free failed (429); trying next.
+2026-05-28 11:40:58,473 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-28 11:41:03,835 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:41:03,844 [INFO] utils.llm_client: OpenRouter model qwen/qwen3-coder:free failed (429); trying next.
+2026-05-28 11:41:04,588 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:41:04,588 [INFO] utils.llm_client: OpenRouter model deepseek/deepseek-v4-flash:free failed (429); trying next.
+2026-05-28 11:41:04,989 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:41:04,989 [INFO] utils.llm_client: OpenRouter model meta-llama/llama-3.3-70b-instruct:free failed (429); trying next.
+2026-05-28 11:41:06,975 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-28 11:41:19,283 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:41:19,283 [INFO] utils.llm_client: OpenRouter model qwen/qwen3-coder:free failed (429); trying next.
+2026-05-28 11:41:19,966 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:41:19,966 [INFO] utils.llm_client: OpenRouter model deepseek/deepseek-v4-flash:free failed (429); trying next.
+2026-05-28 11:41:20,368 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:41:20,368 [INFO] utils.llm_client: OpenRouter model meta-llama/llama-3.3-70b-instruct:free failed (429); trying next.
+2026-05-28 11:41:21,394 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-28 11:41:45,412 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:41:45,412 [INFO] utils.llm_client: OpenRouter model qwen/qwen3-coder:free failed (429); trying next.
+2026-05-28 11:41:46,072 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:41:46,072 [INFO] utils.llm_client: OpenRouter model deepseek/deepseek-v4-flash:free failed (429); trying next.
+2026-05-28 11:41:46,459 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:41:46,459 [INFO] utils.llm_client: OpenRouter model meta-llama/llama-3.3-70b-instruct:free failed (429); trying next.
+2026-05-28 11:41:47,276 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-28 11:41:57,520 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:41:57,522 [INFO] utils.llm_client: OpenRouter model qwen/qwen3-coder:free failed (429); trying next.
+2026-05-28 11:41:58,210 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:41:58,212 [INFO] utils.llm_client: OpenRouter model deepseek/deepseek-v4-flash:free failed (429); trying next.
+2026-05-28 11:41:58,728 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:41:58,728 [INFO] utils.llm_client: OpenRouter model meta-llama/llama-3.3-70b-instruct:free failed (429); trying next.
+2026-05-28 11:41:59,685 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-28 11:42:10,498 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:42:10,498 [INFO] utils.llm_client: OpenRouter model qwen/qwen3-coder:free failed (429); trying next.
+2026-05-28 11:42:11,153 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:42:11,153 [INFO] utils.llm_client: OpenRouter model deepseek/deepseek-v4-flash:free failed (429); trying next.
+2026-05-28 11:42:11,573 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:42:11,573 [INFO] utils.llm_client: OpenRouter model meta-llama/llama-3.3-70b-instruct:free failed (429); trying next.
+2026-05-28 11:42:12,589 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-28 11:42:20,855 [INFO] services.sql_engine: SQL engine loaded table 'healthcare_providers' (100000 rows, 26 cols)
+2026-05-28 11:42:21,610 [INFO] services.rag_engine: RAG knowledge base built: 30 chunks (faiss backend)
+2026-05-28 11:42:21,610 [INFO] pipeline: Pipeline complete for 'Healthcare Providers.csv' (100000 rows)
+2026-05-28 11:43:30,397 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:43:30,397 [INFO] utils.llm_client: OpenRouter model qwen/qwen3-coder:free failed (429); trying next.
+2026-05-28 11:43:31,070 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:43:31,070 [INFO] utils.llm_client: OpenRouter model deepseek/deepseek-v4-flash:free failed (429); trying next.
+2026-05-28 11:43:31,468 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:43:31,470 [INFO] utils.llm_client: OpenRouter model meta-llama/llama-3.3-70b-instruct:free failed (429); trying next.
+2026-05-28 11:43:32,203 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-28 11:44:42,534 [ERROR] asyncio: Task exception was never retrieved
+future: <Task finished name='Task-1036' coro=<WebSocketProtocol13.write_message.<locals>.wrapper() done, defined at C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py:1111> exception=WebSocketClosedError()>
+Traceback (most recent call last):
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1113, in wrapper
+    await fut
+tornado.iostream.StreamClosedError: Stream is closed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1115, in wrapper
+    raise WebSocketClosedError()
+tornado.websocket.WebSocketClosedError
+2026-05-28 11:44:42,571 [ERROR] asyncio: Task exception was never retrieved
+future: <Task finished name='Task-1037' coro=<WebSocketProtocol13.write_message.<locals>.wrapper() done, defined at C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py:1111> exception=WebSocketClosedError()>
+Traceback (most recent call last):
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1113, in wrapper
+    await fut
+tornado.iostream.StreamClosedError: Stream is closed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1115, in wrapper
+    raise WebSocketClosedError()
+tornado.websocket.WebSocketClosedError
+2026-05-28 11:44:42,572 [ERROR] asyncio: Task exception was never retrieved
+future: <Task finished name='Task-1038' coro=<WebSocketProtocol13.write_message.<locals>.wrapper() done, defined at C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py:1111> exception=WebSocketClosedError()>
+Traceback (most recent call last):
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1113, in wrapper
+    await fut
+tornado.iostream.StreamClosedError: Stream is closed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1115, in wrapper
+    raise WebSocketClosedError()
+tornado.websocket.WebSocketClosedError
+2026-05-28 11:44:42,573 [ERROR] asyncio: Task exception was never retrieved
+future: <Task finished name='Task-1039' coro=<WebSocketProtocol13.write_message.<locals>.wrapper() done, defined at C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py:1111> exception=WebSocketClosedError()>
+Traceback (most recent call last):
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1113, in wrapper
+    await fut
+tornado.iostream.StreamClosedError: Stream is closed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1115, in wrapper
+    raise WebSocketClosedError()
+tornado.websocket.WebSocketClosedError
+2026-05-28 11:44:42,573 [ERROR] asyncio: Task exception was never retrieved
+future: <Task finished name='Task-1040' coro=<WebSocketProtocol13.write_message.<locals>.wrapper() done, defined at C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py:1111> exception=WebSocketClosedError()>
+Traceback (most recent call last):
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1113, in wrapper
+    await fut
+tornado.iostream.StreamClosedError: Stream is closed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1115, in wrapper
+    raise WebSocketClosedError()
+tornado.websocket.WebSocketClosedError
+2026-05-28 11:44:42,574 [ERROR] asyncio: Task exception was never retrieved
+future: <Task finished name='Task-1041' coro=<WebSocketProtocol13.write_message.<locals>.wrapper() done, defined at C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py:1111> exception=WebSocketClosedError()>
+Traceback (most recent call last):
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1113, in wrapper
+    await fut
+tornado.iostream.StreamClosedError: Stream is closed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1115, in wrapper
+    raise WebSocketClosedError()
+tornado.websocket.WebSocketClosedError
+2026-05-28 11:44:42,575 [ERROR] asyncio: Task exception was never retrieved
+future: <Task finished name='Task-1042' coro=<WebSocketProtocol13.write_message.<locals>.wrapper() done, defined at C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py:1111> exception=WebSocketClosedError()>
+Traceback (most recent call last):
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1113, in wrapper
+    await fut
+tornado.iostream.StreamClosedError: Stream is closed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1115, in wrapper
+    raise WebSocketClosedError()
+tornado.websocket.WebSocketClosedError
+2026-05-28 11:44:42,576 [ERROR] asyncio: Task exception was never retrieved
+future: <Task finished name='Task-1043' coro=<WebSocketProtocol13.write_message.<locals>.wrapper() done, defined at C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py:1111> exception=WebSocketClosedError()>
+Traceback (most recent call last):
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1113, in wrapper
+    await fut
+tornado.iostream.StreamClosedError: Stream is closed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1115, in wrapper
+    raise WebSocketClosedError()
+tornado.websocket.WebSocketClosedError
+2026-05-28 11:44:42,577 [ERROR] asyncio: Task exception was never retrieved
+future: <Task finished name='Task-1044' coro=<WebSocketProtocol13.write_message.<locals>.wrapper() done, defined at C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py:1111> exception=WebSocketClosedError()>
+Traceback (most recent call last):
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1113, in wrapper
+    await fut
+tornado.iostream.StreamClosedError: Stream is closed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1115, in wrapper
+    raise WebSocketClosedError()
+tornado.websocket.WebSocketClosedError
+2026-05-28 11:44:42,578 [ERROR] asyncio: Task exception was never retrieved
+future: <Task finished name='Task-1045' coro=<WebSocketProtocol13.write_message.<locals>.wrapper() done, defined at C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py:1111> exception=WebSocketClosedError()>
+Traceback (most recent call last):
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1113, in wrapper
+    await fut
+tornado.iostream.StreamClosedError: Stream is closed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1115, in wrapper
+    raise WebSocketClosedError()
+tornado.websocket.WebSocketClosedError
+2026-05-28 11:44:42,578 [ERROR] asyncio: Task exception was never retrieved
+future: <Task finished name='Task-1046' coro=<WebSocketProtocol13.write_message.<locals>.wrapper() done, defined at C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py:1111> exception=WebSocketClosedError()>
+Traceback (most recent call last):
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1113, in wrapper
+    await fut
+tornado.iostream.StreamClosedError: Stream is closed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1115, in wrapper
+    raise WebSocketClosedError()
+tornado.websocket.WebSocketClosedError
+2026-05-28 11:44:42,580 [ERROR] asyncio: Task exception was never retrieved
+future: <Task finished name='Task-1047' coro=<WebSocketProtocol13.write_message.<locals>.wrapper() done, defined at C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py:1111> exception=WebSocketClosedError()>
+Traceback (most recent call last):
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1113, in wrapper
+    await fut
+tornado.iostream.StreamClosedError: Stream is closed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1115, in wrapper
+    raise WebSocketClosedError()
+tornado.websocket.WebSocketClosedError
+2026-05-28 11:44:42,580 [ERROR] asyncio: Task exception was never retrieved
+future: <Task finished name='Task-1048' coro=<WebSocketProtocol13.write_message.<locals>.wrapper() done, defined at C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py:1111> exception=WebSocketClosedError()>
+Traceback (most recent call last):
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1113, in wrapper
+    await fut
+tornado.iostream.StreamClosedError: Stream is closed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1115, in wrapper
+    raise WebSocketClosedError()
+tornado.websocket.WebSocketClosedError
+2026-05-28 11:44:42,581 [ERROR] asyncio: Task exception was never retrieved
+future: <Task finished name='Task-1049' coro=<WebSocketProtocol13.write_message.<locals>.wrapper() done, defined at C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py:1111> exception=WebSocketClosedError()>
+Traceback (most recent call last):
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1113, in wrapper
+    await fut
+tornado.iostream.StreamClosedError: Stream is closed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1115, in wrapper
+    raise WebSocketClosedError()
+tornado.websocket.WebSocketClosedError
+2026-05-28 11:44:42,582 [ERROR] asyncio: Task exception was never retrieved
+future: <Task finished name='Task-1052' coro=<WebSocketProtocol13.write_message.<locals>.wrapper() done, defined at C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py:1111> exception=WebSocketClosedError()>
+Traceback (most recent call last):
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1113, in wrapper
+    await fut
+tornado.iostream.StreamClosedError: Stream is closed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1115, in wrapper
+    raise WebSocketClosedError()
+tornado.websocket.WebSocketClosedError
+2026-05-28 11:44:42,583 [ERROR] asyncio: Task exception was never retrieved
+future: <Task finished name='Task-1053' coro=<WebSocketProtocol13.write_message.<locals>.wrapper() done, defined at C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py:1111> exception=WebSocketClosedError()>
+Traceback (most recent call last):
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1113, in wrapper
+    await fut
+tornado.iostream.StreamClosedError: Stream is closed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1115, in wrapper
+    raise WebSocketClosedError()
+tornado.websocket.WebSocketClosedError
+2026-05-28 11:44:42,584 [ERROR] asyncio: Task exception was never retrieved
+future: <Task finished name='Task-1054' coro=<WebSocketProtocol13.write_message.<locals>.wrapper() done, defined at C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py:1111> exception=WebSocketClosedError()>
+Traceback (most recent call last):
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1113, in wrapper
+    await fut
+tornado.iostream.StreamClosedError: Stream is closed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1115, in wrapper
+    raise WebSocketClosedError()
+tornado.websocket.WebSocketClosedError
+2026-05-28 11:44:42,584 [ERROR] asyncio: Task exception was never retrieved
+future: <Task finished name='Task-1055' coro=<WebSocketProtocol13.write_message.<locals>.wrapper() done, defined at C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py:1111> exception=WebSocketClosedError()>
+Traceback (most recent call last):
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1113, in wrapper
+    await fut
+tornado.iostream.StreamClosedError: Stream is closed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1115, in wrapper
+    raise WebSocketClosedError()
+tornado.websocket.WebSocketClosedError
+2026-05-28 11:44:42,586 [ERROR] asyncio: Task exception was never retrieved
+future: <Task finished name='Task-1056' coro=<WebSocketProtocol13.write_message.<locals>.wrapper() done, defined at C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py:1111> exception=WebSocketClosedError()>
+Traceback (most recent call last):
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1113, in wrapper
+    await fut
+tornado.iostream.StreamClosedError: Stream is closed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1115, in wrapper
+    raise WebSocketClosedError()
+tornado.websocket.WebSocketClosedError
+2026-05-28 11:44:42,586 [ERROR] asyncio: Task exception was never retrieved
+future: <Task finished name='Task-1057' coro=<WebSocketProtocol13.write_message.<locals>.wrapper() done, defined at C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py:1111> exception=WebSocketClosedError()>
+Traceback (most recent call last):
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1113, in wrapper
+    await fut
+tornado.iostream.StreamClosedError: Stream is closed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1115, in wrapper
+    raise WebSocketClosedError()
+tornado.websocket.WebSocketClosedError
+2026-05-28 11:44:42,587 [ERROR] asyncio: Task exception was never retrieved
+future: <Task finished name='Task-1058' coro=<WebSocketProtocol13.write_message.<locals>.wrapper() done, defined at C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py:1111> exception=WebSocketClosedError()>
+Traceback (most recent call last):
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1113, in wrapper
+    await fut
+tornado.iostream.StreamClosedError: Stream is closed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1115, in wrapper
+    raise WebSocketClosedError()
+tornado.websocket.WebSocketClosedError
+2026-05-28 11:44:42,588 [ERROR] asyncio: Task exception was never retrieved
+future: <Task finished name='Task-1059' coro=<WebSocketProtocol13.write_message.<locals>.wrapper() done, defined at C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py:1111> exception=WebSocketClosedError()>
+Traceback (most recent call last):
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1113, in wrapper
+    await fut
+tornado.iostream.StreamClosedError: Stream is closed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1115, in wrapper
+    raise WebSocketClosedError()
+tornado.websocket.WebSocketClosedError
+2026-05-28 11:44:42,588 [ERROR] asyncio: Task exception was never retrieved
+future: <Task finished name='Task-1060' coro=<WebSocketProtocol13.write_message.<locals>.wrapper() done, defined at C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py:1111> exception=WebSocketClosedError()>
+Traceback (most recent call last):
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1113, in wrapper
+    await fut
+tornado.iostream.StreamClosedError: Stream is closed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1115, in wrapper
+    raise WebSocketClosedError()
+tornado.websocket.WebSocketClosedError
+2026-05-28 11:44:42,590 [ERROR] asyncio: Task exception was never retrieved
+future: <Task finished name='Task-1061' coro=<WebSocketProtocol13.write_message.<locals>.wrapper() done, defined at C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py:1111> exception=WebSocketClosedError()>
+Traceback (most recent call last):
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1113, in wrapper
+    await fut
+tornado.iostream.StreamClosedError: Stream is closed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\tornado\websocket.py", line 1115, in wrapper
+    raise WebSocketClosedError()
+tornado.websocket.WebSocketClosedError
+2026-05-28 11:45:44,505 [INFO] services.cleaning_service: Cleaning complete. Original: 5,000 rows × 13 cols
+Cleaned:  5,000 rows × 13 cols
+Rows removed: 0 (duplicates: 0)
+Columns dropped: 0
+Date columns detected: customer_since
+2026-05-28 11:45:45,696 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:45:45,701 [INFO] utils.llm_client: OpenRouter model qwen/qwen3-coder:free failed (429); trying next.
+2026-05-28 11:45:46,559 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:45:46,562 [INFO] utils.llm_client: OpenRouter model deepseek/deepseek-v4-flash:free failed (429); trying next.
+2026-05-28 11:45:46,948 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:45:46,960 [INFO] utils.llm_client: OpenRouter model meta-llama/llama-3.3-70b-instruct:free failed (429); trying next.
+2026-05-28 11:45:48,651 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-28 11:45:55,795 [WARNING] services.ai_summary_service: LLM summary failed, using statistical fallback: Unknown AI_PROVIDER: 'openrouter'. Use 'anthropic' or 'openai'.
+2026-05-28 11:45:56,510 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:45:56,510 [INFO] utils.llm_client: OpenRouter model qwen/qwen3-coder:free failed (429); trying next.
+2026-05-28 11:45:57,193 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:45:57,209 [INFO] utils.llm_client: OpenRouter model deepseek/deepseek-v4-flash:free failed (429); trying next.
+2026-05-28 11:45:57,610 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:45:57,610 [INFO] utils.llm_client: OpenRouter model meta-llama/llama-3.3-70b-instruct:free failed (429); trying next.
+2026-05-28 11:45:58,362 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-28 11:46:12,561 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:46:12,563 [INFO] utils.llm_client: OpenRouter model qwen/qwen3-coder:free failed (429); trying next.
+2026-05-28 11:46:13,272 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:46:13,278 [INFO] utils.llm_client: OpenRouter model deepseek/deepseek-v4-flash:free failed (429); trying next.
+2026-05-28 11:46:13,664 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:46:13,664 [INFO] utils.llm_client: OpenRouter model meta-llama/llama-3.3-70b-instruct:free failed (429); trying next.
+2026-05-28 11:46:17,042 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-28 11:46:31,461 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:46:31,473 [INFO] utils.llm_client: OpenRouter model qwen/qwen3-coder:free failed (429); trying next.
+2026-05-28 11:46:32,099 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:46:32,099 [INFO] utils.llm_client: OpenRouter model deepseek/deepseek-v4-flash:free failed (429); trying next.
+2026-05-28 11:46:32,491 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:46:32,492 [INFO] utils.llm_client: OpenRouter model meta-llama/llama-3.3-70b-instruct:free failed (429); trying next.
+2026-05-28 11:46:33,368 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-28 11:46:41,514 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:46:41,514 [INFO] utils.llm_client: OpenRouter model qwen/qwen3-coder:free failed (429); trying next.
+2026-05-28 11:46:42,151 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:46:42,155 [INFO] utils.llm_client: OpenRouter model deepseek/deepseek-v4-flash:free failed (429); trying next.
+2026-05-28 11:46:42,558 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:46:42,569 [INFO] utils.llm_client: OpenRouter model meta-llama/llama-3.3-70b-instruct:free failed (429); trying next.
+2026-05-28 11:46:43,339 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-28 11:46:48,350 [INFO] utils.llm_client: OpenRouter model openai/gpt-oss-120b:free failed (Connection error.); trying next.
+2026-05-28 11:46:48,350 [WARNING] utils.llm_client: All OpenRouter models failed. Last error: Connection error.
+2026-05-28 11:46:48,390 [INFO] utils.llm_client: OpenRouter model qwen/qwen3-coder:free failed (Connection error.); trying next.
+2026-05-28 11:46:48,401 [INFO] utils.llm_client: OpenRouter model deepseek/deepseek-v4-flash:free failed (Connection error.); trying next.
+2026-05-28 11:46:48,416 [INFO] utils.llm_client: OpenRouter model meta-llama/llama-3.3-70b-instruct:free failed (Connection error.); trying next.
+2026-05-28 11:46:48,433 [INFO] utils.llm_client: OpenRouter model openai/gpt-oss-120b:free failed (Connection error.); trying next.
+2026-05-28 11:46:48,433 [WARNING] utils.llm_client: All OpenRouter models failed. Last error: Connection error.
+2026-05-28 11:46:48,675 [INFO] services.sql_engine: SQL engine loaded table 'synthetic_ecommerce_churn_dataset' (5000 rows, 13 cols)
+2026-05-28 11:46:48,791 [INFO] services.rag_engine: RAG knowledge base built: 16 chunks (faiss backend)
+2026-05-28 11:46:48,791 [INFO] pipeline: Pipeline complete for 'synthetic_ecommerce_churn_dataset.csv' (5000 rows)
+2026-05-28 11:47:34,708 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:47:34,709 [INFO] utils.llm_client: OpenRouter model qwen/qwen3-coder:free failed (429); trying next.
+2026-05-28 11:47:35,832 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:47:35,834 [INFO] utils.llm_client: OpenRouter model deepseek/deepseek-v4-flash:free failed (429); trying next.
+2026-05-28 11:47:36,480 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:47:36,496 [INFO] utils.llm_client: OpenRouter model meta-llama/llama-3.3-70b-instruct:free failed (429); trying next.
+2026-05-28 11:47:37,913 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-28 11:48:44,195 [INFO] services.export_service: PDF exported: D:\ai_analytics\ai_analytics\exports\report_ecommerce_20260528_114828.pdf
+2026-05-28 11:55:11,643 [INFO] faiss.loader: Loading faiss with AVX512 support.
+2026-05-28 11:55:11,643 [INFO] faiss.loader: Could not load library with AVX512 support due to:
+ModuleNotFoundError("No module named 'faiss.swigfaiss_avx512'")
+2026-05-28 11:55:11,643 [INFO] faiss.loader: Loading faiss with AVX2 support.
+2026-05-28 11:55:11,695 [INFO] faiss.loader: Successfully loaded faiss with AVX2 support.
+2026-05-28 11:55:11,972 [INFO] services.cleaning_service: Cleaning complete. Original: 5,000 rows × 13 cols
+Cleaned:  5,000 rows × 13 cols
+Rows removed: 0 (duplicates: 0)
+Columns dropped: 0
+Date columns detected: customer_since
+2026-05-28 11:55:15,880 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:55:15,882 [INFO] utils.llm_client: OpenRouter model qwen/qwen3-coder:free failed (429); trying next.
+2026-05-28 11:55:17,055 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:55:17,055 [INFO] utils.llm_client: OpenRouter model deepseek/deepseek-v4-flash:free failed (429); trying next.
+2026-05-28 11:55:17,699 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:55:17,710 [INFO] utils.llm_client: OpenRouter model meta-llama/llama-3.3-70b-instruct:free failed (429); trying next.
+2026-05-28 11:55:18,999 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-28 11:55:24,134 [WARNING] services.ai_summary_service: LLM summary failed, using statistical fallback: Unknown AI_PROVIDER: 'openrouter'. Use 'anthropic' or 'openai'.
+2026-05-28 11:55:25,198 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:55:25,200 [INFO] utils.llm_client: OpenRouter model qwen/qwen3-coder:free failed (429); trying next.
+2026-05-28 11:55:26,182 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:55:26,397 [INFO] utils.llm_client: OpenRouter model deepseek/deepseek-v4-flash:free failed (429); trying next.
+2026-05-28 11:55:27,250 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:55:27,252 [INFO] utils.llm_client: OpenRouter model meta-llama/llama-3.3-70b-instruct:free failed (429); trying next.
+2026-05-28 11:55:28,564 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-28 11:55:39,412 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:55:39,412 [INFO] utils.llm_client: OpenRouter model qwen/qwen3-coder:free failed (429); trying next.
+2026-05-28 11:55:39,819 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:55:39,827 [INFO] utils.llm_client: OpenRouter model deepseek/deepseek-v4-flash:free failed (429); trying next.
+2026-05-28 11:55:40,512 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:55:40,512 [INFO] utils.llm_client: OpenRouter model meta-llama/llama-3.3-70b-instruct:free failed (429); trying next.
+2026-05-28 11:55:41,822 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-28 11:55:51,261 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:55:51,262 [INFO] utils.llm_client: OpenRouter model qwen/qwen3-coder:free failed (429); trying next.
+2026-05-28 11:55:51,648 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:55:51,648 [INFO] utils.llm_client: OpenRouter model deepseek/deepseek-v4-flash:free failed (429); trying next.
+2026-05-28 11:55:52,310 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:55:52,310 [INFO] utils.llm_client: OpenRouter model meta-llama/llama-3.3-70b-instruct:free failed (429); trying next.
+2026-05-28 11:55:53,577 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-28 11:56:00,742 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:56:00,742 [INFO] utils.llm_client: OpenRouter model qwen/qwen3-coder:free failed (429); trying next.
+2026-05-28 11:56:01,159 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:56:01,159 [INFO] utils.llm_client: OpenRouter model deepseek/deepseek-v4-flash:free failed (429); trying next.
+2026-05-28 11:56:01,810 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:56:01,811 [INFO] utils.llm_client: OpenRouter model meta-llama/llama-3.3-70b-instruct:free failed (429); trying next.
+2026-05-28 11:56:06,658 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-28 11:56:19,585 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:56:19,592 [INFO] utils.llm_client: OpenRouter model qwen/qwen3-coder:free failed (429); trying next.
+2026-05-28 11:56:20,009 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:56:20,012 [INFO] utils.llm_client: OpenRouter model deepseek/deepseek-v4-flash:free failed (429); trying next.
+2026-05-28 11:56:20,639 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:56:20,641 [INFO] utils.llm_client: OpenRouter model meta-llama/llama-3.3-70b-instruct:free failed (429); trying next.
+2026-05-28 11:56:22,179 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-28 11:56:30,959 [INFO] services.sql_engine: SQL engine loaded table 'synthetic_ecommerce_churn_dataset' (5000 rows, 13 cols)
+2026-05-28 11:56:31,020 [INFO] services.rag_engine: RAG knowledge base built: 16 chunks (faiss backend)
+2026-05-28 11:56:31,020 [INFO] pipeline: Pipeline complete for 'synthetic_ecommerce_churn_dataset.csv' (5000 rows)
+2026-05-28 11:58:13,215 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:58:13,218 [INFO] utils.llm_client: OpenRouter model qwen/qwen3-coder:free failed (429); trying next.
+2026-05-28 11:58:13,609 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:58:13,609 [INFO] utils.llm_client: OpenRouter model deepseek/deepseek-v4-flash:free failed (429); trying next.
+2026-05-28 11:58:14,257 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-28 11:58:14,257 [INFO] utils.llm_client: OpenRouter model meta-llama/llama-3.3-70b-instruct:free failed (429); trying next.
+2026-05-28 11:58:15,690 [INFO] httpx: HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
