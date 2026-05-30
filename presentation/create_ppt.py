@@ -345,18 +345,20 @@ def slide_03_solution(prs):
             arrow(s, cx + cw + Inches(0.005), y + Inches(0.62),
                   Inches(0.17), Inches(0.45), color=BORDER)
 
-    band = rounded(s, Inches(0.6), Inches(4.7), Inches(12.13), Inches(1.85),
+    band = rounded(s, Inches(0.6), Inches(4.7), Inches(12.13), Inches(2.05),
                    fill=PANEL_2, line=BORDER)
     shape_text(band, [
-        {"t": "What makes it different", "size": 15, "color": TEAL, "bold": True, "space_after": 7},
-        {"t": "Domain-aware:  one engine adapts KPIs, charts, personas & AI focus across 10 business domains.",
-         "size": 13, "color": TEXT, "line_spacing": 1.25, "space_after": 3},
+        {"t": "What makes it different", "size": 15, "color": TEAL, "bold": True, "space_after": 6},
+        {"t": "Domain-aware:  a Smart Intelligence layer detects your domain with a confidence score and filters out irrelevant framing.",
+         "size": 12.5, "color": TEXT, "line_spacing": 1.22, "space_after": 3},
         {"t": "Explains, not just plots:  executive summary + data story answer what / why / what next.",
-         "size": 13, "color": TEXT, "line_spacing": 1.25, "space_after": 3},
+         "size": 12.5, "color": TEXT, "line_spacing": 1.22, "space_after": 3},
+        {"t": "Interactive BI:  Power BI-grade charts, click-a-KPI cross-filtering, and a one-screen Executive View.",
+         "size": 12.5, "color": TEXT, "line_spacing": 1.22, "space_after": 3},
         {"t": "Conversational:  natural-language chat, NL→SQL on DuckDB, and a lightweight RAG insight engine.",
-         "size": 13, "color": TEXT, "line_spacing": 1.25, "space_after": 3},
+         "size": 12.5, "color": TEXT, "line_spacing": 1.22, "space_after": 3},
         {"t": "Graceful by design:  works even with no AI key — falls back to statistical narratives.",
-         "size": 13, "color": TEXT, "line_spacing": 1.25},
+         "size": 12.5, "color": TEXT, "line_spacing": 1.22},
     ], anchor=MSO_ANCHOR.TOP)
     notes(s,
         "The solution collapses the whole analyst workflow into a single upload. Five "
@@ -503,20 +505,20 @@ def slide_06_workflow(prs):
 
 def slide_07_features(prs):
     s = slide(prs)
-    heading(s, "Features & Functionality", "Eight modules, one cohesive workspace")
+    heading(s, "Features & Functionality", "A cohesive, domain-aware BI workspace")
 
     col1 = [
         ("Auto Data Engine — ", "clean, dedupe, type-infer, time-series detect"),
-        ("Domain Intelligence — ", "auto-detects 10 business domains, adapts KPIs"),
-        ("KPI Engine — ", "domain-aware metrics with currency/% formatting & deltas"),
-        ("Smart Visuals — ", "auto-selected Plotly charts + category breakdowns"),
-        ("Data Quality — ", "0–100 score, completeness/consistency/validity"),
+        ("Smart Intelligence — ", "auto-detects 10 domains with a confidence score"),
+        ("Insight Filtering — ", "drops irrelevant framing (no 'profit' on healthcare)"),
+        ("KPI Engine — ", "domain-aware metrics, currency/% formatting & deltas"),
+        ("BI-Grade Visuals — ", "Tableau / Power BI-quality interactive Plotly charts"),
     ]
     col2 = [
+        ("Interactive Dashboard — ", "KPI→chart cross-filter + one-screen Executive View"),
         ("AI Summary & Story — ", "executive narrative + chart-by-chart storytelling"),
         ("Business Insights — ", "ranked findings, severity & recommendations"),
         ("Data Copilot — ", "NL chat · NL→SQL (DuckDB) · light RAG insights"),
-        ("Compare & Forecast — ", "dataset comparison + trend forecasting"),
         ("Branded Export — ", "logo + palette → XLSX / PDF / PPTX reports"),
     ]
     cw = Inches(6.0)
@@ -525,12 +527,14 @@ def slide_07_features(prs):
     bullets(s, col1, Inches(0.85), Inches(2.3), Inches(5.5), Inches(4.0), size=13.5, gap=14)
     bullets(s, col2, Inches(6.98), Inches(2.3), Inches(5.5), Inches(4.0), size=13.5, gap=14, marker_color=VIOLET)
     notes(s,
-        "Eight modules. The data engine cleans and types data automatically. Domain "
-        "intelligence detects the vertical and reshapes KPIs. There's a KPI engine, smart "
-        "visualizations, and a data-quality scorer. On the AI side: executive summary and "
-        "data story, ranked business insights with recommendations, and the Data Copilot — "
-        "natural-language chat, NL-to-SQL on DuckDB, and a light RAG insight engine. Plus "
-        "dataset comparison, forecasting, and fully branded multi-format export.")
+        "The data engine cleans and types data automatically. A Smart Intelligence layer "
+        "detects the vertical with a confidence score and filters out domain-irrelevant "
+        "framing. KPIs are domain-aware, and the visuals are Tableau/Power BI-grade Plotly "
+        "charts. The dashboard is interactive: click a KPI to cross-filter every chart, or "
+        "flip the Executive View toggle for a single-screen summary. On the AI side: "
+        "executive summary and data story, ranked business insights with recommendations, "
+        "and the Data Copilot — natural-language chat, NL-to-SQL on DuckDB, and a light RAG "
+        "engine — plus fully branded multi-format export.")
     footer(s, 7)
 
 
@@ -598,7 +602,7 @@ def slide_09_results(prs):
         {"t": "Demo walkthrough", "size": 15, "color": TEAL, "bold": True, "space_after": 8},
         {"t": "1.  Upload a sales / healthcare / finance CSV  →  data is cleaned & domain auto-detected.",
          "size": 13, "color": TEXT, "line_spacing": 1.3, "space_after": 4},
-        {"t": "2.  Dashboard renders KPI cards, smart charts, and a data-quality score instantly.",
+        {"t": "2.  Dashboard renders KPI cards, BI-grade charts & a quality score — click a KPI to cross-filter, or flip to Executive View.",
          "size": 13, "color": TEXT, "line_spacing": 1.3, "space_after": 4},
         {"t": "3.  Open Data Story / Insights  →  AI explains what's happening, why, and what to do.",
          "size": 13, "color": TEXT, "line_spacing": 1.3, "space_after": 4},
