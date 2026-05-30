@@ -44,8 +44,8 @@ SIDEBAR_CSS = """
         border-radius: 11px;
         display: flex; align-items: center; justify-content: center;
         font-size: 1.2rem;
-        background: linear-gradient(135deg, #6366F1 0%, #A855F7 100%);
-        box-shadow: 0 0 18px rgba(99,102,241,0.55);
+        background: linear-gradient(135deg, #6C63FF 0%, #A855F7 100%);
+        box-shadow: 0 0 18px rgba(108,99,255,0.55);
         flex-shrink: 0;
     }
 
@@ -85,12 +85,6 @@ SIDEBAR_CSS = """
         font-weight: 650;
         color: #34D399;
         margin: 0.25rem 0 0.4rem;
-    }
-    .auto-detect-badge::before {
-        content: '';
-        width: 6px; height: 6px; border-radius: 50%;
-        background: #34D399;
-        box-shadow: 0 0 8px #34D399;
     }
 
     [data-testid="stSidebar"] .stButton > button {
@@ -229,6 +223,29 @@ def render_sidebar(df: pd.DataFrame | None = None) -> dict:
 
     with st.sidebar:
         st.markdown(
+            """
+            <style>
+            [data-testid="stSidebar"] .stButton > button[kind="primary"],
+            [data-testid="stSidebar"] .stButton > button[kind="primary"]:hover,
+            [data-testid="stSidebar"] .stButton > button[kind="primary"]:focus,
+            [data-testid="stSidebar"] .stButton > button[kind="primary"]:active {
+                background: linear-gradient(135deg, #6C63FF 0%, #7C3AED 100%) !important;
+                color: #FFFFFF !important;
+                border: 1px solid rgba(108,99,255,0.55) !important;
+                box-shadow: 0 4px 16px rgba(108,99,255,0.40) !important;
+            }
+            [data-testid="stSidebar"] .stButton > button:focus,
+            [data-testid="stSidebar"] .stButton > button:focus:not(:active) {
+                outline: none !important;
+                border-color: rgba(108,99,255,0.45) !important;
+                box-shadow: 0 4px 16px rgba(108,99,255,0.30) !important;
+            }
+            </style>
+            """,
+            unsafe_allow_html=True,
+        )
+
+        st.markdown(
             f"""
             <div class="sidebar-header">
                 <div class="sidebar-logo-mark">📊</div>
@@ -250,7 +267,7 @@ def render_sidebar(df: pd.DataFrame | None = None) -> dict:
             auto_key = domain_svc.auto_detect(df)
             detected_label = DOMAINS.get(auto_key, "General / Other")
             st.markdown(
-                f'<div class="auto-detect-badge">Auto-detected: {detected_label}</div>',
+                f'<div class="auto-detect-badge">⬡ Auto-detected: {detected_label}</div>',
                 unsafe_allow_html=True,
             )
             _render_intelligence_badges()
@@ -266,6 +283,36 @@ def render_sidebar(df: pd.DataFrame | None = None) -> dict:
         domain_key = domain_options[domain_labels.index(selected_label)]
         if domain_key == "auto":
             domain_key = auto_key
+
+        if df is not None and not df.empty:
+            fname = st.session_state.get("filename", "Uploaded file")
+            fname_short = fname[:22] + "…" if len(fname) > 22 else fname
+            nrows, ncols = df.shape
+            st.markdown(
+                f"""
+                <div style="margin:0.55rem 0 0.2rem; padding:0.7rem 0.8rem;
+                            background:rgba(255,255,255,0.04);
+                            border:1px solid rgba(255,255,255,0.08); border-radius:10px;">
+                    <div style="display:flex; align-items:center; gap:6px; font-size:0.8rem;
+                                font-weight:700; color:#E5E7EB; margin-bottom:0.45rem;
+                                overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">
+                        <span>📄</span><span>{fname_short}</span>
+                    </div>
+                    <div style="display:flex; flex-wrap:wrap; gap:0.4rem;">
+                        <span style="font-size:0.68rem; color:#9CA3AF;
+                                     background:rgba(255,255,255,0.05); padding:2px 8px;
+                                     border-radius:6px;">🗂 {nrows:,} rows</span>
+                        <span style="font-size:0.68rem; color:#9CA3AF;
+                                     background:rgba(255,255,255,0.05); padding:2px 8px;
+                                     border-radius:6px;">📐 {ncols} cols</span>
+                        <span style="font-size:0.68rem; color:#34D399;
+                                     background:rgba(52,211,153,0.12); padding:2px 8px;
+                                     border-radius:6px;">● Ready</span>
+                    </div>
+                </div>
+                """,
+                unsafe_allow_html=True,
+            )
 
         st.markdown('<div class="sidebar-section-label">Navigation</div>', unsafe_allow_html=True)
         active_route = _valid_route()

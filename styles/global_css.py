@@ -299,6 +299,79 @@ _CSS = """
     @media (max-width: 768px) {
         .section-header { font-size: 1.1rem; }
     }
+
+    /* ════════════════════════════════════════════════════════════════════
+       Appended overrides — layout, branding, metric/tab/scrollbar polish.
+       Placed last so they win the cascade over the base rules above.
+       ════════════════════════════════════════════════════════════════════ */
+
+    /* Streamlit default top padding removal */
+    .block-container {
+        padding-top: 1.2rem !important;
+        padding-bottom: 2rem !important;
+        max-width: 1280px !important;
+    }
+
+    /* Hide Streamlit branding */
+    #MainMenu { visibility: hidden; }
+    footer { visibility: hidden; }
+    header[data-testid="stHeader"] { background: transparent !important; }
+
+    /* Sidebar scrollbar styling */
+    div[data-testid="stSidebar"]::-webkit-scrollbar { width: 4px; }
+    div[data-testid="stSidebar"]::-webkit-scrollbar-track { background: transparent; }
+    div[data-testid="stSidebar"]::-webkit-scrollbar-thumb { background: rgba(108,99,255,0.3); border-radius: 4px; }
+
+    /* Streamlit metric widget override */
+    div[data-testid="stMetric"] {
+        background: #1A1D2E !important;
+        border: 1px solid rgba(108,99,255,0.15) !important;
+        border-radius: 12px !important;
+        padding: 1rem 1.2rem !important;
+        border-left: 3px solid #6C63FF !important;
+    }
+    div[data-testid="stMetricLabel"] {
+        font-size: 0.7rem !important;
+        font-weight: 600 !important;
+        letter-spacing: 0.08em !important;
+        color: #8B8FA8 !important;
+        text-transform: uppercase !important;
+    }
+    div[data-testid="stMetricValue"] {
+        font-size: 1.8rem !important;
+        font-weight: 800 !important;
+        color: #FFFFFF !important;
+    }
+    div[data-testid="stMetricDelta"] svg { display: none; }
+    div[data-testid="stMetricDelta"] > div {
+        font-size: 0.75rem !important;
+        font-weight: 600 !important;
+    }
+
+    /* Tab bar styling (if any st.tabs are used) */
+    .stTabs [data-baseweb="tab-list"] {
+        gap: 4px;
+        background: transparent;
+    }
+    .stTabs [data-baseweb="tab"] {
+        background: #1A1D2E;
+        border-radius: 8px;
+        color: #9CA3AF;
+        font-size: 0.8rem;
+    }
+    .stTabs [aria-selected="true"] {
+        background: rgba(108,99,255,0.2) !important;
+        color: #A89FF0 !important;
+    }
+
+    /* Divider color */
+    hr { border-color: rgba(255,255,255,0.08) !important; }
+
+    /* Selectbox and multiselect dark styling */
+    div[data-baseweb="select"] > div {
+        background: #1A1D2E !important;
+        border-color: rgba(255,255,255,0.1) !important;
+    }
 </style>
 """
 

@@ -70,8 +70,7 @@ st.markdown(f"""
     background:rgba(255,255,255,0.04);
     border:1px solid rgba(255,255,255,0.08);
     border-radius:16px;
-    box-shadow:0 8px 30px rgba(0,0,0,0.35);
-    backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(255,255,255,0.06);
 ">
     <div style="
         width:52px;height:52px;border-radius:14px;display:flex;align-items:center;
@@ -100,12 +99,95 @@ st.markdown(f"""
 
 # ── Upload gate ───────────────────────────────────────────────────────────────
 if st.session_state.raw_df is None:
+    # ── Hero landing ─────────────────────────────────────────────────────────
+    st.markdown(
+        """
+        <div style="text-align:center; max-width:760px; margin:2.5rem auto 1.25rem auto;">
+          <div style="font-size:2.6rem; line-height:1; margin:0 auto 1.1rem auto;
+                      display:flex; align-items:center; justify-content:center;
+                      width:84px; height:84px; border-radius:22px;
+                      background:linear-gradient(135deg, rgba(99,102,241,0.28), rgba(99,102,241,0.04));
+                      border:1px solid rgba(99,102,241,0.38);
+                      box-shadow:0 0 44px rgba(99,102,241,0.25);">📊</div>
+          <h1 style="font-size:2.4rem; font-weight:800; color:#F9FAFB;
+                     margin:0.25rem 0 0.85rem 0; letter-spacing:-0.02em; line-height:1.15;">
+            Drop your data. Get instant AI insights.
+          </h1>
+          <p style="font-size:1.02rem; color:#9CA3AF; margin:0 auto; max-width:600px; line-height:1.6;">
+            Upload any CSV or Excel file — your data is auto-cleaned, domain-detected,
+            and turned into KPIs, charts, and a branded report in seconds.
+          </p>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+    # ── Feature pills ────────────────────────────────────────────────────────
+    _pill = (
+        "display:inline-flex; align-items:center; background:rgba(255,255,255,0.04); "
+        "border:1px solid rgba(255,255,255,0.08); border-radius:999px; "
+        "padding:0.4rem 0.85rem; color:#C7CBD4; font-size:0.8rem; font-weight:500;"
+    )
+    st.markdown(
+        f"""
+        <div style="display:flex; flex-wrap:wrap; gap:0.5rem; justify-content:center;
+                    max-width:720px; margin:0 auto 1.75rem auto;">
+          <span style="{_pill}">✦ Auto Data Cleaning</span>
+          <span style="{_pill}">✦ 10 Business Domains</span>
+          <span style="{_pill}">✦ AI Executive Summary</span>
+          <span style="{_pill}">✦ NL→SQL Copilot</span>
+          <span style="{_pill}">✦ PDF · PPTX · Excel Export</span>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
     df_uploaded, filename = render_uploader()
     if df_uploaded is not None:
         st.session_state.raw_df          = df_uploaded
         st.session_state.filename        = filename
         st.session_state.processing_done = False
         st.rerun()
+    else:
+        # ── Domain support grid (only while waiting for upload) ───────────────
+        st.markdown(
+            """
+            <p style="text-align:center; color:#9CA3AF; font-size:0.78rem; margin:1.75rem 0 0.75rem 0;">
+              Supports 10 business domains — auto-detected on upload
+            </p>
+            """,
+            unsafe_allow_html=True,
+        )
+
+        DOMAIN_GRID = [
+            ("📈", "Sales", "Revenue · Orders · AOV"),
+            ("🏥", "Healthcare", "LOS · Readmission · Recovery"),
+            ("💰", "Finance", "P&L · Cashflow · Variance"),
+            ("👥", "HR", "Headcount · Attrition · Tenure"),
+            ("🚚", "Logistics", "On-time · Routes · Cost/km"),
+            ("🛒", "E-commerce", "GMV · Returns · Top SKUs"),
+            ("📣", "Marketing", "CAC · ROAS · Conversion"),
+            ("🏪", "Retail", "Foot traffic · Basket · Margin"),
+            ("⚙️", "Operations", "Throughput · Downtime · OEE"),
+            ("📋", "General", "Auto KPIs · Any dataset"),
+        ]
+
+        def _domain_cell(icon: str, name: str, metrics: str) -> str:
+            return (
+                "<div style='background:#1A1D2E; border:1px solid rgba(255,255,255,0.06); "
+                "border-radius:10px; padding:0.75rem 0.5rem; height:100%;'>"
+                f"<div style='font-size:1.5rem; text-align:center;'>{icon}</div>"
+                f"<div style='color:#FFFFFF; font-size:0.8rem; font-weight:700; "
+                f"text-align:center; margin-top:0.25rem;'>{name}</div>"
+                f"<div style='color:#9CA3AF; font-size:0.65rem; text-align:center; "
+                f"margin-top:0.2rem;'>{metrics}</div></div>"
+            )
+
+        for start in (0, 5):
+            cols = st.columns(5)
+            for col, (icon, name, metrics) in zip(cols, DOMAIN_GRID[start:start + 5]):
+                with col:
+                    st.markdown(_domain_cell(icon, name, metrics), unsafe_allow_html=True)
     st.stop()
 
 # ── Pipeline ──────────────────────────────────────────────────────────────────
