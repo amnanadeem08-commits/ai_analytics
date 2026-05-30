@@ -24,37 +24,39 @@ def _get_insight_styles() -> str:
     <style>
         /* Insight Card Base - Premium SaaS styling */
         .insight-card {
-            background: #FFFFFF;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
             border-radius: 14px;
             padding: 1.25rem 1.5rem;
             margin-bottom: 1rem;
-            border-left: 4px solid #E5E7EB;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+            border-left: 4px solid rgba(255,255,255,0.15);
+            box-shadow: 0 8px 28px rgba(0,0,0,0.35);
+            backdrop-filter: blur(10px);
             transition: all 0.25s ease-in-out;
             position: relative;
             overflow: hidden;
         }
         .insight-card:hover {
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 14px 40px rgba(0,0,0,0.5);
             transform: translateY(-2px);
         }
         
         /* Severity-based border colors with gradients */
         .insight-critical {
-            border-left-color: #DC2626;
-            background: linear-gradient(90deg, #FEF2F2 0%, #FFFFFF 100%);
+            border-left-color: #F87171;
+            background: linear-gradient(90deg, rgba(248,113,113,0.12) 0%, rgba(255,255,255,0.03) 100%);
         }
         .insight-high {
-            border-left-color: #EA580C;
-            background: linear-gradient(90deg, #FFF7ED 0%, #FFFFFF 100%);
+            border-left-color: #FB923C;
+            background: linear-gradient(90deg, rgba(251,146,60,0.12) 0%, rgba(255,255,255,0.03) 100%);
         }
         .insight-medium {
-            border-left-color: #CA8A04;
-            background: linear-gradient(90deg, #FFFBEB 0%, #FFFFFF 100%);
+            border-left-color: #FBBF24;
+            background: linear-gradient(90deg, rgba(251,191,36,0.12) 0%, rgba(255,255,255,0.03) 100%);
         }
         .insight-low {
-            border-left-color: #2563EB;
-            background: linear-gradient(90deg, #EFF6FF 0%, #FFFFFF 100%);
+            border-left-color: #60A5FA;
+            background: linear-gradient(90deg, rgba(96,165,250,0.12) 0%, rgba(255,255,255,0.03) 100%);
         }
         
         /* Severity badges - pill style */
@@ -105,7 +107,7 @@ def _get_insight_styles() -> str:
         .insight-headline {
             font-size: 0.95rem;
             font-weight: 600;
-            color: #111827;
+            color: #F3F4F6;
             margin: 8px 0 4px;
             line-height: 1.4;
         }
@@ -113,7 +115,7 @@ def _get_insight_styles() -> str:
         /* Insight description */
         .insight-description {
             font-size: 0.85rem;
-            color: #6B7280;
+            color: #9CA3AF;
             line-height: 1.5;
             margin: 6px 0;
         }
@@ -121,8 +123,8 @@ def _get_insight_styles() -> str:
         /* Impact statement */
         .insight-impact {
             font-size: 0.82rem;
-            color: #4B5563;
-            background: #F9FAFB;
+            color: #CBD5E1;
+            background: rgba(255,255,255,0.05);
             padding: 8px 12px;
             border-radius: 8px;
             margin-top: 8px;
@@ -133,7 +135,7 @@ def _get_insight_styles() -> str:
         .confidence-bar {
             display: inline-block;
             height: 4px;
-            background: #E5E7EB;
+            background: rgba(255,255,255,0.1);
             border-radius: 2px;
             width: 80px;
             margin: 0 6px;
@@ -143,7 +145,7 @@ def _get_insight_styles() -> str:
         .confidence-fill {
             height: 100%;
             border-radius: 2px;
-            background: linear-gradient(90deg, #5046E4, #7C3AED);
+            background: linear-gradient(90deg, #6366F1, #A855F7);
         }
         
         /* Data support metrics */
@@ -155,20 +157,20 @@ def _get_insight_styles() -> str:
         }
         .support-metric {
             font-size: 0.75rem;
-            color: #6B7280;
-            background: #F3F4F6;
+            color: #9CA3AF;
+            background: rgba(255,255,255,0.06);
             padding: 2px 8px;
             border-radius: 4px;
         }
         
         /* Recommendation card */
         .recommendation-card {
-            background: white;
+            background: rgba(255,255,255,0.04);
             border-radius: 12px;
             padding: 16px 20px;
             margin-bottom: 12px;
-            border: 1px solid #E5E7EB;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+            border: 1px solid rgba(255,255,255,0.08);
+            box-shadow: 0 8px 28px rgba(0,0,0,0.35);
         }
         .rec-immediate { border-left: 4px solid #DC2626; }
         .rec-short-term { border-left: 4px solid #EA580C; }
@@ -179,7 +181,7 @@ def _get_insight_styles() -> str:
         .rec-title {
             font-size: 0.92rem;
             font-weight: 600;
-            color: #111827;
+            color: #F3F4F6;
             margin-bottom: 6px;
         }
         
@@ -192,7 +194,7 @@ def _get_insight_styles() -> str:
         }
         .rec-meta-item {
             font-size: 0.75rem;
-            color: #6B7280;
+            color: #9CA3AF;
             display: flex;
             align-items: center;
             gap: 4px;
@@ -202,18 +204,19 @@ def _get_insight_styles() -> str:
         .success-metrics {
             margin-top: 8px;
             padding: 8px 12px;
-            background: #F0FDF4;
+            background: rgba(52,211,153,0.1);
+            border: 1px solid rgba(52,211,153,0.22);
             border-radius: 8px;
         }
         .success-metrics-title {
             font-size: 0.75rem;
             font-weight: 600;
-            color: #166534;
+            color: #6EE7B7;
             margin-bottom: 4px;
         }
         .success-metric {
             font-size: 0.78rem;
-            color: #15803D;
+            color: #A7F3D0;
             padding-left: 12px;
             line-height: 1.6;
         }
@@ -257,16 +260,17 @@ def _get_insight_styles() -> str:
         
         /* Summary box */
         .summary-box {
-            background: linear-gradient(135deg, #F8FAFC 0%, #F1F5F9 100%);
+            background: rgba(255,255,255,0.04);
             border-radius: 12px;
             padding: 20px 24px;
             margin-bottom: 16px;
-            border: 1px solid #E2E8F0;
+            border: 1px solid rgba(255,255,255,0.08);
+            box-shadow: 0 8px 28px rgba(0,0,0,0.35);
         }
         .summary-title {
             font-size: 1rem;
             font-weight: 700;
-            color: #1E293B;
+            color: #F3F4F6;
             margin-bottom: 8px;
             display: flex;
             align-items: center;
@@ -274,7 +278,7 @@ def _get_insight_styles() -> str:
         }
         .summary-content {
             font-size: 0.88rem;
-            color: #475569;
+            color: #CBD5E1;
             line-height: 1.6;
         }
         
@@ -288,16 +292,16 @@ def _get_insight_styles() -> str:
             padding: 6px 0 6px 24px;
             position: relative;
             font-size: 0.85rem;
-            color: #374151;
+            color: #CBD5E1;
             line-height: 1.5;
-            border-bottom: 1px solid #F3F4F6;
+            border-bottom: 1px solid rgba(255,255,255,0.07);
         }
         .findings-list li:last-child { border-bottom: none; }
         .findings-list li::before {
             content: "→";
             position: absolute;
             left: 0;
-            color: #5046E4;
+            color: #818CF8;
             font-weight: 600;
         }
         
@@ -362,11 +366,11 @@ def render_insight_card(insight: ExecutiveInsight, key: str = "") -> None:
         <div class="insight-description">{insight.description}</div>
         <div class="insight-impact">💡 {insight.impact}</div>
         <div style="margin-top: 8px;">
-            <span style="font-size: 0.75rem; color: #6B7280;">Confidence:</span>
+            <span style="font-size: 0.75rem; color: #9CA3AF;">Confidence:</span>
             <div class="confidence-bar">
                 <div class="confidence-fill" style="width: {confidence_pct}%"></div>
             </div>
-            <span style="font-size: 0.75rem; color: #6B7280;">{confidence_pct}%</span>
+            <span style="font-size: 0.75rem; color: #9CA3AF;">{confidence_pct}%</span>
         </div>
     </div>
     """
@@ -463,8 +467,8 @@ def render_data_quality_score(score: float) -> None:
     <div style="display: flex; align-items: center; gap: 16px;">
         <div class="quality-score {quality_class}">{int(score)}</div>
         <div>
-            <div style="font-weight: 600; color: #111827;">Data Quality Score</div>
-            <div style="font-size: 0.82rem; color: #6B7280;">{label} · Based on completeness, anomalies, and consistency</div>
+            <div style="font-weight: 600; color: #F3F4F6;">Data Quality Score</div>
+            <div style="font-size: 0.82rem; color: #9CA3AF;">{label} · Based on completeness, anomalies, and consistency</div>
         </div>
     </div>
     """
@@ -543,15 +547,15 @@ def render_recommendation_card(rec: Recommendation, key: str = "") -> None:
         <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 8px;">
             <div style="flex: 1;">
                 <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
-                    <span style="font-size: 0.75rem; color: #6B7280; background: #F3F4F6; padding: 2px 8px; border-radius: 4px;">
+                    <span style="font-size: 0.75rem; color: #C7D2FE; background: rgba(99,102,241,0.16); padding: 2px 8px; border-radius: 4px;">
                         {category_labels.get(rec.category, rec.category)}
                     </span>
-                    <span style="font-size: 0.75rem; color: #6B7280;">
+                    <span style="font-size: 0.75rem; color: #9CA3AF;">
                         {priority_labels.get(rec.priority, f"Priority {rec.priority}")}
                     </span>
                 </div>
                 <div class="rec-title">{rec.title}</div>
-                <div style="font-size: 0.85rem; color: #6B7280; line-height: 1.5;">{rec.description}</div>
+                <div style="font-size: 0.85rem; color: #9CA3AF; line-height: 1.5;">{rec.description}</div>
             </div>
         </div>
         
@@ -569,22 +573,24 @@ def render_recommendation_card(rec: Recommendation, key: str = "") -> None:
 
     card_styles = textwrap.dedent("""
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        body { background: transparent; font-family: 'Inter', sans-serif; margin: 0; }
         .recommendation-card {
-            background: white;
+            background: rgba(255,255,255,0.05);
             border-radius: 12px;
             padding: 16px 20px;
             margin-bottom: 12px;
-            border: 1px solid #E5E7EB;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 8px 28px rgba(0,0,0,0.35);
         }
-        .rec-immediate { border-left: 4px solid #DC2626; }
-        .rec-short-term { border-left: 4px solid #EA580C; }
-        .rec-strategic { border-left: 4px solid #059669; }
-        .rec-investigation { border-left: 4px solid #7C3AED; }
+        .rec-immediate { border-left: 4px solid #F87171; }
+        .rec-short-term { border-left: 4px solid #FB923C; }
+        .rec-strategic { border-left: 4px solid #34D399; }
+        .rec-investigation { border-left: 4px solid #A855F7; }
         .rec-title {
             font-size: 0.92rem;
             font-weight: 600;
-            color: #111827;
+            color: #F3F4F6;
             margin-bottom: 6px;
         }
         .rec-meta {
@@ -595,7 +601,7 @@ def render_recommendation_card(rec: Recommendation, key: str = "") -> None:
         }
         .rec-meta-item {
             font-size: 0.75rem;
-            color: #6B7280;
+            color: #9CA3AF;
             display: flex;
             align-items: center;
             gap: 4px;
@@ -603,18 +609,18 @@ def render_recommendation_card(rec: Recommendation, key: str = "") -> None:
         .success-metrics {
             margin-top: 8px;
             padding: 8px 12px;
-            background: #F0FDF4;
+            background: rgba(52,211,153,0.12);
             border-radius: 8px;
         }
         .success-metrics-title {
             font-size: 0.75rem;
             font-weight: 600;
-            color: #166534;
+            color: #6EE7B7;
             margin-bottom: 4px;
         }
         .success-metric {
             font-size: 0.78rem;
-            color: #15803D;
+            color: #A7F3D0;
             padding-left: 12px;
             line-height: 1.6;
         }

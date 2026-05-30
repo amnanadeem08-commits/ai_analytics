@@ -91,17 +91,20 @@ class ChartPlan:
     rationale: str
 
 
-PLOTLY_TEMPLATE = "plotly_white"
+PLOTLY_TEMPLATE = "plotly_dark"
 BASE_LAYOUT = dict(
     template=PLOTLY_TEMPLATE,
     font_family="Inter, system-ui, sans-serif",
-    font_color="#1a1a2e",
+    font_color="#CBD5E1",
     paper_bgcolor="rgba(0,0,0,0)",
     plot_bgcolor="rgba(0,0,0,0)",
     margin=dict(l=48, r=24, t=40, b=48),
     colorway=CHART_COLORS,
     height=CHART_HEIGHT,
     autosize=False,
+    xaxis=dict(gridcolor="rgba(255,255,255,0.06)", zerolinecolor="rgba(255,255,255,0.12)"),
+    yaxis=dict(gridcolor="rgba(255,255,255,0.06)", zerolinecolor="rgba(255,255,255,0.12)"),
+    legend=dict(bgcolor="rgba(0,0,0,0)"),
 )
 
 _JUNK_NUMERIC_NAMES = frozenset({"index", "unnamed", "unnamed_0", "row", "row_number", "serial"})
@@ -682,7 +685,7 @@ class ChartService:
             orientation="h",
             text="count",
             color="count",
-            color_continuous_scale=["#EEF2FF", "#5046E4"],
+            color_continuous_scale=["#1E1B4B", "#6366F1"],
         )
         fig.update_layout(**chart_layout(coloraxis_showscale=False))
         fig.update_traces(texttemplate="%{text}", textposition="outside")
@@ -697,8 +700,8 @@ class ChartService:
         fig = px.line(work, x=x, y=y, color=color, markers=True)
         fig.update_layout(**chart_layout(title=None))
         fig.update_traces(line_width=2.5)
-        fig.update_xaxes(showgrid=True, gridcolor="#F3F4F6")
-        fig.update_yaxes(showgrid=True, gridcolor="#F3F4F6")
+        fig.update_xaxes(showgrid=True, gridcolor="rgba(255,255,255,0.06)")
+        fig.update_yaxes(showgrid=True, gridcolor="rgba(255,255,255,0.06)")
         return fig
 
     def bar_chart(self, df: pd.DataFrame, x: str, y: str, orientation: str = "v") -> go.Figure:
@@ -708,8 +711,8 @@ class ChartService:
             fig.update_xaxes(tickangle=-30, automargin=True)
         else:
             fig.update_yaxes(automargin=True)
-        fig.update_yaxes(showgrid=True, gridcolor="#F3F4F6")
-        fig.update_xaxes(showgrid=True, gridcolor="#F3F4F6")
+        fig.update_yaxes(showgrid=True, gridcolor="rgba(255,255,255,0.06)")
+        fig.update_xaxes(showgrid=True, gridcolor="rgba(255,255,255,0.06)")
         return fig
 
     def top_n_bar(
@@ -768,7 +771,7 @@ class ChartService:
         grouped["label"] = grouped[cat_col].astype(str)
         fig = px.treemap(
             grouped, path=["label"], values=value_col,
-            color=value_col, color_continuous_scale=["#EEF2FF", "#5046E4"],
+            color=value_col, color_continuous_scale=["#1E1B4B", "#6366F1"],
         )
         fig.update_layout(**chart_layout(coloraxis_showscale=False))
         return fig

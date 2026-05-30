@@ -34,7 +34,14 @@ from config import APP_NAME, LOGS_DIR
 from utils.helpers import configure_logging
 from styles.global_css import inject as inject_css
 
-from pipeline import get_services, init_session_state, run_pipeline, handle_domain_change
+import json
+
+from pipeline import (
+    get_services, init_session_state, run_pipeline, handle_domain_change,
+    compute_filtered_outputs,
+    ensure_ai_summary, ensure_forecasts, ensure_anomaly_narrations,
+    ensure_story_narrative, ensure_category_analytics,
+)
 
 from components.uploader import render_uploader
 from components.sidebar import render_sidebar, apply_filters
@@ -55,20 +62,41 @@ logger = logging.getLogger(__name__)
 inject_css()
 init_session_state()
 
-# ── App header ────────────────────────────────────────────────────────────────
-col_logo, col_title = st.columns([1, 8])
-with col_logo:
-    st.markdown('<div style="font-size:2.8rem;padding-top:0.2rem">📊</div>', unsafe_allow_html=True)
-with col_title:
-    st.markdown(f"""
-    <div style="padding-top:0.4rem">
-        <div style="font-size:1.6rem;font-weight:800;color:#111827;letter-spacing:-0.04em">{APP_NAME}</div>
-        <div style="font-size:0.82rem;color:#6B7280">
+# ── App header (glass command bar) ───────────────────────────────────────────
+st.markdown(f"""
+<div style="
+    display:flex; align-items:center; gap:1rem;
+    padding:1rem 1.25rem; margin-bottom:1.4rem;
+    background:rgba(255,255,255,0.04);
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:16px;
+    box-shadow:0 8px 30px rgba(0,0,0,0.35);
+    backdrop-filter:blur(10px);
+">
+    <div style="
+        width:52px;height:52px;border-radius:14px;display:flex;align-items:center;
+        justify-content:center;font-size:1.7rem;flex-shrink:0;
+        background:linear-gradient(135deg,#6366F1 0%,#A855F7 100%);
+        box-shadow:0 0 22px rgba(99,102,241,0.55);
+    ">📊</div>
+    <div style="flex:1">
+        <div style="font-size:1.55rem;font-weight:800;color:#F3F4F6;letter-spacing:-0.03em;line-height:1.1">
+            {APP_NAME}
+        </div>
+        <div style="font-size:0.82rem;color:#9CA3AF;margin-top:0.15rem">
             AI-powered business analytics · Domain-aware insights · Export-ready reports
         </div>
     </div>
-    """, unsafe_allow_html=True)
-st.markdown("---")
+    <div style="
+        display:flex;align-items:center;gap:6px;padding:6px 12px;
+        background:rgba(52,211,153,0.12);border:1px solid rgba(52,211,153,0.3);
+        border-radius:20px;font-size:0.72rem;font-weight:700;color:#34D399;
+    ">
+        <span style="width:7px;height:7px;border-radius:50%;background:#34D399;box-shadow:0 0 8px #34D399"></span>
+        LIVE
+    </div>
+</div>
+""", unsafe_allow_html=True)
 
 # ── Upload gate ───────────────────────────────────────────────────────────────
 if st.session_state.raw_df is None:
@@ -106,8 +134,29 @@ category_analytics        = st.session_state.get("category_analytics")
 filtered_df  = apply_filters(st.session_state.cleaned_df, sidebar_cfg["filters"])
 active_tab   = sidebar_cfg["active_tab"]
 
+# When filters are active, recompute the filter-sensitive (deterministic) outputs
+# so KPIs, charts, analytics, and category visuals reflect the filtered data
+# across every tab. AI narratives (summary/story) remain dataset-level.
+if sidebar_cfg["filters"]:
+    _filter_sig = json.dumps(
+        {"f": {k: str(v) for k, v in sidebar_cfg["filters"].items()},
+         "d": st.session_state.domain_key,
+         "n": int(len(filtered_df))},
+        sort_keys=True,
+    )
+    _filtered = compute_filtered_outputs(filtered_df, domain_cfg, _filter_sig)
+    kpis               = _filtered["kpis"]
+    charts             = _filtered["charts"]
+    analytics_report   = _filtered["analytics_report"]
+    category_analytics = _filtered["category_analytics"]
+    st.sidebar.caption(f"🔎 Filters active · {len(filtered_df):,} of {len(st.session_state.cleaned_df):,} rows")
+
 # ── Tab dispatch ──────────────────────────────────────────────────────────────
 if active_tab == "dashboard":
+    # Expensive outputs are generated lazily, only when the Dashboard is viewed.
+    ai_summary         = ensure_ai_summary()
+    anomaly_narrations = ensure_anomaly_narrations()
+    forecasts          = ensure_forecasts()
     tab_dashboard.render(
         filtered_df, domain_cfg, kpis, charts, ai_summary,
         analytics_report, anomaly_narrations, forecasts,
@@ -116,6 +165,8 @@ if active_tab == "dashboard":
     )
 
 elif active_tab == "category":
+    if not sidebar_cfg["filters"]:
+        category_analytics = ensure_category_analytics()
     tab_category.render(category_analytics)
 
 elif active_tab == "deep_analysis":
@@ -125,6 +176,7 @@ elif active_tab == "deep_analysis":
     )
 
 elif active_tab == "data_story":
+    story_narrative = ensure_story_narrative()
     tab_story.render(
         story_narrative, charts,
         story_engine=svcs["story_engine"],
@@ -151,6 +203,7 @@ elif active_tab == "copilot":
     )
 
 elif active_tab == "export":
+    ai_summary = ensure_ai_summary()
     tab_export.render(
         filtered_df, domain_cfg, kpis, charts, ai_summary,
         svcs["export"], svcs["session"],

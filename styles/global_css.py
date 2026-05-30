@@ -1,61 +1,102 @@
 """
 styles/global_css.py — Global CSS for AI Analytics Assistant.
 
-Extracted from app.py to keep the entry point clean.
-Call inject() once at app startup (after st.set_page_config).
+Dark "command-center" design system: deep navy canvas, indigo glow accents,
+glassmorphism surfaces. Call inject() once at app startup (after set_page_config).
 """
 
 import streamlit as st
 
 _CSS = """
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+        --bg-0: #070A14;
+        --bg-1: #0A0E1A;
+        --bg-2: #111729;
+        --surface: rgba(255,255,255,0.035);
+        --surface-2: rgba(255,255,255,0.06);
+        --border: rgba(255,255,255,0.08);
+        --border-strong: rgba(255,255,255,0.14);
+        --txt: #E5E7EB;
+        --txt-muted: #9CA3AF;
+        --txt-faint: #6B7280;
+        --accent: #6366F1;
+        --accent-2: #818CF8;
+        --violet: #A855F7;
+        --glow: rgba(99,102,241,0.35);
+        --success: #34D399;
+        --warning: #FBBF24;
+        --error: #F87171;
+        --mono: 'JetBrains Mono', ui-monospace, 'Consolas', monospace;
+    }
+
+    * { box-sizing: border-box; }
 
     html, body, [class*="css"] {
         font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         font-size: 16px;
         line-height: 1.6;
-        color: #111827;
-        background: #F9FAFB;
+        color: var(--txt);
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
     }
 
+    /* ── App canvas: navy base + ambient glow ── */
+    .stApp {
+        background:
+            radial-gradient(1100px 700px at 12% -8%, rgba(99,102,241,0.16) 0%, transparent 55%),
+            radial-gradient(900px 600px at 100% 0%, rgba(168,85,247,0.12) 0%, transparent 50%),
+            radial-gradient(800px 700px at 50% 120%, rgba(56,189,248,0.08) 0%, transparent 55%),
+            linear-gradient(180deg, var(--bg-1) 0%, var(--bg-0) 100%);
+        background-attachment: fixed;
+        color: var(--txt);
+    }
+
     /* ── Streamlit chrome ── */
     #MainMenu { visibility: hidden; }
-    footer     { visibility: hidden; }
-    header     { visibility: hidden; }
+    footer    { visibility: hidden; }
+    header    { visibility: hidden; }
+
+    .block-container { padding-top: 2.2rem; }
 
     /* ── Top gradient bar ── */
     .stApp::before {
         content: '';
         display: block;
-        height: 4px;
-        background: linear-gradient(90deg, #5046E4 0%, #7C3AED 50%, #0E9F6E 100%);
+        height: 3px;
+        background: linear-gradient(90deg, #6366F1 0%, #A855F7 50%, #38BDF8 100%);
         position: fixed;
         top: 0; left: 0; right: 0;
         z-index: 9999;
+        box-shadow: 0 0 18px rgba(99,102,241,0.6);
     }
 
     /* ── Scrollbar ── */
-    ::-webkit-scrollbar              { width: 8px; height: 8px; }
-    ::-webkit-scrollbar-track        { background: #F3F4F6; border-radius: 4px; }
-    ::-webkit-scrollbar-thumb        { background: #D1D5DB; border-radius: 4px; }
-    ::-webkit-scrollbar-thumb:hover  { background: #9CA3AF; }
+    ::-webkit-scrollbar             { width: 9px; height: 9px; }
+    ::-webkit-scrollbar-track       { background: transparent; }
+    ::-webkit-scrollbar-thumb       { background: rgba(255,255,255,0.12); border-radius: 6px; }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.22); }
+
+    /* ── Typography ── */
+    h1, h2, h3, h4, h5, h6 { color: #F3F4F6 !important; letter-spacing: -0.02em; }
+    p, span, label, li, .stMarkdown { color: var(--txt); }
+    a { color: var(--accent-2); }
+    code { color: #C7D2FE; background: rgba(99,102,241,0.12); border-radius: 6px; padding: 1px 6px; }
 
     /* ── Sidebar ── */
     [data-testid="stSidebar"] {
-        background: #FFFFFF;
-        border-right: 1px solid #E5E7EB;
+        background: linear-gradient(180deg, rgba(17,23,41,0.92) 0%, rgba(10,14,26,0.92) 100%);
+        border-right: 1px solid var(--border);
+        backdrop-filter: blur(12px);
     }
 
     /* ── Section headers ── */
     .section-header {
         font-size: 1.25rem;
         font-weight: 700;
-        color: #111827;
+        color: #F3F4F6;
         margin: 2rem 0 1rem;
         display: flex;
         align-items: center;
@@ -67,12 +108,12 @@ _CSS = """
         content: '';
         flex: 1;
         height: 1px;
-        background: linear-gradient(90deg, #E5E7EB 0%, transparent 100%);
+        background: linear-gradient(90deg, var(--border-strong) 0%, transparent 100%);
         margin-left: 0.75rem;
     }
     .section-subtitle {
         font-size: 0.875rem;
-        color: #6B7280;
+        color: var(--txt-muted);
         margin-top: -0.5rem;
         margin-bottom: 1.25rem;
     }
@@ -80,46 +121,51 @@ _CSS = """
     /* ── Tabs ── */
     .stTabs [data-baseweb="tab-list"] {
         gap: 4px;
-        background: #F3F4F6;
+        background: var(--surface);
+        border: 1px solid var(--border);
         border-radius: 12px;
-        padding: 4px;
+        padding: 5px;
     }
     .stTabs [data-baseweb="tab"] {
-        border-radius: 10px;
+        border-radius: 9px;
         padding: 8px 20px;
         font-weight: 600;
         font-size: 0.875rem;
-        color: #6B7280;
-        transition: all 0.2s ease-in-out;
+        color: var(--txt-muted);
+        transition: all 0.18s ease-in-out;
+        background: transparent;
     }
     .stTabs [data-baseweb="tab"][aria-selected="true"] {
-        background: #FFFFFF;
-        color: #5046E4;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        background: linear-gradient(135deg, rgba(99,102,241,0.9) 0%, rgba(124,58,237,0.9) 100%);
+        color: #FFFFFF;
+        box-shadow: 0 4px 16px var(--glow);
     }
     .stTabs [data-baseweb="tab"]:hover:not([aria-selected="true"]) {
-        color: #374151;
-        background: #E5E7EB;
+        color: #F3F4F6;
+        background: var(--surface-2);
     }
+    .stTabs [data-baseweb="tab-highlight"],
+    .stTabs [data-baseweb="tab-border"] { background: transparent; }
 
     /* ── Chart containers ── */
-    [data-testid="stPlotlyChart"]       { min-height: 400px; border-radius: 12px; }
+    [data-testid="stPlotlyChart"]       { min-height: 400px; border-radius: 14px; }
     [data-testid="stPlotlyChart"] > div { min-height: 400px; }
 
     .chart-wrapper {
-        background: #FFFFFF;
+        background: var(--surface);
         border-radius: 16px;
-        border: 1px solid #E5E7EB;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+        border: 1px solid var(--border);
+        box-shadow: 0 8px 30px rgba(0,0,0,0.35);
         padding: 1.25rem;
         margin-bottom: 1.5rem;
         transition: all 0.2s ease-in-out;
+        backdrop-filter: blur(10px);
     }
-    .chart-wrapper:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+    .chart-wrapper:hover { border-color: var(--border-strong); box-shadow: 0 12px 40px rgba(0,0,0,0.45); }
     .chart-wrapper-title {
         font-size: 1rem;
         font-weight: 600;
-        color: #374151;
+        color: #E5E7EB;
         margin-bottom: 1rem;
         display: flex;
         align-items: center;
@@ -131,38 +177,123 @@ _CSS = """
         border-radius: 10px;
         font-weight: 600;
         padding: 8px 20px;
-        transition: all 0.2s ease-in-out;
-        border: 1px solid transparent;
+        transition: all 0.18s ease-in-out;
+        border: 1px solid var(--border);
         font-size: 0.875rem;
     }
     .stButton > button[kind="primary"] {
-        background: linear-gradient(135deg, #5046E4 0%, #7C3AED 100%);
+        background: linear-gradient(135deg, #6366F1 0%, #7C3AED 100%);
         color: white;
-        box-shadow: 0 2px 8px rgba(80,70,228,0.3);
+        border-color: transparent;
+        box-shadow: 0 4px 18px var(--glow);
     }
     .stButton > button[kind="primary"]:hover {
-        box-shadow: 0 4px 16px rgba(80,70,228,0.4);
+        box-shadow: 0 6px 26px rgba(99,102,241,0.55);
         transform: translateY(-1px);
     }
     .stButton > button[kind="secondary"] {
-        background: #FFFFFF;
-        color: #374151;
-        border-color: #E5E7EB;
+        background: var(--surface-2);
+        color: var(--txt);
+        border-color: var(--border);
     }
     .stButton > button[kind="secondary"]:hover {
-        background: #F9FAFB;
-        border-color: #D1D5DB;
+        background: rgba(99,102,241,0.16);
+        border-color: var(--accent);
+        color: #FFFFFF;
     }
+    .stDownloadButton > button {
+        background: var(--surface-2);
+        color: var(--txt);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        font-weight: 600;
+    }
+    .stDownloadButton > button:hover { border-color: var(--accent); color: #FFF; }
+
+    /* ── Inputs (text, number, select, multiselect, date) ── */
+    .stTextInput input,
+    .stNumberInput input,
+    .stTextArea textarea,
+    [data-baseweb="select"] > div,
+    [data-baseweb="input"] > div {
+        background: var(--surface-2) !important;
+        border: 1px solid var(--border) !important;
+        border-radius: 10px !important;
+        color: var(--txt) !important;
+    }
+    .stTextInput input:focus,
+    .stNumberInput input:focus,
+    .stTextArea textarea:focus {
+        border-color: var(--accent) !important;
+        box-shadow: 0 0 0 2px var(--glow) !important;
+    }
+    [data-baseweb="tag"] {
+        background: linear-gradient(135deg, rgba(99,102,241,0.9), rgba(124,58,237,0.9)) !important;
+        border-radius: 8px !important;
+    }
+    [data-baseweb="popover"] [role="listbox"],
+    [data-baseweb="menu"] {
+        background: #131A2E !important;
+        border: 1px solid var(--border) !important;
+    }
+
+    /* ── DataFrames / tables ── */
+    [data-testid="stDataFrame"], [data-testid="stTable"] {
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        overflow: hidden;
+        background: var(--surface);
+    }
+    [data-testid="stDataFrame"] * { color: var(--txt); }
+
+    /* ── Metric widget ── */
+    [data-testid="stMetric"] {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 1rem 1.1rem;
+        backdrop-filter: blur(8px);
+    }
+    [data-testid="stMetricValue"] { font-family: var(--mono); color: #F3F4F6; }
+    [data-testid="stMetricLabel"] { color: var(--txt-muted); }
+
+    /* ── Expander ── */
+    [data-testid="stExpander"] {
+        background: var(--surface);
+        border: 1px solid var(--border) !important;
+        border-radius: 12px !important;
+    }
+    [data-testid="stExpander"] summary { color: var(--txt); }
+
+    /* ── Native alert banners (st.info/success/warning/error) ── */
+    [data-testid="stAlert"] {
+        background: var(--surface-2);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        color: var(--txt);
+    }
+
+    /* ── File uploader ── */
+    [data-testid="stFileUploaderDropzone"] {
+        background: var(--surface);
+        border: 1.5px dashed var(--border-strong);
+        border-radius: 14px;
+        color: var(--txt-muted);
+    }
+    [data-testid="stFileUploaderDropzone"]:hover { border-color: var(--accent); }
+
+    /* ── Caption / small text ── */
+    [data-testid="stCaptionContainer"], .stCaption { color: var(--txt-faint) !important; }
 
     /* ── Animations ── */
     @keyframes pulse    { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
-    @keyframes shimmer  { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
+    @keyframes glowPulse{ 0%,100% { box-shadow: 0 0 8px var(--glow); } 50% { box-shadow: 0 0 18px var(--glow); } }
     @keyframes slideUp  {
         from { opacity: 0; transform: translateY(20px); }
         to   { opacity: 1; transform: translateY(0);    }
     }
-    .loading           { animation: pulse 2s ease-in-out infinite; }
-    .animate-slide-up  { animation: slideUp 0.4s ease-out; }
+    .loading          { animation: pulse 2s ease-in-out infinite; }
+    .animate-slide-up { animation: slideUp 0.4s ease-out; }
 
     /* ── Responsive ── */
     @media (max-width: 768px) {

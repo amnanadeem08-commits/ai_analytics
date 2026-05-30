@@ -14,11 +14,12 @@ def render_story_narrative(story: StoryNarrative) -> None:
     for beat in story.beats:
         st.markdown(f"""
         <div style="
-            border-left: 3px solid #7C3AED; padding: 0.6rem 1rem;
-            margin: 0.8rem 0; background: #FAF5FF; border-radius: 0 8px 8px 0;
+            border-left: 3px solid #818CF8; padding: 0.6rem 1rem;
+            margin: 0.8rem 0; background: rgba(99,102,241,0.1); border-radius: 0 8px 8px 0;
+            border: 1px solid rgba(99,102,241,0.18); border-left-width: 3px;
         ">
-            <div style="font-weight:600;color:#5B21B6;">Step {beat.order}: {beat.chart_title}</div>
-            <div style="margin-top:4px;color:#374151;font-size:0.92rem;">{beat.narrative}</div>
+            <div style="font-weight:600;color:#C7D2FE;">Step {beat.order}: {beat.chart_title}</div>
+            <div style="margin-top:4px;color:#CBD5E1;font-size:0.92rem;">{beat.narrative}</div>
         </div>
         """, unsafe_allow_html=True)
 

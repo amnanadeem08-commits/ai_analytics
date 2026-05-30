@@ -36,6 +36,18 @@ def render(filtered_df, domain_cfg, kpis, analytics_report, insight_engine, reco
                     analytics_report=analytics_report,
                     dataset_name=st.session_state.filename,
                 )
+
+                # Smart Intelligence Layer: drop domain-irrelevant insights
+                # (e.g. revenue/profit framing on healthcare data). Additive,
+                # defensive — never breaks insight generation.
+                try:
+                    from pipeline import get_services
+                    get_services()["insight_filter"].filter_report(
+                        insight_report, getattr(domain_cfg, "key", "generic")
+                    )
+                except Exception as exc:
+                    logger.warning("Insight filter skipped: %s", exc)
+
                 st.session_state.insight_report = insight_report
 
                 rec_report = recommendation_engine.generate_recommendations(

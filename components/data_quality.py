@@ -15,11 +15,12 @@ DATA_QUALITY_CSS = """
 <style>
     /* Main Quality Score Card */
     .quality-score-card {
-        background: #FFFFFF;
+        background: rgba(255,255,255,0.04);
         border-radius: 16px;
         padding: 1.5rem;
-        border: 1px solid #E5E7EB;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+        border: 1px solid rgba(255,255,255,0.08);
+        box-shadow: 0 8px 30px rgba(0,0,0,0.35);
+        backdrop-filter: blur(10px);
         display: flex;
         align-items: center;
         gap: 1.5rem;
@@ -27,7 +28,7 @@ DATA_QUALITY_CSS = """
     }
     
     .quality-score-card:hover {
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 12px 40px rgba(0,0,0,0.45);
     }
     
     /* Grade Badge */
@@ -80,16 +81,17 @@ DATA_QUALITY_CSS = """
     }
     
     .quality-score-value {
+        font-family: 'JetBrains Mono', ui-monospace, monospace;
         font-size: 2rem;
-        font-weight: 800;
-        color: #111827;
+        font-weight: 700;
+        color: #F3F4F6;
         line-height: 1.1;
-        letter-spacing: -0.03em;
+        letter-spacing: -0.02em;
     }
     
     .quality-score-label {
         font-size: 0.875rem;
-        color: #6B7280;
+        color: #9CA3AF;
         font-weight: 500;
         margin-top: 0.25rem;
     }
@@ -115,7 +117,7 @@ DATA_QUALITY_CSS = """
     .quality-meta-value {
         font-size: 0.875rem;
         font-weight: 700;
-        color: #374151;
+        color: #E5E7EB;
     }
     
     /* Dimension Bars */
@@ -136,7 +138,7 @@ DATA_QUALITY_CSS = """
     .quality-dim-label {
         font-size: 0.8rem;
         font-weight: 600;
-        color: #6B7280;
+        color: #9CA3AF;
         width: 90px;
         flex-shrink: 0;
     }
@@ -144,7 +146,7 @@ DATA_QUALITY_CSS = """
     .quality-dim-bar-track {
         flex: 1;
         height: 8px;
-        background: #E5E7EB;
+        background: rgba(255,255,255,0.1);
         border-radius: 4px;
         overflow: hidden;
     }
@@ -170,16 +172,17 @@ DATA_QUALITY_CSS = """
     .quality-dim-value {
         font-size: 0.8rem;
         font-weight: 700;
-        color: #374151;
+        color: #E5E7EB;
         width: 40px;
         text-align: right;
+        font-family: 'JetBrains Mono', monospace;
     }
     
     /* Column Details Table */
     .quality-column-details {
-        background: #FFFFFF;
+        background: rgba(255,255,255,0.04);
         border-radius: 12px;
-        border: 1px solid #E5E7EB;
+        border: 1px solid rgba(255,255,255,0.08);
         overflow: hidden;
     }
     
@@ -187,11 +190,11 @@ DATA_QUALITY_CSS = """
         display: flex;
         align-items: center;
         padding: 1rem 1.25rem;
-        background: #F9FAFB;
-        border-bottom: 1px solid #E5E7EB;
+        background: rgba(255,255,255,0.03);
+        border-bottom: 1px solid rgba(255,255,255,0.08);
         font-size: 0.9rem;
         font-weight: 600;
-        color: #374151;
+        color: #E5E7EB;
         gap: 0.5rem;
     }
     
@@ -199,14 +202,14 @@ DATA_QUALITY_CSS = """
         display: grid;
         grid-template-columns: 2fr 1fr 1fr 2fr;
         padding: 0.75rem 1.25rem;
-        border-bottom: 1px solid #F3F4F6;
+        border-bottom: 1px solid rgba(255,255,255,0.07);
         align-items: center;
         font-size: 0.825rem;
         transition: background 0.15s;
     }
     
     .quality-column-row:hover {
-        background: #F9FAFB;
+        background: rgba(255,255,255,0.05);
     }
     
     .quality-column-row:last-child {
@@ -215,7 +218,7 @@ DATA_QUALITY_CSS = """
     
     .quality-col-name {
         font-weight: 600;
-        color: #111827;
+        color: #F3F4F6;
     }
     
     .quality-col-score {
@@ -302,24 +305,24 @@ def render_data_quality(report: DataQualityReport) -> None:
                 {report.grade}
             </div>
             <div class="quality-score-details">
-                <div class="quality-score-value">{report.overall_score:.0f}<span style="font-size: 1rem; color: #9CA3AF; font-weight: 500;">/100</span></div>
+                <div class="quality-score-value">{report.overall_score:.0f}<span style="font-size: 1rem; color: #6B7280; font-weight: 500;">/100</span></div>
                 <div class="quality-score-label">Overall Data Quality Score</div>
                 <div class="quality-score-meta">
                     <div class="quality-meta-item">
                         <span class="quality-meta-label">Completeness</span>
-                        <span class="quality-meta-value" style="color: {'#065F46' if report.completeness >= 80 else '#92400E' if report.completeness >= 60 else '#991B1B'}">{report.completeness:.0f}%</span>
+                        <span class="quality-meta-value" style="color: {'#34D399' if report.completeness >= 80 else '#FBBF24' if report.completeness >= 60 else '#F87171'}">{report.completeness:.0f}%</span>
                     </div>
                     <div class="quality-meta-item">
                         <span class="quality-meta-label">Consistency</span>
-                        <span class="quality-meta-value" style="color: {'#065F46' if report.consistency >= 80 else '#92400E' if report.consistency >= 60 else '#991B1B'}">{report.consistency:.0f}%</span>
+                        <span class="quality-meta-value" style="color: {'#34D399' if report.consistency >= 80 else '#FBBF24' if report.consistency >= 60 else '#F87171'}">{report.consistency:.0f}%</span>
                     </div>
                     <div class="quality-meta-item">
                         <span class="quality-meta-label">Coverage</span>
-                        <span class="quality-meta-value" style="color: {'#065F46' if report.coverage >= 80 else '#92400E' if report.coverage >= 60 else '#991B1B'}">{report.coverage:.0f}%</span>
+                        <span class="quality-meta-value" style="color: {'#34D399' if report.coverage >= 80 else '#FBBF24' if report.coverage >= 60 else '#F87171'}">{report.coverage:.0f}%</span>
                     </div>
                     <div class="quality-meta-item">
                         <span class="quality-meta-label">Validity</span>
-                        <span class="quality-meta-value" style="color: {'#065F46' if getattr(report, 'validity', 100) >= 80 else '#92400E' if getattr(report, 'validity', 100) >= 60 else '#991B1B'}">{getattr(report, 'validity', 100):.0f}%</span>
+                        <span class="quality-meta-value" style="color: {'#34D399' if getattr(report, 'validity', 100) >= 80 else '#FBBF24' if getattr(report, 'validity', 100) >= 60 else '#F87171'}">{getattr(report, 'validity', 100):.0f}%</span>
                     </div>
                 </div>
             </div>
@@ -377,31 +380,32 @@ def render_data_quality(report: DataQualityReport) -> None:
                         align-items: center;
                         justify-content: space-between;
                         padding: 0.625rem 1rem;
-                        background: #F9FAFB;
+                        background: rgba(255,255,255,0.04);
+                        border: 1px solid rgba(255,255,255,0.07);
                         border-radius: 8px;
                         margin-bottom: 0.5rem;
                         font-size: 0.825rem;
                     ">
-                        <div style="font-weight: 600; color: #111827; min-width: 150px;">
+                        <div style="font-weight: 600; color: #F3F4F6; min-width: 150px;">
                             {col.name}
                         </div>
                         <div style="display: flex; align-items: center; gap: 1rem;">
                             <div style="display: flex; align-items: center; gap: 0.5rem;">
-                                <span style="color: #6B7280; font-size: 0.75rem;">Completeness</span>
-                                <div style="width: 50px; height: 5px; background: #E5E7EB; border-radius: 3px;">
-                                    <div style="width: {col.completeness}%; height: 100%; background: {'#0E9F6E' if col.completeness >= 80 else '#E3A008' if col.completeness >= 60 else '#DC2626'}; border-radius: 3px;"></div>
+                                <span style="color: #9CA3AF; font-size: 0.75rem;">Completeness</span>
+                                <div style="width: 50px; height: 5px; background: rgba(255,255,255,0.1); border-radius: 3px;">
+                                    <div style="width: {col.completeness}%; height: 100%; background: {'#34D399' if col.completeness >= 80 else '#FBBF24' if col.completeness >= 60 else '#F87171'}; border-radius: 3px;"></div>
                                 </div>
-                                <span style="font-weight: 600; color: #374151; width: 35px;">{col.completeness:.0f}%</span>
+                                <span style="font-weight: 600; color: #E5E7EB; width: 35px;">{col.completeness:.0f}%</span>
                             </div>
                             <div style="display: flex; align-items: center; gap: 0.5rem;">
-                                <span style="color: #6B7280; font-size: 0.75rem;">Consistency</span>
-                                <div style="width: 50px; height: 5px; background: #E5E7EB; border-radius: 3px;">
-                                    <div style="width: {col.consistency}%; height: 100%; background: {'#0E9F6E' if col.consistency >= 80 else '#E3A008' if col.consistency >= 60 else '#DC2626'}; border-radius: 3px;"></div>
+                                <span style="color: #9CA3AF; font-size: 0.75rem;">Consistency</span>
+                                <div style="width: 50px; height: 5px; background: rgba(255,255,255,0.1); border-radius: 3px;">
+                                    <div style="width: {col.consistency}%; height: 100%; background: {'#34D399' if col.consistency >= 80 else '#FBBF24' if col.consistency >= 60 else '#F87171'}; border-radius: 3px;"></div>
                                 </div>
-                                <span style="font-weight: 600; color: #374151; width: 35px;">{col.consistency:.0f}%</span>
+                                <span style="font-weight: 600; color: #E5E7EB; width: 35px;">{col.consistency:.0f}%</span>
                             </div>
                         </div>
-                        <div style="max-width: 250px; color: #6B7280; font-size: 0.75rem; text-align: right;">
+                        <div style="max-width: 250px; color: #9CA3AF; font-size: 0.75rem; text-align: right;">
                             {issues}
                         </div>
                     </div>

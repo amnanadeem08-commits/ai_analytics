@@ -64,114 +64,110 @@ def _get_card_type(kpi: KPIResult) -> str:
     return "normal"
 
 
-KPI_CARD_CSS = f"""
+KPI_CARD_CSS = """
 <style>
-    /* Premium KPI Card Container */
-    .kpi-card-wrapper {{
-        background: #FFFFFF;
+    /* Dark glass KPI card */
+    .kpi-card-wrapper {
+        background: rgba(255,255,255,0.04);
         border-radius: 16px;
-        border: 1px solid #E5E7EB;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
-        padding: 1.25rem 1.5rem;
+        border: 1px solid rgba(255,255,255,0.08);
+        box-shadow: 0 8px 28px rgba(0,0,0,0.35);
+        backdrop-filter: blur(10px);
+        padding: 1.2rem 1.4rem;
         position: relative;
         overflow: hidden;
         transition: all 0.25s ease-in-out;
         height: 100%;
         display: flex;
         flex-direction: column;
-    }}
-    
-    .kpi-card-wrapper:hover {{
-        transform: translateY(-3px);
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-        border-color: #C7D2FE;
-    }}
-    
-    /* Accent bar on the left */
-    .kpi-card-wrapper::before {{
+    }
+
+    .kpi-card-wrapper::after {
         content: '';
         position: absolute;
-        top: 0;
-        left: 0;
-        width: 4px;
+        inset: 0;
+        background: radial-gradient(420px 120px at 0% 0%, rgba(99,102,241,0.14) 0%, transparent 70%);
+        pointer-events: none;
+    }
+
+    .kpi-card-wrapper:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 14px 40px rgba(0,0,0,0.5);
+        border-color: rgba(99,102,241,0.5);
+    }
+
+    /* Accent bar on the left */
+    .kpi-card-wrapper::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0;
+        width: 3px;
         height: 100%;
-        background: linear-gradient(180deg, #5046E4 0%, #7C3AED 100%);
-        border-radius: 0 2px 2px 0;
-    }}
-    
-    .kpi-card-wrapper.success::before {{
-        background: linear-gradient(180deg, #0E9F6E 0%, #059669 100%);
-    }}
-    
-    .kpi-card-wrapper.warning::before {{
-        background: linear-gradient(180deg, #EA580C 0%, #E3A008 100%);
-    }}
-    
-    .kpi-card-wrapper.error::before {{
-        background: linear-gradient(180deg, #DC2626 0%, #E74694 100%);
-    }}
-    
-    /* Card header with label and icon */
-    .kpi-card-header {{
+        background: linear-gradient(180deg, #6366F1 0%, #A855F7 100%);
+        box-shadow: 0 0 14px rgba(99,102,241,0.6);
+    }
+    .kpi-card-wrapper.success::before { background: linear-gradient(180deg, #34D399 0%, #059669 100%); }
+    .kpi-card-wrapper.warning::before { background: linear-gradient(180deg, #FBBF24 0%, #EA580C 100%); }
+    .kpi-card-wrapper.error::before   { background: linear-gradient(180deg, #F87171 0%, #DC2626 100%); }
+
+    .kpi-card-header {
         display: flex;
         align-items: center;
         justify-content: space-between;
         margin-bottom: 0.5rem;
-    }}
-    
-    .kpi-label {{
-        font-size: 0.75rem;
-        font-weight: 600;
-        color: #6B7280;
+        position: relative;
+        z-index: 1;
+    }
+
+    .kpi-label {
+        font-size: 0.72rem;
+        font-weight: 700;
+        color: #9CA3AF;
         text-transform: uppercase;
-        letter-spacing: 0.06em;
+        letter-spacing: 0.08em;
         line-height: 1.2;
-    }}
-    
-    .kpi-icon-wrapper {{
-        width: 32px;
-        height: 32px;
+    }
+
+    .kpi-icon-wrapper {
+        width: 34px;
+        height: 34px;
         border-radius: 10px;
         display: flex;
         align-items: center;
         justify-content: center;
         font-size: 1rem;
-        background: linear-gradient(135deg, #F5F3FF 0%, #EDE9FE 100%);
+        background: rgba(99,102,241,0.16);
+        border: 1px solid rgba(99,102,241,0.3);
         flex-shrink: 0;
-    }}
-    
-    .kpi-card-wrapper.success .kpi-icon-wrapper {{
-        background: linear-gradient(135deg, #D1FAE5 0%, #A7F3D0 100%);
-    }}
-    
-    .kpi-card-wrapper.warning .kpi-icon-wrapper {{
-        background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
-    }}
-    
-    .kpi-card-wrapper.error .kpi-icon-wrapper {{
-        background: linear-gradient(135deg, #FEE2E2 0%, #FECACA 100%);
-    }}
-    
-    /* KPI Value */
-    .kpi-value {{
-        font-size: 2rem;
-        font-weight: 800;
-        color: #111827;
+    }
+    .kpi-card-wrapper.success .kpi-icon-wrapper { background: rgba(52,211,153,0.16); border-color: rgba(52,211,153,0.3); }
+    .kpi-card-wrapper.warning .kpi-icon-wrapper { background: rgba(251,191,36,0.16); border-color: rgba(251,191,36,0.3); }
+    .kpi-card-wrapper.error .kpi-icon-wrapper   { background: rgba(248,113,113,0.16); border-color: rgba(248,113,113,0.3); }
+
+    /* KPI Value — monospace, like the reference */
+    .kpi-value {
+        font-family: 'JetBrains Mono', ui-monospace, 'Consolas', monospace;
+        font-size: 1.9rem;
+        font-weight: 700;
+        color: #F3F4F6;
         line-height: 1.1;
-        letter-spacing: -0.03em;
+        letter-spacing: -0.02em;
         margin: 0.25rem 0;
-    }}
-    
-    /* Trend indicator */
-    .kpi-trend {{
+        position: relative;
+        z-index: 1;
+    }
+
+    .kpi-trend {
         display: inline-flex;
         align-items: center;
         gap: 4px;
         margin-top: auto;
         padding-top: 0.5rem;
-    }}
-    
-    .kpi-trend-badge {{
+        position: relative;
+        z-index: 1;
+    }
+
+    .kpi-trend-badge {
         display: inline-flex;
         align-items: center;
         gap: 3px;
@@ -180,45 +176,21 @@ KPI_CARD_CSS = f"""
         font-size: 0.7rem;
         font-weight: 700;
         line-height: 1;
-    }}
-    
-    .kpi-trend-badge.up {{
-        background: #D1FAE5;
-        color: #065F46;
-    }}
-    
-    .kpi-trend-badge.down {{
-        background: #FEE2E2;
-        color: #991B1B;
-    }}
-    
-    .kpi-trend-badge.flat {{
-        background: #F3F4F6;
-        color: #6B7280;
-    }}
-    
-    .kpi-trend-label {{
+    }
+    .kpi-trend-badge.up   { background: rgba(52,211,153,0.16); color: #34D399; }
+    .kpi-trend-badge.down { background: rgba(248,113,113,0.16); color: #F87171; }
+    .kpi-trend-badge.flat { background: rgba(255,255,255,0.08); color: #9CA3AF; }
+
+    .kpi-trend-label {
         font-size: 0.7rem;
-        color: #9CA3AF;
+        color: #6B7280;
         margin-left: 4px;
-    }}
-    
-    /* Sparkline placeholder */
-    .kpi-sparkline {{
-        height: 20px;
-        margin-top: 0.5rem;
-        opacity: 0.3;
-    }}
-    
-    /* Responsive adjustments */
-    @media (max-width: 768px) {{
-        .kpi-value {{
-            font-size: 1.5rem;
-        }}
-        .kpi-card-wrapper {{
-            padding: 1rem 1.25rem;
-        }}
-    }}
+    }
+
+    @media (max-width: 768px) {
+        .kpi-value { font-size: 1.5rem; }
+        .kpi-card-wrapper { padding: 1rem 1.1rem; }
+    }
 </style>
 """
 
@@ -279,15 +251,15 @@ def render_kpi_cards(kpis: list[KPIResult], columns: int = 4) -> None:
             <div style="
                 text-align: center;
                 padding: 3rem 2rem;
-                background: #F9FAFB;
+                background: rgba(255,255,255,0.03);
                 border-radius: 16px;
-                border: 2px dashed #E5E7EB;
+                border: 2px dashed rgba(255,255,255,0.12);
             ">
-                <div style="font-size: 2.5rem; margin-bottom: 1rem; opacity: 0.5;">📊</div>
-                <div style="font-size: 1rem; font-weight: 600; color: #374151; margin-bottom: 0.5rem;">
+                <div style="font-size: 2.5rem; margin-bottom: 1rem; opacity: 0.6;">📊</div>
+                <div style="font-size: 1rem; font-weight: 600; color: #E5E7EB; margin-bottom: 0.5rem;">
                     No Metrics Available
                 </div>
-                <div style="font-size: 0.875rem; color: #6B7280;">
+                <div style="font-size: 0.875rem; color: #9CA3AF;">
                     Upload data with numeric columns to generate KPIs
                 </div>
             </div>
@@ -325,10 +297,11 @@ def render_kpi_summary_bar(kpis: list[KPIResult]) -> None:
                 display: flex;
                 gap: 1.5rem;
                 padding: 1rem 1.5rem;
-                background: #FFFFFF;
+                background: rgba(255,255,255,0.04);
                 border-radius: 12px;
-                border: 1px solid #E5E7EB;
-                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+                border: 1px solid rgba(255,255,255,0.08);
+                box-shadow: 0 8px 28px rgba(0,0,0,0.35);
+                backdrop-filter: blur(10px);
                 flex-wrap: wrap;
                 align-items: center;
             }
@@ -337,7 +310,7 @@ def render_kpi_summary_bar(kpis: list[KPIResult]) -> None:
                 align-items: center;
                 gap: 0.75rem;
                 padding: 0.5rem 1rem;
-                background: #F9FAFB;
+                background: rgba(255,255,255,0.04);
                 border-radius: 10px;
                 flex: 1;
                 min-width: 180px;
@@ -350,18 +323,20 @@ def render_kpi_summary_bar(kpis: list[KPIResult]) -> None:
                 align-items: center;
                 justify-content: center;
                 font-size: 1.1rem;
-                background: linear-gradient(135deg, #F5F3FF 0%, #EDE9FE 100%);
+                background: rgba(99,102,241,0.16);
+                border: 1px solid rgba(99,102,241,0.3);
                 flex-shrink: 0;
             }
             .kpi-summary-value {
+                font-family: 'JetBrains Mono', ui-monospace, 'Consolas', monospace;
                 font-size: 1.25rem;
                 font-weight: 700;
-                color: #111827;
+                color: #F3F4F6;
                 line-height: 1;
             }
             .kpi-summary-label {
                 font-size: 0.7rem;
-                color: #6B7280;
+                color: #9CA3AF;
                 text-transform: uppercase;
                 letter-spacing: 0.05em;
                 margin-top: 2px;

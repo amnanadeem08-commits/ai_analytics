@@ -23,18 +23,18 @@ def render_uploader() -> tuple[pd.DataFrame | None, str]:
     """
     st.markdown("""
     <div style="
-        border: 2px dashed #C7D2FE;
+        border: 1.5px dashed rgba(99,102,241,0.4);
         border-radius: 16px;
-        padding: 2rem 2rem 1.5rem;
+        padding: 2.2rem 2rem 1.8rem;
         text-align: center;
-        background: #F5F3FF;
+        background: rgba(99,102,241,0.07);
         margin-bottom: 1rem;
     ">
-        <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">📂</div>
-        <div style="font-weight: 700; color: #4338CA; font-size: 1.1rem;">
+        <div style="font-size: 2.6rem; margin-bottom: 0.5rem;">📂</div>
+        <div style="font-weight: 700; color: #C7D2FE; font-size: 1.15rem;">
             Upload your data file
         </div>
-        <div style="color: #6B7280; font-size: 0.85rem; margin-top: 0.3rem;">
+        <div style="color: #9CA3AF; font-size: 0.85rem; margin-top: 0.3rem;">
             CSV or Excel (.xlsx, .xls) · Max {mb}MB
         </div>
     </div>

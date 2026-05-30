@@ -30,92 +30,187 @@ NAVIGATION_ITEMS = [
 
 SIDEBAR_CSS = """
 <style>
-    [data-testid="stSidebar"] {
-        background: #FFFFFF;
-        border-right: 1px solid #E5E7EB;
+    .sidebar-header {
+        padding: 0.5rem 0.25rem 1rem;
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+        margin-bottom: 0.6rem;
+        display: flex;
+        align-items: center;
+        gap: 0.7rem;
     }
 
-    .sidebar-header {
-        padding: 1.25rem 1rem 1rem;
-        border-bottom: 1px solid #F3F4F6;
-        margin-bottom: 0.5rem;
+    .sidebar-logo-mark {
+        width: 38px; height: 38px;
+        border-radius: 11px;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 1.2rem;
+        background: linear-gradient(135deg, #6366F1 0%, #A855F7 100%);
+        box-shadow: 0 0 18px rgba(99,102,241,0.55);
+        flex-shrink: 0;
     }
 
     .sidebar-title {
-        font-size: 1.05rem;
+        font-size: 1.02rem;
         font-weight: 800;
-        color: #5046E4;
-        letter-spacing: 0;
-        line-height: 1.2;
+        color: #F3F4F6;
+        letter-spacing: -0.01em;
+        line-height: 1.15;
     }
 
     .sidebar-version {
-        font-size: 0.68rem;
-        color: #9CA3AF;
-        margin-top: 0.25rem;
+        font-size: 0.66rem;
+        color: #6B7280;
+        margin-top: 0.15rem;
+        font-family: 'JetBrains Mono', monospace;
     }
 
     .sidebar-section-label {
-        font-size: 0.68rem;
+        font-size: 0.66rem;
         font-weight: 800;
-        color: #9CA3AF;
+        color: #6B7280;
         text-transform: uppercase;
-        letter-spacing: 0.08em;
-        padding: 0.65rem 0 0.3rem;
+        letter-spacing: 0.12em;
+        padding: 0.7rem 0 0.35rem;
     }
 
     .auto-detect-badge {
         display: inline-flex;
         align-items: center;
-        padding: 4px 8px;
-        background: #D1FAE5;
-        border-radius: 6px;
-        font-size: 0.72rem;
+        gap: 5px;
+        padding: 4px 10px;
+        background: rgba(52,211,153,0.14);
+        border: 1px solid rgba(52,211,153,0.3);
+        border-radius: 20px;
+        font-size: 0.7rem;
         font-weight: 650;
-        color: #065F46;
+        color: #34D399;
         margin: 0.25rem 0 0.4rem;
+    }
+    .auto-detect-badge::before {
+        content: '';
+        width: 6px; height: 6px; border-radius: 50%;
+        background: #34D399;
+        box-shadow: 0 0 8px #34D399;
     }
 
     [data-testid="stSidebar"] .stButton > button {
         width: 100%;
         justify-content: flex-start;
         border-radius: 10px;
-        padding: 0.72rem 0.9rem;
-        margin: 0.08rem 0;
-        font-size: 0.86rem;
-        font-weight: 650;
+        padding: 0.66rem 0.85rem;
+        margin: 0.1rem 0;
+        font-size: 0.85rem;
+        font-weight: 600;
         border: 1px solid transparent;
         box-shadow: none;
     }
 
     [data-testid="stSidebar"] .stButton > button[kind="secondary"] {
-        background: #FFFFFF;
-        color: #4B5563;
+        background: transparent;
+        color: #9CA3AF;
         border-color: transparent;
     }
 
     [data-testid="stSidebar"] .stButton > button[kind="secondary"]:hover {
-        background: #F5F3FF;
-        color: #5046E4;
-        border-color: #EDE9FE;
+        background: rgba(255,255,255,0.05);
+        color: #E5E7EB;
+        border-color: rgba(255,255,255,0.1);
     }
 
     [data-testid="stSidebar"] .stButton > button[kind="primary"] {
-        background: linear-gradient(135deg, #5046E4 0%, #7C3AED 100%);
+        background: linear-gradient(135deg, rgba(99,102,241,0.95) 0%, rgba(124,58,237,0.95) 100%);
         color: #FFFFFF;
         border-color: transparent;
-        box-shadow: 0 4px 12px rgba(80, 70, 228, 0.35);
+        box-shadow: 0 4px 16px rgba(99,102,241,0.4);
     }
 
-    [data-testid="stSidebar"] .stSelectbox > div > div,
-    [data-testid="stSidebar"] .stMultiSelect > div > div,
-    [data-testid="stSidebar"] .stDateInput > div > div {
-        background: #F9FAFB;
-        border: 1px solid #E5E7EB;
-        border-radius: 8px;
+    /* AI copilot status card */
+    .copilot-status {
+        margin-top: 0.9rem;
+        padding: 0.85rem 0.9rem;
+        background: rgba(99,102,241,0.1);
+        border: 1px solid rgba(99,102,241,0.28);
+        border-radius: 12px;
+    }
+    .copilot-status-title {
+        display: flex; align-items: center; gap: 6px;
+        font-size: 0.74rem; font-weight: 800;
+        color: #C7D2FE; text-transform: uppercase; letter-spacing: 0.08em;
+    }
+    .copilot-status-title .dot {
+        width: 7px; height: 7px; border-radius: 50%;
+        background: #34D399; box-shadow: 0 0 8px #34D399;
+        animation: pulse 2s ease-in-out infinite;
+    }
+    .copilot-status-desc {
+        font-size: 0.72rem; color: #9CA3AF; margin-top: 0.35rem; line-height: 1.45;
+    }
+
+    /* Smart Intelligence Layer badges */
+    .intel-panel {
+        margin: 0.45rem 0 0.2rem;
+        padding: 0.6rem 0.75rem;
+        background: rgba(255,255,255,0.04);
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 10px;
+    }
+    .intel-row {
+        display: flex; align-items: center; justify-content: space-between;
+        gap: 0.5rem; padding: 0.12rem 0;
+    }
+    .intel-key {
+        font-size: 0.66rem; font-weight: 700; color: #6B7280;
+        text-transform: uppercase; letter-spacing: 0.06em;
+    }
+    .intel-val {
+        font-size: 0.74rem; font-weight: 700; color: #C7D2FE; text-align: right;
+    }
+    .intel-conf { font-family: 'JetBrains Mono', monospace; }
+    .intel-bar-track {
+        height: 5px; background: rgba(255,255,255,0.1); border-radius: 3px;
+        overflow: hidden; margin-top: 0.35rem;
+    }
+    .intel-bar-fill {
+        height: 100%; border-radius: 3px;
+        background: linear-gradient(90deg, #6366F1, #A855F7);
     }
 </style>
 """
+
+
+def _render_intelligence_badges() -> None:
+    """
+    Smart Intelligence Layer badges (additive, read-only).
+    Shows Detected Domain, Confidence, and active Insight Mode from session
+    state (populated by the pipeline). Falls back gracefully if absent.
+    """
+    label = st.session_state.get("detected_domain_label", "General Analytics")
+    confidence = float(st.session_state.get("detected_confidence", 0.0) or 0.0)
+    mode = st.session_state.get("insight_mode", "General (all insight types enabled)")
+    pct = max(0, min(100, int(round(confidence))))
+
+    st.markdown(
+        f"""
+        <div class="intel-panel">
+            <div class="intel-row">
+                <span class="intel-key">Detected Domain</span>
+                <span class="intel-val">{label}</span>
+            </div>
+            <div class="intel-row">
+                <span class="intel-key">Confidence</span>
+                <span class="intel-val intel-conf">{pct}%</span>
+            </div>
+            <div class="intel-bar-track"><div class="intel-bar-fill" style="width:{pct}%"></div></div>
+            <div class="intel-row" style="margin-top:0.4rem">
+                <span class="intel-key">Insight Mode Active</span>
+            </div>
+            <div class="intel-val" style="text-align:left;color:#9AA4BC;font-weight:600;font-size:0.72rem;line-height:1.35">
+                {mode}
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
 
 
 def _valid_route() -> str:
@@ -136,8 +231,11 @@ def render_sidebar(df: pd.DataFrame | None = None) -> dict:
         st.markdown(
             f"""
             <div class="sidebar-header">
-                <div class="sidebar-title">AI Analytics<br>Platform</div>
-                <div class="sidebar-version">v{APP_VERSION} | Streamlit + Plotly</div>
+                <div class="sidebar-logo-mark">📊</div>
+                <div>
+                    <div class="sidebar-title">AI Analytics</div>
+                    <div class="sidebar-version">v{APP_VERSION} · Streamlit + Plotly</div>
+                </div>
             </div>
             """,
             unsafe_allow_html=True,
@@ -155,6 +253,7 @@ def render_sidebar(df: pd.DataFrame | None = None) -> dict:
                 f'<div class="auto-detect-badge">Auto-detected: {detected_label}</div>',
                 unsafe_allow_html=True,
             )
+            _render_intelligence_badges()
 
         default_idx = domain_options.index(auto_key) if auto_key in domain_options else 0
         selected_label = st.selectbox(
@@ -171,9 +270,9 @@ def render_sidebar(df: pd.DataFrame | None = None) -> dict:
         st.markdown('<div class="sidebar-section-label">Navigation</div>', unsafe_allow_html=True)
         active_route = _valid_route()
 
-        for item in NAVIGATION_ITEMS:
+        for idx, item in enumerate(NAVIGATION_ITEMS, start=1):
             is_active = item["route"] == active_route
-            label = f'{item["icon"]}  {item["label"]}'
+            label = f'{idx:02d}   {item["icon"]}  {item["label"]}'
             clicked = st.button(
                 label,
                 key=f"nav_{item['route']}",
@@ -184,6 +283,18 @@ def render_sidebar(df: pd.DataFrame | None = None) -> dict:
             if clicked and not is_active:
                 st.session_state.active_route = item["route"]
                 st.rerun()
+
+        st.markdown(
+            """
+            <div class="copilot-status">
+                <div class="copilot-status-title"><span class="dot"></span>AI Copilot Active</div>
+                <div class="copilot-status-desc">
+                    Ask questions, run SQL, or generate insights in the Data Copilot tab.
+                </div>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
 
         filters = {}
         if df is not None and not df.empty:

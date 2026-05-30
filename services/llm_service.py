@@ -2,7 +2,6 @@
 
 import os
 from openai import OpenAI
-from dotenv import load_dotenv
 
 
 class LLMService:
@@ -17,20 +16,24 @@ class LLMService:
     """
 
     def __init__(self):
-        env_path = r"D:\ai_analytics\ai_analytics\api.env"
+        # Credentials are loaded centrally in config.py (.env / api.env / Streamlit
+        # secrets). Never hardcode machine-specific paths — that breaks deployment.
+        try:
+            from config import OPENROUTER_API_KEY
+        except Exception:
+            OPENROUTER_API_KEY = ""
 
-        load_dotenv(dotenv_path=env_path)
-
-        self.api_key = os.environ.get("OPENROUTER_API_KEY")
+        self.api_key = OPENROUTER_API_KEY or os.environ.get("OPENROUTER_API_KEY", "")
 
         if not self.api_key:
             raise ValueError(
-                "OPENROUTER_API_KEY not found in api.env"
+                "OPENROUTER_API_KEY not configured. Set it in .env / api.env or "
+                "Streamlit secrets."
             )
 
         self.client = OpenAI(
             base_url="https://openrouter.ai/api/v1",
-            api_key=self.api_key
+            api_key=self.api_key,
         )
 
     # ─────────────────────────────────────────────────────────────

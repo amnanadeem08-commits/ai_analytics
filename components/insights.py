@@ -19,11 +19,13 @@ INSIGHTS_CSS = """
 <style>
     /* Executive Summary Box */
     .executive-summary-box {
-        background: linear-gradient(135deg, #F8FAFC 0%, #F1F5F9 100%);
+        background: rgba(255,255,255,0.04);
         border-radius: 16px;
         padding: 1.5rem 1.75rem;
         margin-bottom: 1.5rem;
-        border: 1px solid #E2E8F0;
+        border: 1px solid rgba(255,255,255,0.08);
+        box-shadow: 0 8px 30px rgba(0,0,0,0.35);
+        backdrop-filter: blur(10px);
         position: relative;
         overflow: hidden;
     }
@@ -49,31 +51,31 @@ INSIGHTS_CSS = """
         width: 40px;
         height: 40px;
         border-radius: 12px;
-        background: linear-gradient(135deg, #5046E4 0%, #7C3AED 100%);
+        background: linear-gradient(135deg, #6366F1 0%, #A855F7 100%);
         display: flex;
         align-items: center;
         justify-content: center;
         font-size: 1.2rem;
-        box-shadow: 0 4px 12px rgba(80, 70, 228, 0.3);
+        box-shadow: 0 0 18px rgba(99,102,241,0.55);
     }
     
     .executive-summary-title {
         font-size: 1.1rem;
         font-weight: 700;
-        color: #111827;
+        color: #F3F4F6;
         letter-spacing: -0.02em;
     }
     
     .executive-summary-domain {
         font-size: 0.75rem;
-        color: #6B7280;
+        color: #9CA3AF;
         font-weight: 500;
         margin-top: 2px;
     }
     
     .executive-summary-content {
         font-size: 0.95rem;
-        color: #374151;
+        color: #CBD5E1;
         line-height: 1.7;
         max-width: 800px;
     }
@@ -217,7 +219,7 @@ INSIGHTS_CSS = """
         gap: 0.625rem;
         font-size: 0.95rem;
         font-weight: 600;
-        color: #374151;
+        color: #E5E7EB;
         margin-bottom: 0.75rem;
     }
     
@@ -231,14 +233,15 @@ INSIGHTS_CSS = """
         align-items: flex-start;
         gap: 0.75rem;
         padding: 0.75rem 1rem;
-        background: #F9FAFB;
+        background: rgba(255,255,255,0.04);
+        border: 1px solid rgba(255,255,255,0.07);
         border-radius: 10px;
         margin-bottom: 0.5rem;
         transition: background 0.2s;
     }
     
     .trend-item:hover {
-        background: #F3F4F6;
+        background: rgba(255,255,255,0.07);
     }
     
     .trend-indicator {
@@ -253,42 +256,42 @@ INSIGHTS_CSS = """
     }
     
     .trend-indicator.up {
-        background: #D1FAE5;
+        background: rgba(52,211,153,0.16);
     }
     
     .trend-indicator.down {
-        background: #FEE2E2;
+        background: rgba(248,113,113,0.16);
     }
     
     .trend-indicator.neutral {
-        background: #F3F4F6;
+        background: rgba(255,255,255,0.08);
     }
     
     .trend-text {
         font-size: 0.875rem;
-        color: #4B5563;
+        color: #CBD5E1;
         line-height: 1.5;
         flex: 1;
     }
     
     /* Category Cards */
     .category-card {
-        background: #FFFFFF;
-        border: 1px solid #E5E7EB;
+        background: rgba(255,255,255,0.04);
+        border: 1px solid rgba(255,255,255,0.08);
         border-radius: 12px;
         padding: 1rem 1.25rem;
         transition: all 0.2s;
     }
     
     .category-card:hover {
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-        border-color: #C7D2FE;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+        border-color: rgba(99,102,241,0.5);
     }
     
     .category-card-title {
         font-size: 0.85rem;
         font-weight: 600;
-        color: #374151;
+        color: #E5E7EB;
         margin-bottom: 0.75rem;
     }
     
@@ -297,7 +300,7 @@ INSIGHTS_CSS = """
         justify-content: space-between;
         align-items: center;
         padding: 0.375rem 0;
-        border-bottom: 1px solid #F3F4F6;
+        border-bottom: 1px solid rgba(255,255,255,0.07);
     }
     
     .category-item:last-child {
@@ -306,34 +309,35 @@ INSIGHTS_CSS = """
     
     .category-item-name {
         font-size: 0.825rem;
-        color: #6B7280;
+        color: #9CA3AF;
     }
     
     .category-item-value {
         font-size: 0.825rem;
         font-weight: 700;
-        color: #5046E4;
+        color: #818CF8;
+        font-family: 'JetBrains Mono', monospace;
     }
     
     /* Forecast Items */
     .forecast-item {
         padding: 0.75rem 1rem;
-        background: linear-gradient(135deg, #F5F3FF 0%, #EDE9FE 100%);
+        background: rgba(99,102,241,0.1);
         border-radius: 10px;
         margin-bottom: 0.5rem;
-        border-left: 3px solid #7C3AED;
+        border-left: 3px solid #818CF8;
     }
     
     .forecast-title {
         font-size: 0.875rem;
         font-weight: 600;
-        color: #111827;
+        color: #F3F4F6;
         margin-bottom: 0.375rem;
     }
     
     .forecast-summary {
         font-size: 0.825rem;
-        color: #4B5563;
+        color: #CBD5E1;
         line-height: 1.5;
         margin-bottom: 0.5rem;
     }
@@ -348,23 +352,24 @@ INSIGHTS_CSS = """
         display: inline-flex;
         align-items: center;
         padding: 2px 8px;
-        background: #FFFFFF;
+        background: rgba(255,255,255,0.05);
         border-radius: 6px;
         font-size: 0.725rem;
-        color: #6B7280;
-        border: 1px solid #E5E7EB;
+        color: #9CA3AF;
+        border: 1px solid rgba(255,255,255,0.08);
     }
     
     .forecast-point-value {
         font-weight: 600;
-        color: #7C3AED;
+        color: #C7D2FE;
+        font-family: 'JetBrains Mono', monospace;
     }
     
     /* Data Preview */
     .data-preview-container {
-        background: #FFFFFF;
+        background: rgba(255,255,255,0.04);
         border-radius: 12px;
-        border: 1px solid #E5E7EB;
+        border: 1px solid rgba(255,255,255,0.08);
         overflow: hidden;
     }
     
@@ -373,14 +378,14 @@ INSIGHTS_CSS = """
         align-items: center;
         justify-content: space-between;
         padding: 1rem 1.25rem;
-        background: #F9FAFB;
-        border-bottom: 1px solid #E5E7EB;
+        background: rgba(255,255,255,0.03);
+        border-bottom: 1px solid rgba(255,255,255,0.08);
     }
     
     .data-preview-title {
         font-size: 0.95rem;
         font-weight: 600;
-        color: #374151;
+        color: #E5E7EB;
     }
     
     .data-preview-stats {
@@ -390,21 +395,21 @@ INSIGHTS_CSS = """
     
     .data-preview-stat {
         font-size: 0.75rem;
-        color: #6B7280;
-        background: #FFFFFF;
+        color: #9CA3AF;
+        background: rgba(255,255,255,0.04);
         padding: 4px 10px;
         border-radius: 6px;
-        border: 1px solid #E5E7EB;
+        border: 1px solid rgba(255,255,255,0.08);
     }
     
     .data-preview-stat strong {
-        color: #111827;
+        color: #F3F4F6;
     }
     
     /* Cleaning Report */
     .cleaning-report {
-        background: #FFFFFF;
-        border: 1px solid #E5E7EB;
+        background: rgba(255,255,255,0.04);
+        border: 1px solid rgba(255,255,255,0.08);
         border-radius: 10px;
         padding: 1rem;
         margin: 0.5rem 0;
@@ -414,7 +419,7 @@ INSIGHTS_CSS = """
         font-family: 'JetBrains Mono', 'Fira Code', monospace;
         font-size: 0.775rem;
         line-height: 1.6;
-        color: #374151;
+        color: #CBD5E1;
         white-space: pre-wrap;
         word-wrap: break-word;
     }
