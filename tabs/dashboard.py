@@ -7,7 +7,11 @@ Renders: executive summary → anomaly banner → dataset intelligence
 
 from __future__ import annotations
 
+import re
+
+import numpy as np
 import pandas as pd
+import plotly.graph_objects as go
 import streamlit as st
 
 from components.data_quality import render_data_quality
@@ -218,6 +222,177 @@ def render_kpi_empty_state() -> None:
     )
 
 
+# ── Executive View helpers ──────────────────────────────────────────────────
+
+def make_sparkline(values: list, color: str = "#6C63FF", width: int = 60, height: int = 20) -> str:
+    """Return a tiny inline SVG line chart of the last ~12 values."""
+    vals = [float(v) for v in (values or []) if v is not None and pd.notna(v)]
+    if len(vals) < 2:
+        return ""
+    vals = vals[-12:]
+    mn, mx = min(vals), max(vals)
+    rng = (mx - mn) or 1.0
+    n = len(vals)
+    pts = []
+    for i, v in enumerate(vals):
+        x = int(i / (n - 1) * width)
+        y = height - 1 - int((v - mn) / rng * (height - 2))
+        pts.append(f"{x},{y}")
+    polyline = " ".join(pts)
+    return (
+        f'<svg width="{width}" height="{height}" viewBox="0 0 {width} {height}" '
+        f'style="display:block;margin-top:0.45rem;overflow:visible;">'
+        f'<polyline points="{polyline}" fill="none" stroke="{color}" stroke-width="1.5" '
+        f'stroke-linejoin="round" stroke-linecap="round"/></svg>'
+    )
+
+
+def _kpi_trend_values(kpi, df: pd.DataFrame) -> list:
+    """Derive a small sparkline series for a KPI from its linked df column."""
+    col = _resolve_kpi_column(getattr(kpi, "name", ""), df)
+    if not col or col not in df.columns:
+        return []
+    series = pd.to_numeric(df[col], errors="coerce").dropna()
+    if series.empty:
+        return []
+    if len(series) > 12:
+        idx = np.linspace(0, len(series) - 1, 12).astype(int)
+        series = series.iloc[idx]
+    return series.tolist()
+
+
+def _first_sentences(text, n: int = 3) -> str:
+    """Strip markdown and return the first n sentences of a summary string."""
+    if not text:
+        return ""
+    clean = re.sub(r"[#*`>_]", "", str(text)).replace("\n", " ").strip()
+    parts = [p.strip() for p in re.split(r"(?<=[.!?])\s+", clean) if p.strip()]
+    return " ".join(parts[:n])
+
+
+def _top_insights(analytics_report, anomaly_narrations, n: int = 3) -> list[tuple[str, str]]:
+    """Build up to n (dot_color, text) rows from anomalies, trends, or a safe fallback."""
+    sev_color = {"critical": "#FF6B6B", "high": "#FF6B6B", "medium": "#FFB547", "low": "#00D9A3"}
+    rows: list[tuple[str, str]] = []
+    anomalies = getattr(analytics_report, "anomalies", None) or []
+    narr = anomaly_narrations or []
+
+    for i, a in enumerate(anomalies[:n]):
+        sev = getattr(a, "severity", "medium")
+        color = sev_color.get(sev, "#FFB547")
+        if i < len(narr) and narr[i]:
+            text = str(narr[i])
+        else:
+            col = getattr(a, "column", "metric").replace("_", " ").title()
+            count = len(getattr(a, "anomaly_indices", []) or [])
+            text = f"{col}: {sev} anomaly across {count} point(s)"
+        rows.append((color, text))
+
+    if not rows:
+        for t in (getattr(analytics_report, "trends", None) or [])[:n]:
+            summary = getattr(t, "summary", "")
+            if summary:
+                rows.append(("#00D9A3", str(summary)))
+
+    if not rows:
+        rows.append(("#00D9A3", "No critical anomalies detected — metrics within expected range."))
+    return rows[:n]
+
+
+def _resize_fig(fig, height: int, top: int, title: str | None = None):
+    """Return a copy of a pre-built figure resized for the executive grid."""
+    f = go.Figure(fig)
+    layout = dict(height=height, autosize=False, margin=dict(l=0, r=0, t=top, b=0), showlegend=False)
+    if title is None:
+        layout["title"] = None
+    else:
+        layout["title"] = dict(text=title, font=dict(size=11, color="#E8E8F0"), x=0, xanchor="left")
+    f.update_layout(**layout)
+    return f
+
+
+def _render_executive_view(
+    filtered_df, domain_cfg, kpis, charts, ai_summary, analytics_report, anomaly_narrations
+) -> None:
+    """Single-screen Power BI-style executive dashboard (no scrolling)."""
+    # ROW 1 — micro KPI cards with inline sparklines
+    micro = list(kpis or [])[:4]
+    if micro:
+        cols = st.columns(len(micro))
+        for col, kpi in zip(cols, micro):
+            with col:
+                spark = make_sparkline(_kpi_trend_values(kpi, filtered_df))
+                st.markdown(
+                    f"""
+                    <div style="background:#1A1D2E;border:1px solid rgba(255,255,255,0.07);
+                                border-radius:12px;padding:0.85rem 1rem;height:100%;">
+                        <div style="font-size:0.62rem;font-weight:700;color:#8B8FA8;
+                                    text-transform:uppercase;letter-spacing:0.08em;">{kpi.name}</div>
+                        <div style="font-family:'JetBrains Mono',ui-monospace,monospace;
+                                    font-size:1.4rem;font-weight:800;color:#FFFFFF;
+                                    margin-top:0.2rem;line-height:1.1;">{kpi.formatted}</div>
+                        {spark}
+                    </div>
+                    """,
+                    unsafe_allow_html=True,
+                )
+
+    st.markdown("<div style='height:0.8rem;'></div>", unsafe_allow_html=True)
+
+    # ROW 2 — primary chart (2) + summary & signals (1)
+    left, right = st.columns([2, 1])
+    with left:
+        if charts:
+            title, fig = charts[0]
+            st.markdown(f"<div style='font-size:0.8rem;font-weight:700;color:#E8E8F0;'>{title}</div>",
+                        unsafe_allow_html=True)
+            st.plotly_chart(_resize_fig(fig, 360, 10), use_container_width=True,
+                            key="exec_primary", config=_PLOTLY_CONFIG)
+        else:
+            st.info("No chart available for this dataset.")
+    with right:
+        summary = _first_sentences(ai_summary, 3) or "Executive summary is not available yet."
+        st.markdown(
+            f"""
+            <div style="background:#1A1D2E;border-left:3px solid #6C63FF;padding:1rem;
+                        border-radius:8px;font-size:0.85rem;color:#C9D1D9;line-height:1.7;">
+                <div style="font-size:0.62rem;font-weight:800;color:#8B8FA8;text-transform:uppercase;
+                            letter-spacing:0.08em;margin-bottom:0.4rem;">Executive Summary</div>
+                {summary}
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+        st.markdown(
+            "<div style='font-size:0.62rem;font-weight:800;color:#8B8FA8;text-transform:uppercase;"
+            "letter-spacing:0.08em;margin:0.9rem 0 0.3rem;'>Top Signals</div>",
+            unsafe_allow_html=True,
+        )
+        for color, text in _top_insights(analytics_report, anomaly_narrations, 3):
+            st.markdown(
+                f"""
+                <div style="display:flex;align-items:flex-start;gap:0.5rem;padding:0.45rem 0.1rem;
+                            border-bottom:1px solid rgba(255,255,255,0.05);">
+                    <span style="width:8px;height:8px;border-radius:50%;background:{color};
+                                 box-shadow:0 0 8px {color};margin-top:0.32rem;flex-shrink:0;"></span>
+                    <span style="font-size:0.78rem;color:#C9D1D9;line-height:1.4;">{text}</span>
+                </div>
+                """,
+                unsafe_allow_html=True,
+            )
+
+    st.markdown("<div style='height:0.8rem;'></div>", unsafe_allow_html=True)
+
+    # ROW 3 — three compact secondary charts
+    secondary = list(charts or [])[1:4]
+    if secondary:
+        cols = st.columns(3)
+        for i, (col, (title, fig)) in enumerate(zip(cols, secondary)):
+            with col:
+                st.plotly_chart(_resize_fig(fig, 200, 20, title=title), use_container_width=True,
+                                key=f"exec_sec_{i}", config=_PLOTLY_CONFIG)
+
+
 def render(
     filtered_df,
     domain_cfg,
@@ -248,6 +423,19 @@ def render(
             st.session_state.raw_df          = None
             st.session_state.processing_done = False
             st.rerun()
+
+    st.markdown(
+        "<div style='font-size:0.62rem;font-weight:800;color:#6B7280;text-transform:uppercase;"
+        "letter-spacing:0.12em;margin:0.4rem 0 0.1rem;'>View Mode</div>",
+        unsafe_allow_html=True,
+    )
+    exec_mode = st.toggle("Executive view", value=False, key="exec_mode")
+    if exec_mode:
+        _render_executive_view(
+            filtered_df, domain_cfg, kpis, charts,
+            ai_summary, analytics_report, anomaly_narrations,
+        )
+        return
 
     render_executive_summary(ai_summary, domain_cfg)
     render_anomaly_alerts(analytics_report.anomalies, anomaly_narrations)
