@@ -29,6 +29,9 @@ logs/
 .DS_Store
 Thumbs.db
 
+# Office temp/lock files
+~$*
+
 # IDE
 .vscode/
 .idea/
