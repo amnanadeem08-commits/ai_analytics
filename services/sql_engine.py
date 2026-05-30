@@ -68,6 +68,20 @@ def _quote_ident(name: str) -> str:
     return '"' + name.replace('"', '""') + '"'
 
 
+def _sql_str(value: str) -> str:
+    """Escape a Python string into a single-quoted SQL literal."""
+    return "'" + str(value).replace("'", "''") + "'"
+
+
+# Words to ignore when keyword-matching a question against column values.
+_STOPWORDS = frozenset({
+    "show", "me", "all", "the", "a", "an", "records", "record", "rows", "row",
+    "data", "where", "find", "list", "get", "of", "for", "with", "in", "and",
+    "or", "is", "are", "that", "who", "which", "customers", "customer", "people",
+    "users", "user", "give", "display", "only", "from", "by", "to",
+})
+
+
 def validate_sql(sql: str) -> tuple[bool, str]:
     """Allow only read-only SELECT (or WITH … SELECT) queries."""
     if not sql or not sql.strip():
@@ -186,12 +200,89 @@ class SQLEngine:
             f"SQL query (SELECT only, single statement):"
         )
         raw = call_llm(user, system_prompt=system, max_tokens=512)
-        if not raw:
-            raise RuntimeError(
-                "The AI service is unavailable right now (no valid key or all models rate-limited). "
-                "Please retry in a moment, or set a working key in .env / Streamlit secrets."
-            )
-        return _extract_sql(raw)
+        sql = _extract_sql(raw) if raw else ""
+        if sql:
+            return sql
+
+        # LLM unavailable (no key / rate-limited) → try a deterministic
+        # keyword-based fallback so simple filters still work offline.
+        fallback = self._heuristic_sql(question)
+        if fallback:
+            return f"-- AI unavailable - generated locally by keyword match\n{fallback}"
+
+        raise RuntimeError(
+            "The AI service is unavailable right now (no valid key or all models rate-limited), "
+            "and the question couldn't be matched to your columns automatically. "
+            "Try simple filters like \"male, france\" or set a working key in .env / Streamlit secrets."
+        )
+
+    def _match_value_to_column(
+        self, value: str, text_cols: list[str], exclude: set[str]
+    ) -> tuple[str, str] | None:
+        """Find the first text column whose values exactly match `value` (case-insensitive)."""
+        table = _quote_ident(self._schema.table_name)
+        for col in text_cols:
+            if col in exclude:
+                continue
+            try:
+                row = self._conn.execute(
+                    f"SELECT 1 FROM {table} "
+                    f"WHERE CAST({_quote_ident(col)} AS VARCHAR) ILIKE ? LIMIT 1",
+                    [value],
+                ).fetchone()
+            except Exception:
+                continue
+            if row:
+                return col, value
+        return None
+
+    def _heuristic_sql(self, question: str) -> str:
+        """
+        Best-effort NL→SQL without an LLM. Splits the question into candidate
+        values and maps each to the column that actually contains it, e.g.
+        "male, france" → WHERE gender ILIKE 'male' AND country ILIKE 'france'.
+        """
+        schema = self._schema
+        if not schema or not self._conn:
+            return ""
+
+        table = _quote_ident(schema.table_name)
+        text_cols = [
+            c.name for c in schema.columns
+            if any(t in c.dtype.upper() for t in ("CHAR", "TEXT", "STRING"))
+        ]
+        q = question.strip().lower()
+        count_intent = bool(re.search(r"\bhow many\b|\bcount\b|\bnumber of\b|\btotal number\b", q))
+
+        # Split on separators but NOT plain spaces (keeps multi-word values intact).
+        phrases = [p.strip(" .?!") for p in re.split(r"[,/&]|\band\b|\bwith\b|\bin\b", q) if p.strip(" .?!")]
+
+        matched: dict[str, str] = {}
+
+        def try_match(val: str) -> None:
+            val = val.strip(" .?!")
+            if not val or val in _STOPWORDS or len(val) < 2:
+                return
+            hit = self._match_value_to_column(val, text_cols, set(matched))
+            if hit:
+                matched[hit[0]] = hit[1]
+
+        for phrase in phrases:
+            before = len(matched)
+            try_match(phrase)
+            if len(matched) == before:           # phrase didn't match → try its words
+                for word in phrase.split():
+                    try_match(word)
+
+        if not matched:
+            return "SELECT COUNT(*) AS count FROM " + table if count_intent else ""
+
+        where = " AND ".join(
+            f"{_quote_ident(col)} ILIKE {_sql_str(val)}" for col, val in matched.items()
+        )
+        if count_intent:
+            return f"SELECT COUNT(*) AS count FROM {table} WHERE {where}"
+        return f"SELECT * FROM {table} WHERE {where} LIMIT 1000"
 
     def execute(self, sql: str) -> pd.DataFrame:
         if not self._conn:
