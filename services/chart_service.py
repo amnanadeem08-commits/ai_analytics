@@ -92,19 +92,63 @@ class ChartPlan:
 
 
 PLOTLY_TEMPLATE = "plotly_dark"
+
+# Tableau/Power BI-grade categorical palette. Defined here so every chart in
+# this factory renders with the same vivid, high-contrast sequence (overrides
+# the config default for charting only — does not change data).
+CHART_COLORS = [
+    "#6C63FF",  # violet primary
+    "#00D9A3",  # teal
+    "#FF6B6B",  # coral
+    "#FFB547",  # amber
+    "#4CC9F0",  # sky blue
+    "#F72585",  # pink
+    "#7BF1A8",  # mint
+    "#FF9E6D",  # peach
+]
+
+# Shared axis styling (proper nested `title.font` to satisfy the Plotly schema).
+# automargin keeps tick/axis labels from clipping under the tight base margins.
+_AXIS_BASE = dict(
+    gridcolor="rgba(255,255,255,0.04)",
+    linecolor="rgba(255,255,255,0.08)",
+    tickcolor="rgba(255,255,255,0.08)",
+    tickfont=dict(size=11, color="#6B7280"),
+    title=dict(font=dict(size=11, color="#6B7280")),
+    showgrid=True,
+    zeroline=False,
+    automargin=True,
+)
+
 BASE_LAYOUT = dict(
     template=PLOTLY_TEMPLATE,
-    font_family="Inter, system-ui, sans-serif",
-    font_color="#CBD5E1",
     paper_bgcolor="rgba(0,0,0,0)",
     plot_bgcolor="rgba(0,0,0,0)",
-    margin=dict(l=48, r=24, t=40, b=48),
+    font=dict(family="Inter, system-ui, sans-serif", color="#C9D1D9", size=12),
+    margin=dict(l=8, r=8, t=36, b=8),
     colorway=CHART_COLORS,
     height=CHART_HEIGHT,
     autosize=False,
-    xaxis=dict(gridcolor="rgba(255,255,255,0.06)", zerolinecolor="rgba(255,255,255,0.12)"),
-    yaxis=dict(gridcolor="rgba(255,255,255,0.06)", zerolinecolor="rgba(255,255,255,0.12)"),
-    legend=dict(bgcolor="rgba(0,0,0,0)"),
+    title=dict(
+        font=dict(size=13, color="#E8E8F0", weight="bold"),
+        x=0, xanchor="left", pad=dict(l=4, b=8),
+    ),
+    legend=dict(
+        bgcolor="rgba(0,0,0,0)",
+        bordercolor="rgba(255,255,255,0.08)",
+        borderwidth=1,
+        font=dict(size=11, color="#9CA3AF"),
+        orientation="h",
+        yanchor="bottom", y=1.02,
+        xanchor="right", x=1,
+    ),
+    hoverlabel=dict(
+        bgcolor="#1E2235",
+        bordercolor="rgba(108,99,255,0.5)",
+        font=dict(size=12, color="#E8E8F0", family="Inter, sans-serif"),
+    ),
+    xaxis=dict(**_AXIS_BASE),
+    yaxis=dict(**_AXIS_BASE),
 )
 
 _JUNK_NUMERIC_NAMES = frozenset({"index", "unnamed", "unnamed_0", "row", "row_number", "serial"})
@@ -120,6 +164,18 @@ def chart_layout(**overrides) -> dict:
     """Return a fresh layout dict for dashboard charts (never mutate BASE_LAYOUT)."""
     layout = {**BASE_LAYOUT, **overrides}
     return layout
+
+
+def add_chart_watermark(fig: go.Figure, domain_name: str) -> go.Figure:
+    """Stamp a subtle 'DataBot AI · <domain>' watermark in the bottom-right corner."""
+    fig.add_annotation(
+        text=f"DataBot AI · {domain_name}",
+        xref="paper", yref="paper",
+        x=1, y=0, xanchor="right", yanchor="bottom",
+        font=dict(size=9, color="rgba(255,255,255,0.12)"),
+        showarrow=False,
+    )
+    return fig
 
 
 def _is_row_index_column(df: pd.DataFrame, col: str) -> bool:
@@ -561,10 +617,12 @@ class ChartService:
         plans = orchestrate_chart_plans(work, domain, max_charts)
         charts: list[tuple[str, go.Figure]] = []
 
+        domain_name = getattr(domain, "label", "Analytics")
         for plan in plans:
             try:
                 fig = self.build_chart(work, plan)
                 if fig is not None:
+                    add_chart_watermark(fig, domain_name)
                     charts.append((plan.title, fig))
             except Exception as exc:
                 logger.warning("Chart render failed for '%s': %s", plan.title, exc)
@@ -678,6 +736,10 @@ class ChartService:
             .nlargest(top_n)
             .reset_index(name="count")
         )
+        total = float(grouped["count"].sum()) or 1.0
+        grouped["pct"] = grouped["count"] / total * 100.0
+        grouped["rank"] = grouped["count"].rank(ascending=False, method="min").astype(int)
+        grouped = grouped.sort_values("count")
         fig = px.bar(
             grouped,
             x="count",
@@ -685,34 +747,92 @@ class ChartService:
             orientation="h",
             text="count",
             color="count",
-            color_continuous_scale=["#1E1B4B", "#6366F1"],
+            color_continuous_scale=["#1E1B4B", "#6C63FF"],
+            custom_data=["pct", "rank"],
         )
         fig.update_layout(**chart_layout(coloraxis_showscale=False))
-        fig.update_traces(texttemplate="%{text}", textposition="outside")
+        fig.update_traces(
+            texttemplate="%{text}",
+            textposition="outside",
+            marker_line_width=0,
+            hovertemplate=(
+                "<b>%{y}</b><br>Count: %{x:,.0f}<br>"
+                "% of total: %{customdata[0]:.1f}%<br>Rank: #%{customdata[1]}<extra></extra>"
+            ),
+        )
+        mean_val = float(grouped["count"].mean())
+        fig.add_vline(
+            x=mean_val, line_dash="dot", line_color="rgba(255,255,255,0.2)", line_width=1,
+            annotation_text=f"avg: {mean_val:,.0f}", annotation_font_size=10,
+            annotation_font_color="#6B7280", annotation_position="top",
+        )
         return fig
 
     # ── Individual chart builders ───────────────────────────────────────────────
 
     def line_chart(self, df: pd.DataFrame, x: str, y: str, color: str | None = None) -> go.Figure:
         work = df[[x, y] + ([color] if color else [])].dropna().sort_values(x)
-        if pd.api.types.is_datetime64_any_dtype(work[x]) and len(work) > 100:
+        if color is None and pd.api.types.is_datetime64_any_dtype(work[x]) and len(work) > 100:
             work = work.groupby(pd.Grouper(key=x, freq="D"))[y].mean().reset_index()
         fig = px.line(work, x=x, y=y, color=color, markers=True)
         fig.update_layout(**chart_layout(title=None))
-        fig.update_traces(line_width=2.5)
-        fig.update_xaxes(showgrid=True, gridcolor="rgba(255,255,255,0.06)")
-        fig.update_yaxes(showgrid=True, gridcolor="rgba(255,255,255,0.06)")
+        if color:
+            fig.update_traces(
+                mode="lines+markers",
+                line=dict(width=2.5, shape="spline"),
+                marker=dict(size=5, symbol="circle", line=dict(width=1.5, color="#0F1117")),
+            )
+        else:
+            fig.update_traces(
+                mode="lines+markers",
+                line=dict(width=2.5, shape="spline", color=CHART_COLORS[0]),
+                fill="tozeroy",
+                fillcolor="rgba(108,99,255,0.06)",
+                marker=dict(size=5, symbol="circle", line=dict(width=1.5, color="#0F1117")),
+                hovertemplate="<b>%{x}</b><br>%{y:,.0f}<extra></extra>",
+            )
         return fig
 
     def bar_chart(self, df: pd.DataFrame, x: str, y: str, orientation: str = "v") -> go.Figure:
         fig = px.bar(df, x=x, y=y, orientation=orientation, color_discrete_sequence=CHART_COLORS)
         fig.update_layout(**chart_layout())
+        fig.update_traces(marker_line_width=0)
+
+        value_col = y if orientation == "v" else x
+        try:
+            series = pd.to_numeric(df[value_col], errors="coerce")
+            total = float(series.sum()) or 1.0
+            mean_val = float(series.mean())
+            pct = (series / total * 100.0).fillna(0.0)
+            rank = series.rank(ascending=False, method="min").fillna(0.0)
+            fig.update_traces(customdata=np.stack([pct.values, rank.values], axis=-1))
+            if orientation == "v":
+                fig.update_traces(hovertemplate=(
+                    "<b>%{x}</b><br>Value: %{y:,.0f}<br>"
+                    "% of total: %{customdata[0]:.1f}%<br>Rank: #%{customdata[1]:.0f}<extra></extra>"
+                ))
+                fig.add_hline(
+                    y=mean_val, line_dash="dot", line_color="rgba(255,255,255,0.2)", line_width=1,
+                    annotation_text=f"avg: {mean_val:,.0f}", annotation_font_size=10,
+                    annotation_font_color="#6B7280", annotation_position="right",
+                )
+            else:
+                fig.update_traces(hovertemplate=(
+                    "<b>%{y}</b><br>Value: %{x:,.0f}<br>"
+                    "% of total: %{customdata[0]:.1f}%<br>Rank: #%{customdata[1]:.0f}<extra></extra>"
+                ))
+                fig.add_vline(
+                    x=mean_val, line_dash="dot", line_color="rgba(255,255,255,0.2)", line_width=1,
+                    annotation_text=f"avg: {mean_val:,.0f}", annotation_font_size=10,
+                    annotation_font_color="#6B7280", annotation_position="top",
+                )
+        except Exception:
+            pass
+
         if orientation == "v":
             fig.update_xaxes(tickangle=-30, automargin=True)
         else:
             fig.update_yaxes(automargin=True)
-        fig.update_yaxes(showgrid=True, gridcolor="rgba(255,255,255,0.06)")
-        fig.update_xaxes(showgrid=True, gridcolor="rgba(255,255,255,0.06)")
         return fig
 
     def top_n_bar(
@@ -725,15 +845,30 @@ class ChartService:
             .sum()
             .nlargest(n)
             .reset_index()
-            .sort_values(value_col)
         )
+        total = float(grouped[value_col].sum()) or 1.0
+        grouped["pct"] = grouped[value_col] / total * 100.0
+        grouped["rank"] = grouped[value_col].rank(ascending=False, method="min").astype(int)
+        grouped = grouped.sort_values(value_col)
         fig = px.bar(
             grouped, x=value_col, y=cat_col, orientation="h",
-            color=value_col, color_continuous_scale=["#EEF2FF", "#5046E4"],
-            text=value_col,
+            color=value_col, color_continuous_scale=["#1E1B4B", "#6C63FF"],
+            text=value_col, custom_data=["pct", "rank"],
         )
         fig.update_layout(**chart_layout(coloraxis_showscale=False))
-        fig.update_traces(texttemplate="%{text:,.0f}", textposition="outside")
+        fig.update_traces(
+            texttemplate="%{text:,.0f}", textposition="outside", marker_line_width=0,
+            hovertemplate=(
+                "<b>%{y}</b><br>Value: %{x:,.0f}<br>"
+                "% of total: %{customdata[0]:.1f}%<br>Rank: #%{customdata[1]}<extra></extra>"
+            ),
+        )
+        mean_val = float(grouped[value_col].mean())
+        fig.add_vline(
+            x=mean_val, line_dash="dot", line_color="rgba(255,255,255,0.2)", line_width=1,
+            annotation_text=f"avg: {mean_val:,.0f}", annotation_font_size=10,
+            annotation_font_color="#6B7280", annotation_position="top",
+        )
         return fig
 
     def box_by_category(
@@ -867,7 +1002,11 @@ class ChartService:
             markers=True,
         )
         fig.update_layout(**chart_layout(title=None))
-        fig.update_traces(line_width=2)
+        fig.update_traces(
+            mode="lines+markers",
+            line=dict(width=2.5, shape="spline"),
+            marker=dict(size=5, symbol="circle", line=dict(width=1.5, color="#0F1117")),
+        )
         return fig
 
     def histogram(self, df: pd.DataFrame, col: str, bins: int = 30) -> go.Figure:
@@ -880,21 +1019,52 @@ class ChartService:
         self, df: pd.DataFrame, x: str, y: str, color: str | None = None, size: str | None = None
     ) -> go.Figure:
         sample = df.sample(min(2000, len(df)), random_state=42)
+        size_arg = size if (size and size in sample.columns) else None
         fig = px.scatter(
-            sample, x=x, y=y, color=color, size=size,
+            sample, x=x, y=y, color=color, size=size_arg,
             color_discrete_sequence=CHART_COLORS, opacity=0.7,
         )
         fig.update_layout(**chart_layout())
+        fig.update_traces(marker=dict(line=dict(width=0.5, color="rgba(15,17,23,0.6)")))
+
+        # Trendline via numpy polyfit (single-series only, drawn as a dashed overlay).
+        try:
+            if color is None:
+                xv = pd.to_numeric(sample[x], errors="coerce")
+                yv = pd.to_numeric(sample[y], errors="coerce")
+                mask = xv.notna() & yv.notna()
+                if int(mask.sum()) >= 2:
+                    slope, intercept = np.polyfit(xv[mask], yv[mask], 1)
+                    xs = np.linspace(float(xv[mask].min()), float(xv[mask].max()), 50)
+                    fig.add_trace(go.Scatter(
+                        x=xs, y=slope * xs + intercept, mode="lines", name="trend",
+                        line=dict(dash="dash", width=2, color="#FF6B6B"),
+                        hoverinfo="skip", showlegend=True,
+                    ))
+        except Exception:
+            pass
         return fig
 
     def pie_chart(self, df: pd.DataFrame, names: str, values: str, top_n: int = 8) -> go.Figure:
         grouped = df.groupby(names)[values].sum().nlargest(top_n).reset_index()
+        total = float(grouped[values].sum())
+        n = len(grouped)
+        max_idx = int(np.argmax(grouped[values].values)) if n else 0
+        pull = [0.05 if i == max_idx else 0 for i in range(n)]
         fig = px.pie(
-            grouped, names=names, values=values, hole=0.42,
+            grouped, names=names, values=values, hole=0.55,
             color_discrete_sequence=CHART_COLORS,
         )
         fig.update_layout(**chart_layout())
-        fig.update_traces(textposition="outside", textinfo="percent+label")
+        fig.update_traces(
+            textposition="outside", textinfo="percent+label", pull=pull,
+            marker=dict(line=dict(color="#0F1117", width=1.5)),
+            hovertemplate="<b>%{label}</b><br>%{value:,.0f}<br>%{percent}<extra></extra>",
+        )
+        fig.add_annotation(
+            text=f"{total:,.0f}<br>Total", x=0.5, y=0.5, showarrow=False,
+            font=dict(size=14, color="#E8E8F0"),
+        )
         return fig
 
     def correlation_heatmap(self, df: pd.DataFrame, cols: list[str]) -> go.Figure:
@@ -917,7 +1087,7 @@ class ChartService:
         fig = go.Figure(go.Scatter(
             y=series.values, mode="lines",
             line=dict(color=CHART_COLORS[0], width=2),
-            fill="tozeroy", fillcolor="rgba(80,70,228,0.1)",
+            fill="tozeroy", fillcolor="rgba(108,99,255,0.12)",
         ))
         fig.update_layout(
             **chart_layout(
