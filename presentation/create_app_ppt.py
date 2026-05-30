@@ -14,6 +14,7 @@ Output:
 from __future__ import annotations
 
 import sys
+import time
 from pathlib import Path
 
 # Reuse the theme + low-level helpers from the main generator.
@@ -318,11 +319,18 @@ def build() -> Path:
     s4_results(prs)
     s5_snapshot(prs)
     s6_closing(prs)
-    prs.save(str(OUT_PATH))
-    return OUT_PATH
+    try:
+        prs.save(str(OUT_PATH))
+        return OUT_PATH
+    except PermissionError:
+        # File is likely open in PowerPoint — save to a fresh name instead.
+        alt = OUT_PATH.with_name(f"app_overview_{int(time.time())}.pptx")
+        prs.save(str(alt))
+        print(f"NOTE: '{OUT_PATH.name}' was locked (open in PowerPoint?). Saved to '{alt.name}'.")
+        return alt
 
 
 if __name__ == "__main__":
     out = build()
     print(f"Presentation generated: {out}")
-    print(f"Slides: {TOTAL}  ·  Size: {out.stat().st_size / 1024:.0f} KB")
+    print(f"Slides: {TOTAL}  -  Size: {out.stat().st_size / 1024:.0f} KB")

@@ -24,6 +24,7 @@ All content lives in builder functions; tweak text/colors in one place.
 
 from __future__ import annotations
 
+import time
 from pathlib import Path
 
 from pptx import Presentation
@@ -765,11 +766,18 @@ def build() -> Path:
     slide_11_value(prs)
     slide_12_closing(prs)
 
-    prs.save(str(OUT_PATH))
-    return OUT_PATH
+    try:
+        prs.save(str(OUT_PATH))
+        return OUT_PATH
+    except PermissionError:
+        # File is likely open in PowerPoint — save to a fresh name instead.
+        alt = OUT_PATH.with_name(f"project_presentation_{int(time.time())}.pptx")
+        prs.save(str(alt))
+        print(f"NOTE: '{OUT_PATH.name}' was locked (open in PowerPoint?). Saved to '{alt.name}'.")
+        return alt
 
 
 if __name__ == "__main__":
     out = build()
     print(f"Presentation generated: {out}")
-    print(f"Slides: 12  ·  Size: {out.stat().st_size / 1024:.0f} KB")
+    print(f"Slides: 12  -  Size: {out.stat().st_size / 1024:.0f} KB")
