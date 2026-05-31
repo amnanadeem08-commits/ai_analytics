@@ -1,31 +1,39 @@
-# Portfolio website on GitHub Pages (NOT Streamlit)
+# Your live website (NOT the GitHub repo page)
 
 ## Website name
 
+**DataBot AI** — AI Automation & Analytics Solutions  
 **Amna Malik | Data & AI Engineer**
 
-## Live URL (after enabling Pages once)
+## Correct URL (bookmark & share this)
 
 **https://amnanadeem08-commits.github.io/ai_analytics/**
 
-Source file: `portfolio/index.html` → published via `docs/index.html`
+## Wrong URL (this is CODE, not your website)
 
-## Enable GitHub Pages (one time)
+https://github.com/amnanadeem08-commits/ai_analytics
 
-1. Open https://github.com/amnanadeem08-commits/ai_analytics/settings/pages
-2. **Source:** Deploy from a branch
-3. **Branch:** `main` (or `master`) → **Folder:** `/docs` → **Save**
-4. Wait 1–2 minutes, open the URL above
+That link shows README, files, and commits — the repo page. Clients should use the github.io link above.
 
-## Update the site later
+## GitHub Pages setup (one time)
 
-Edit `portfolio/index.html`, then push to GitHub. The workflow copies it to `docs/` automatically.
+1. https://github.com/amnanadeem08-commits/ai_analytics/settings/pages
+2. Source: Deploy from a branch
+3. Branch: main → Folder: /docs → Save
+4. Repo home → About ⚙️ → Website: paste the github.io URL
 
-Or run locally:
+## Edit the live site
+
+Edit files in ai-services-web/src/, then build:
 
 ```powershell
-Copy-Item portfolio\index.html docs\index.html -Force
-git add portfolio/index.html docs/index.html
-git commit -m "Update portfolio"
+cd ai-services-web
+$env:VITE_BASE="/ai_analytics/"
+npm run build
+Copy-Item -Recurse dist\* ..\docs\ -Force
+git add docs ai-services-web
+git commit -m "Update website"
 git push
 ```
+
+Or push ai-services-web changes — GitHub Actions rebuilds docs/ automatically.

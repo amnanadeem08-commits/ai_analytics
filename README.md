@@ -1,5 +1,10 @@
 # AI Data Reporting & Analytics Assistant
 
+> **🌐 Live website (portfolio & services):**  
+> **https://amnanadeem08-commits.github.io/ai_analytics/**  
+>  
+> This README is the **code repo**. Your **client-facing website** is the link above — not this page.
+
 An AI-powered workflow analytics platform that behaves like a senior business/data analyst.
 Upload any CSV or Excel file, and the platform automatically cleans it, detects your business domain, computes KPIs, generates visualisations, produces an AI executive summary, and exports professional reports.
 
@@ -132,7 +137,20 @@ Each domain changes KPIs, chart types, chatbot persona, and AI analysis focus:
 
 ## Deployment
 
-### Streamlit Cloud
+### GitHub Pages website (portfolio / services site)
+
+| Page | URL |
+|------|-----|
+| **Your website** (share with clients) | **https://amnanadeem08-commits.github.io/ai_analytics/** |
+| **GitHub repo** (source code — not the website) | https://github.com/amnanadeem08-commits/ai_analytics |
+
+Built from `ai-services-web/` → published to the `docs/` folder.
+
+**One-time setup:** GitHub → **Settings → Pages** → Source: **Deploy from branch** → Branch: `main` → Folder: **`/docs`**.
+
+**Add website to repo profile:** On the repo home page, click the ⚙️ next to **About** → paste the website URL above → Save.
+
+### Streamlit Cloud (live DataBot demo app)
 1. Push the repository to GitHub.
 2. Open https://share.streamlit.io and connect your GitHub account.
 3. Create a new app and select:
