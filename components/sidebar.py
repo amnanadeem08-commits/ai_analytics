@@ -23,6 +23,7 @@ NAVIGATION_ITEMS = [
     {"route": "data_story", "icon": "📖", "label": "Data Story", "description": "AI narrative and chart story"},
     {"route": "business_insights", "icon": "🧠", "label": "Business Insights", "description": "Automated findings and recommendations"},
     {"route": "map_view", "icon": "🗺️", "label": "Map Analysis", "description": "Geographic choropleth, bubble, and heat maps"},
+    {"route": "custom_metrics", "icon": "📐", "label": "Custom Metrics", "description": "Build custom KPIs without code"},
     {"route": "compare", "icon": "⚖️", "label": "Compare", "description": "Compare two datasets"},
     {"route": "copilot", "icon": "🤖", "label": "Data Copilot", "description": "Ask questions about your data"},
     {"route": "export", "icon": "📤", "label": "Export", "description": "Download reports and cleaned data"},

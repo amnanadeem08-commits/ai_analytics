@@ -52,6 +52,7 @@ import tabs.deep_analysis    as tab_deep
 import tabs.data_story       as tab_story
 import tabs.business_insights as tab_insights
 import tabs.map_view         as tab_map
+import tabs.custom_metrics   as tab_custom_metrics
 import tabs.compare          as tab_compare
 import tabs.copilot          as tab_copilot
 import tabs.export           as tab_export
@@ -278,6 +279,9 @@ elif active_tab == "business_insights":
 
 elif active_tab == "map_view":
     tab_map.render(filtered_df, domain_cfg, kpis)
+
+elif active_tab == "custom_metrics":
+    tab_custom_metrics.render(filtered_df, domain_cfg)
 
 elif active_tab == "compare":
     tab_compare.render(filtered_df, domain_cfg, svcs["comparison"])
