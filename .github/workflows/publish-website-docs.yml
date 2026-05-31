@@ -1,0 +1,44 @@
+# Build React site and publish to docs/ for GitHub Pages
+name: Publish website to docs
+
+on:
+  push:
+    branches: [master, main]
+    paths:
+      - "ai-services-web/**"
+      - ".github/workflows/publish-website-docs.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: ai-services-web/package-lock.json
+
+      - name: Build site
+        working-directory: ai-services-web
+        env:
+          VITE_BASE: /ai_analytics/
+        run: |
+          npm ci
+          npm run build
+
+      - name: Copy to docs/
+        run: |
+          rm -rf docs/*
+          cp -r ai-services-web/dist/* docs/
+          touch docs/.nojekyll
+
+      - uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Publish website build to docs for GitHub Pages"
+          file_pattern: "docs/**"

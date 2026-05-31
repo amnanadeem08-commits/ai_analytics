@@ -5,37 +5,36 @@ import SectionHeader from "../ui/SectionHeader";
 
 export default function Pricing() {
   return (
-    <AnimatedSection id="pricing" className="bg-surface/50">
+    <AnimatedSection id="pricing">
       <SectionHeader
         eyebrow="Pricing"
-        title="Simple, transparent packages"
-        subtitle="From quick Excel gigs to monthly retainers and full custom builds."
+        title="Scoped To Your Project"
+        subtitle="Every build is quoted after understanding your data, timeline, and deliverables — no fake price tags."
       />
-      <div className="grid gap-6 lg:grid-cols-3">
+      <div className="grid gap-4 lg:grid-cols-3 lg:gap-5">
         {pricing.map((plan) => (
           <article
             key={plan.name}
-            className={`flex flex-col rounded-2xl border p-8 transition-all duration-300 ${
+            className={`flex flex-col rounded-2xl border p-6 transition-all duration-300 sm:p-7 ${
               plan.highlighted
-                ? "border-accent/50 bg-gradient-to-b from-accent/15 to-card shadow-glow scale-[1.02]"
-                : "border-white/10 bg-card hover:border-accent/30"
+                ? "glass border-accent/40 bg-gradient-to-b from-accent/15 to-white/[0.03] shadow-glow lg:scale-[1.02]"
+                : "glass-card border-white/10 hover:border-accent/25"
             }`}
           >
             {plan.highlighted && (
-              <span className="mb-4 inline-block w-fit rounded-full bg-accent/20 px-3 py-1 text-xs font-bold text-accent-light">
-                Most popular
+              <span className="mb-3 inline-block w-fit rounded-full bg-accent/20 px-3 py-1 text-xs font-bold text-accent-light">
+                Most requested
               </span>
             )}
             <h3 className="text-lg font-bold text-white">{plan.name}</h3>
             <p className="mt-2 text-sm text-muted">{plan.description}</p>
-            <p className="mt-6 font-mono text-3xl font-bold text-white">
-              {plan.price}
-              <span className="ml-1 text-sm font-normal text-muted">{plan.period}</span>
-            </p>
-            <ul className="mt-8 flex-1 space-y-3 text-sm text-muted">
+            <p className="mt-5 font-mono text-2xl font-bold text-white sm:text-3xl">{plan.price}</p>
+            <ul className="mt-6 flex-1 space-y-2.5 text-sm text-muted">
               {plan.features.map((f) => (
                 <li key={f} className="flex gap-2">
-                  <span className="text-mint">✓</span>
+                  <span className="text-mint" aria-hidden>
+                    ✓
+                  </span>
                   {f}
                 </li>
               ))}
@@ -43,7 +42,8 @@ export default function Pricing() {
             <Button
               href="#contact"
               variant={plan.highlighted ? "primary" : "secondary"}
-              className="mt-8 w-full"
+              className="mt-6 w-full"
+              size="md"
             >
               {plan.cta}
             </Button>

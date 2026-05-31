@@ -4,9 +4,9 @@ import Hero from "./components/sections/Hero";
 import PainPoints from "./components/sections/PainPoints";
 import Services from "./components/sections/Services";
 import BotShowcase from "./components/sections/BotShowcase";
-import DemoCards from "./components/sections/DemoCards";
+import TrustProof from "./components/sections/TrustProof";
+import Process from "./components/sections/Process";
 import Pricing from "./components/sections/Pricing";
-import Testimonials from "./components/sections/Testimonials";
 import Contact from "./components/sections/Contact";
 
 export default function App() {
@@ -24,9 +24,9 @@ export default function App() {
         <PainPoints />
         <Services />
         <BotShowcase />
-        <DemoCards />
+        <TrustProof />
+        <Process />
         <Pricing />
-        <Testimonials />
         <Contact />
       </main>
       <Footer />

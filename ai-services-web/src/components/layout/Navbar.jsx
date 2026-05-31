@@ -39,8 +39,8 @@ export default function Navbar() {
         </nav>
 
         <div className="hidden md:block">
-          <Button href="#contact" size="sm">
-            Get started
+          <Button href="#contact" size="md">
+            Book consultation
           </Button>
         </div>
 
@@ -75,7 +75,7 @@ export default function Navbar() {
               </a>
             ))}
             <Button href="#contact" className="w-full" onClick={() => setOpen(false)}>
-              Get started
+              Book consultation
             </Button>
           </div>
         </nav>

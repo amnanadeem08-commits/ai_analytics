@@ -16,13 +16,19 @@
 
 @layer components {
   .glass {
-    @apply border border-white/10 bg-white/[0.04] backdrop-blur-xl;
+    @apply border border-white/10 bg-white/[0.05] backdrop-blur-xl backdrop-saturate-150;
+  }
+  .glass-card {
+    @apply glass rounded-2xl transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/25 hover:shadow-glow;
   }
   .gradient-text {
     @apply bg-gradient-to-r from-accent-light via-white to-mint bg-clip-text text-transparent;
   }
   .section-pad {
-    @apply px-4 py-20 sm:px-6 lg:px-8 lg:py-28;
+    @apply px-4 py-14 sm:px-6 sm:py-16 lg:px-8 lg:py-20;
+  }
+  .trust-pill {
+    @apply rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs font-medium text-muted;
   }
 }
 

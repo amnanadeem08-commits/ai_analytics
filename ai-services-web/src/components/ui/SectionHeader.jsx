@@ -2,7 +2,7 @@ export default function SectionHeader({ eyebrow, title, subtitle, align = "cente
   const alignClass = align === "center" ? "text-center mx-auto" : "text-left";
 
   return (
-    <header className={`mb-12 max-w-2xl ${alignClass}`}>
+    <header className={`mb-8 max-w-2xl lg:mb-10 ${alignClass}`}>
       {eyebrow && (
         <p className="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-accent-light">
           {eyebrow}

@@ -1,34 +1,45 @@
 import { site } from "../../data/content";
 import AnimatedSection from "../ui/AnimatedSection";
 import Button from "../ui/Button";
-import SectionHeader from "../ui/SectionHeader";
 
 export default function Contact() {
-  const mailto = `mailto:${site.email}?subject=AI%20services%20inquiry`;
+  const mailto = `mailto:${site.email}?subject=AI%20automation%20consultation`;
 
   return (
-    <AnimatedSection id="contact" className="bg-surface/50">
-      <div className="overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-card via-surface to-accent/10 p-8 sm:p-12 lg:p-16">
-        <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
+    <AnimatedSection id="contact" className="bg-surface/40">
+      <div className="overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-card via-surface to-accent/10 p-6 sm:p-10 lg:p-12">
+        <div className="grid gap-8 lg:grid-cols-2 lg:items-center lg:gap-10">
           <div>
-            <SectionHeader
-              align="left"
-              eyebrow="Contact"
-              title="Let's build your next analytics win"
-              subtitle="Available for Fiverr, Upwork, and direct projects. Typical response within 24 hours."
-            />
-            <div className="flex flex-wrap gap-3">
+            <p className="mb-2 text-xs font-bold uppercase tracking-[0.2em] text-accent-light">
+              Get started
+            </p>
+            <h2 className="text-2xl font-extrabold tracking-tight text-white sm:text-3xl lg:text-4xl">
+              Ready To Automate Your Workflow?
+            </h2>
+            <p className="mt-3 text-base leading-relaxed text-muted">
+              Tell me about your reporting pain points, data sources, and timeline. I respond within
+              24 hours for Fiverr, Upwork, and direct projects.
+            </p>
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <Button href={mailto} size="lg">
-                Email {site.name}
+                Contact Me
               </Button>
-              <Button href={site.github} variant="secondary" size="lg" external>
-                GitHub →
+              <Button href="#bots" variant="secondary" size="lg">
+                View Projects
+              </Button>
+              <Button
+                href={`mailto:${site.email}?subject=Book%20consultation%20-%20AI%20automation`}
+                variant="secondary"
+                size="lg"
+              >
+                Book Consultation
               </Button>
             </div>
           </div>
 
           <form
-            className="glass rounded-2xl p-6"
+            className="glass rounded-2xl p-5 sm:p-6"
+            aria-label="Contact form"
             onSubmit={(e) => {
               e.preventDefault();
               const fd = new FormData(e.target);
@@ -44,7 +55,8 @@ export default function Contact() {
               <input
                 name="name"
                 required
-                className="mt-1.5 w-full rounded-xl border border-white/10 bg-canvas px-4 py-2.5 text-white outline-none focus:border-accent"
+                autoComplete="name"
+                className="mt-1.5 w-full rounded-xl border border-white/10 bg-canvas px-4 py-2.5 text-white outline-none transition-colors focus:border-accent"
                 placeholder="Your name"
               />
             </label>
@@ -52,8 +64,8 @@ export default function Contact() {
               Subject
               <input
                 name="subject"
-                className="mt-1.5 w-full rounded-xl border border-white/10 bg-canvas px-4 py-2.5 text-white outline-none focus:border-accent"
-                placeholder="Dashboard build / Excel gig / Custom bot"
+                className="mt-1.5 w-full rounded-xl border border-white/10 bg-canvas px-4 py-2.5 text-white outline-none transition-colors focus:border-accent"
+                placeholder="Automation / Dashboard / Custom AI bot"
               />
             </label>
             <label className="mt-4 block text-sm font-medium text-muted">
@@ -62,11 +74,11 @@ export default function Contact() {
                 name="message"
                 required
                 rows={4}
-                className="mt-1.5 w-full resize-none rounded-xl border border-white/10 bg-canvas px-4 py-2.5 text-white outline-none focus:border-accent"
-                placeholder="Tell me about your data, timeline, and budget..."
+                className="mt-1.5 w-full resize-none rounded-xl border border-white/10 bg-canvas px-4 py-2.5 text-white outline-none transition-colors focus:border-accent"
+                placeholder="Describe your workflow, files, and deadline..."
               />
             </label>
-            <Button type="submit" className="mt-6 w-full">
+            <Button type="submit" className="mt-5 w-full" size="md">
               Send message
             </Button>
           </form>

@@ -9,37 +9,39 @@ export default function Services() {
     <AnimatedSection id="services">
       <SectionHeader
         eyebrow="Services"
-        title="Everything you need to deliver analytics"
-        subtitle="From one-off Excel gigs to full AI platforms — pick the layer that fits your client."
+        title="Solutions That Replace Manual Work"
+        subtitle="Productized AI and analytics services — scoped for freelancers, teams, and growing businesses."
       />
-      <div className="grid gap-6 md:grid-cols-2">
+      <div className="grid gap-4 sm:grid-cols-2 lg:gap-5">
         {services.map((svc) => (
           <Card key={svc.title} className="flex flex-col">
-            <div className="flex items-start gap-4">
-              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-accent/15 text-2xl">
+            <div className="flex items-start gap-3">
+              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-accent/15 text-xl">
                 {svc.icon}
               </span>
               <div>
-                <h3 className="text-xl font-bold text-white">{svc.title}</h3>
-                <p className="text-sm font-medium text-accent-light">{svc.tagline}</p>
+                <h3 className="text-lg font-bold text-white sm:text-xl">{svc.title}</h3>
+                <p className="mt-1 text-sm font-medium text-accent-light">{svc.tagline}</p>
               </div>
             </div>
-            <ul className="mt-5 flex-1 space-y-2 text-sm text-muted">
+            <ul className="mt-4 flex-1 space-y-2 text-sm text-muted">
               {svc.bullets.map((b) => (
                 <li key={b} className="flex gap-2">
-                  <span className="text-accent">✦</span>
+                  <span className="text-mint" aria-hidden>
+                    ✓
+                  </span>
                   {b}
                 </li>
               ))}
             </ul>
-            <div className="mt-6">
+            <div className="mt-5">
               <Button
                 href={svc.href}
                 variant="secondary"
-                size="sm"
+                size="md"
                 external={svc.href.startsWith("http")}
               >
-                {svc.cta} →
+                {svc.cta}
               </Button>
             </div>
           </Card>
