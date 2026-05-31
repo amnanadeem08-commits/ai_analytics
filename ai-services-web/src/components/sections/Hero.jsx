@@ -22,12 +22,16 @@ export default function Hero() {
           <div className="max-w-xl">
             <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-accent/30 bg-accent/10 px-3 py-1 text-xs font-semibold text-accent-light">
               <span className="h-1.5 w-1.5 rounded-full bg-mint animate-pulse" />
-              AI automation · Analytics · Dashboards
+              {hero.byline} · Available for hire
             </div>
 
             <h1 className="text-3xl font-black leading-tight tracking-tight sm:text-4xl lg:text-[2.75rem] lg:leading-[1.1]">
               {hero.headline}
             </h1>
+
+            <p className="mt-2 text-sm font-medium text-white/90">
+              Freelance service provider · Fiverr · Upwork · Direct clients
+            </p>
 
             <p className="mt-4 text-base leading-relaxed text-muted sm:text-lg">
               {hero.subheadline}

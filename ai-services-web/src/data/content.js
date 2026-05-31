@@ -22,9 +22,10 @@ export const navLinks = [
 ];
 
 export const hero = {
+  byline: "Amna Malik · Data & AI Engineer",
   headline: "AI Automation & Analytics Solutions",
   subheadline:
-    "Custom AI bots, dashboards, reporting systems, and automation workflows that reduce manual work and generate faster business insights.",
+    "I build custom AI bots, dashboards, and reporting systems for businesses and freelancers — so you spend less time on manual work and get insights faster.",
   trust: ["Python", "SQL", "Power BI", "AI", "Automation"],
 };
 

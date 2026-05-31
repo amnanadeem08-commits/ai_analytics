@@ -1,4 +1,4 @@
-# Build React site and publish to docs/ for GitHub Pages
+# Build React site and publish for GitHub Pages (root + docs)
 name: Publish website to docs
 
 on:
@@ -32,13 +32,19 @@ jobs:
           npm ci
           npm run build
 
-      - name: Copy to docs/
+      - name: Publish to docs/ and repo root
         run: |
           rm -rf docs/*
           cp -r ai-services-web/dist/* docs/
           touch docs/.nojekyll
+          cp ai-services-web/dist/index.html ./index.html
+          rm -rf ./assets
+          cp -r ai-services-web/dist/assets ./assets
+          cp ai-services-web/dist/favicon.svg ./favicon.svg
+          cp ai-services-web/dist/robots.txt ./robots.txt
+          touch .nojekyll
 
       - uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "Publish website build to docs for GitHub Pages"
-          file_pattern: "docs/**"
+          commit_message: "Publish service provider website to GitHub Pages"
+          file_pattern: "docs/** index.html assets/** favicon.svg robots.txt .nojekyll"

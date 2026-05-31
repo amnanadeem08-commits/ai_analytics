@@ -21,9 +21,12 @@ export default function Navbar() {
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
         <a href="#top" className="flex items-center gap-2.5 font-bold text-white">
           <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-accent to-violet-600 text-sm shadow-glow">
-            AI
+            AM
           </span>
-          <span className="hidden sm:inline">{site.brand}</span>
+          <span className="leading-tight">
+            <span className="block text-sm sm:text-base">{site.name}</span>
+            <span className="block text-[10px] font-normal text-muted sm:text-xs">{site.title}</span>
+          </span>
         </a>
 
         <nav className="hidden items-center gap-8 md:flex" aria-label="Main">
