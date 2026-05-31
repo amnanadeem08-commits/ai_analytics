@@ -1,0 +1,29 @@
+# Keeps GitHub Pages (docs/) in sync with portfolio/index.html
+name: Sync portfolio to GitHub Pages
+
+on:
+  push:
+    branches: [master, main]
+    paths:
+      - "portfolio/**"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Copy portfolio to docs/
+        run: |
+          mkdir -p docs
+          cp portfolio/index.html docs/index.html
+          touch docs/.nojekyll
+
+      - uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Sync portfolio to docs for GitHub Pages"
+          file_pattern: "docs/**"

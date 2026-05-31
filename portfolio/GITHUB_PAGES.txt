@@ -1,0 +1,31 @@
+# Portfolio website on GitHub Pages (NOT Streamlit)
+
+## Website name
+
+**Amna Malik | Data & AI Engineer**
+
+## Live URL (after enabling Pages once)
+
+**https://amnanadeem08-commits.github.io/ai_analytics/**
+
+Source file: `portfolio/index.html` → published via `docs/index.html`
+
+## Enable GitHub Pages (one time)
+
+1. Open https://github.com/amnanadeem08-commits/ai_analytics/settings/pages
+2. **Source:** Deploy from a branch
+3. **Branch:** `main` (or `master`) → **Folder:** `/docs` → **Save**
+4. Wait 1–2 minutes, open the URL above
+
+## Update the site later
+
+Edit `portfolio/index.html`, then push to GitHub. The workflow copies it to `docs/` automatically.
+
+Or run locally:
+
+```powershell
+Copy-Item portfolio\index.html docs\index.html -Force
+git add portfolio/index.html docs/index.html
+git commit -m "Update portfolio"
+git push
+```
