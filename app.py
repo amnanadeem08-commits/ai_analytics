@@ -51,6 +51,7 @@ import tabs.category         as tab_category
 import tabs.deep_analysis    as tab_deep
 import tabs.data_story       as tab_story
 import tabs.business_insights as tab_insights
+import tabs.map_view         as tab_map
 import tabs.compare          as tab_compare
 import tabs.copilot          as tab_copilot
 import tabs.export           as tab_export
@@ -274,6 +275,9 @@ elif active_tab == "business_insights":
         filtered_df, domain_cfg, kpis, analytics_report,
         svcs["insight_engine"], svcs["recommendation_engine"],
     )
+
+elif active_tab == "map_view":
+    tab_map.render(filtered_df, domain_cfg, kpis)
 
 elif active_tab == "compare":
     tab_compare.render(filtered_df, domain_cfg, svcs["comparison"])
