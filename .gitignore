@@ -38,6 +38,9 @@ Thumbs.db
 *.suo
 *.user
 
+# Node (React website)
+ai-services-web/node_modules/
+
 # Misc
 import os.txt
 {data
